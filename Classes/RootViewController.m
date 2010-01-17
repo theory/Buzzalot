@@ -20,15 +20,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.title = NSLocalizedString(@"Buzzes", @"Master view navigation title");
+	self.title = NSLocalizedString(@"Buzzalot", @"Master view navigation title");
 
-	// Set up the edit and add buttons.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
-    self.navigationItem.rightBarButtonItem = addButton;
+	// Set up the info and edit and add buttons.
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	UIButton *modalViewButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+	[modalViewButton addTarget:self action:@selector(modalViewAction:) forControlEvents:UIControlEventTouchUpInside];
+	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:modalViewButton];
+    self.navigationItem.leftBarButtonItem = addButton;
     [addButton release];
-	
+
+
+	UIBarButtonItem *composeItem = [ [ UIBarButtonItem alloc ] 
+									initWithBarButtonSystemItem: UIBarButtonSystemItemCompose 
+									target: self 
+									action: @selector(insertNewObject:)
+									];
+	UIBarButtonItem *refreshItem = [ [ UIBarButtonItem alloc ] 
+									initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh 
+									target: self 
+									action: @selector(insertNewObject:)
+									];
+	// flex item used to separate the left groups items and right grouped items
+	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+																			  target:nil
+																			  action:nil];
+	self.toolbarItems = [NSArray arrayWithObjects: refreshItem, flexItem, composeItem, nil];
+	[self.navigationController setToolbarHidden:NO];
+	[composeItem release];
+	[flexItem release];
+	[refreshItem release];
+
 	NSError *error = nil;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		/*
@@ -39,6 +61,8 @@
 		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
 	}
+}
+- (void)setToolbarHidden:(BOOL)hidden animated:(BOOL)animated {
 }
 
 /*
