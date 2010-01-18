@@ -30,16 +30,17 @@
     self.navigationItem.leftBarButtonItem = addButton;
     [addButton release];
 
-
+	// XXX Update each table row to scroll to the second nav window when clicked. Then lay out that window.
+	// Next, lay out the configuration modal window, hooking it up to the info button.
 	UIBarButtonItem *composeItem = [ [ UIBarButtonItem alloc ] 
 									initWithBarButtonSystemItem: UIBarButtonSystemItemCompose 
 									target: self 
-									action: @selector(insertNewObject:)
+									action:@selector(insertNewObject)
 									];
 	UIBarButtonItem *refreshItem = [ [ UIBarButtonItem alloc ] 
 									initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh 
 									target: self 
-									action: @selector(insertNewObject:)
+									action: @selector(insertNewObject)
 									];
 	// flex item used to separate the left groups items and right grouped items
 	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -149,6 +150,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
 	// Configure the cell.
