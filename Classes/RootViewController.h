@@ -6,7 +6,9 @@
 //  Copyright Kineticode, Inc. 2010. All rights reserved.
 //
 
-@interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
+#import "ConfigViewController.h"
+
+@interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate, ConfigViewControllerDelegate> {
 	NSFetchedResultsController *fetchedResultsController;
 	NSManagedObjectContext *managedObjectContext;
 }
@@ -14,6 +16,6 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-- (void)setToolbarHidden:(BOOL)hidden animated:(BOOL)animated;
+- (IBAction)showConfig;
 
 @end

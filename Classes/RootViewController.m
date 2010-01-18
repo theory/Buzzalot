@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "BuzzerViewController.h"
+#import "ConfigViewController.h"
 
 @implementation RootViewController
 
@@ -25,12 +26,11 @@
 	// Set up the info and edit and add buttons.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	UIButton *modalViewButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-	[modalViewButton addTarget:self action:@selector(modalViewAction:) forControlEvents:UIControlEventTouchUpInside];
+	[modalViewButton addTarget:self action:@selector(showConfig) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:modalViewButton];
     self.navigationItem.leftBarButtonItem = addButton;
     [addButton release];
 
-	// XXX Update each table row to scroll to the second nav window when clicked. Then lay out that window.
 	// Next, lay out the configuration modal window, hooking it up to the info button.
 	UIBarButtonItem *composeItem = [ [ UIBarButtonItem alloc ] 
 									initWithBarButtonSystemItem: UIBarButtonSystemItemCompose 
@@ -68,8 +68,19 @@
 		abort();
 	}
 }
-- (void)setToolbarHidden:(BOOL)hidden animated:(BOOL)animated {
+
+- (IBAction)showConfig { 
+	ConfigViewController *configViewController = [[ConfigViewController alloc] initWithStyle:UITableViewStyleGrouped];
+	configViewController.delegate = self;
+	configViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentModalViewController:configViewController animated:YES];
+	[configViewController release];
 }
+
+- (void)configViewControllerDidFinish:(ConfigViewController *)controller {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -168,12 +179,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// Create and push a correspondent view controller.
-	BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
+	ConfigViewController *configViewController = [ConfigViewController alloc];
 	// Pass the selected object to the new view controller.
-	[self.navigationController pushViewController:buzzerViewController animated:YES];
-	[buzzerViewController release];
+	[self.navigationController pushViewController:configViewController animated:YES];
+	[configViewController release];
 }
-
 
 /*
 // Override to support conditional editing of the table view.
