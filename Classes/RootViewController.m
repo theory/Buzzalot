@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-
+#import "BuzzerViewController.h"
 
 @implementation RootViewController
 
@@ -52,6 +52,11 @@
 	[flexItem release];
 	[refreshItem release];
 
+	// Set up the back button.
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Buzzers" style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.backBarButtonItem = backButton;
+	[backButton release];
+	
 	NSError *error = nil;
 	if (![[self fetchedResultsController] performFetch:&error]) {
 		/*
@@ -162,15 +167,11 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here -- for example, create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	// Create and push a correspondent view controller.
+	BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
+	// Pass the selected object to the new view controller.
+	[self.navigationController pushViewController:buzzerViewController animated:YES];
+	[buzzerViewController release];
 }
 
 
