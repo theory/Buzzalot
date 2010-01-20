@@ -72,9 +72,11 @@
 - (IBAction)showConfig { 
 	ConfigViewController *configViewController = [[ConfigViewController alloc] initWithStyle:UITableViewStyleGrouped];
 	configViewController.delegate = self;
-	configViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:configViewController animated:YES];
+	UINavigationController*  configNavController = [[UINavigationController alloc] initWithRootViewController:configViewController];
+	configNavController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentModalViewController:configNavController animated:YES];
 	[configViewController release];
+	[configNavController release];
 }
 
 - (void)configViewControllerDidFinish:(ConfigViewController *)controller {
@@ -179,10 +181,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// Create and push a correspondent view controller.
-	ConfigViewController *configViewController = [ConfigViewController alloc];
+	BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
 	// Pass the selected object to the new view controller.
-	[self.navigationController pushViewController:configViewController animated:YES];
-	[configViewController release];
+	[self.navigationController pushViewController:buzzerViewController animated:YES];
+	[buzzerViewController release];
 }
 
 /*

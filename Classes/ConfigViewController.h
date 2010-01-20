@@ -16,7 +16,6 @@
 
 @property (nonatomic, assign) id <ConfigViewControllerDelegate> delegate;
 - (IBAction)done;
-
 @end
 
 @protocol ConfigViewControllerDelegate
