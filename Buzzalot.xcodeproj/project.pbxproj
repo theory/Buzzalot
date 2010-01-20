@@ -17,6 +17,7 @@
 		2899E5600DE3E45000AC0155 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* RootViewController.xib */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		631FF0301106DE4D00EEFE78 /* TableViewCellBalloon.m in Sources */ = {isa = PBXBuildFile; fileRef = 631FF02F1106DE4D00EEFE78 /* TableViewCellBalloon.m */; };
 		637F7201110418A000A78F75 /* BuzzerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637F71FF110418A000A78F75 /* BuzzerViewController.m */; };
 		637F73131104360400A78F75 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637F73111104360400A78F75 /* ConfigViewController.m */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,8 @@
 		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		631FF02E1106DE4D00EEFE78 /* TableViewCellBalloon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellBalloon.h; sourceTree = "<group>"; };
+		631FF02F1106DE4D00EEFE78 /* TableViewCellBalloon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellBalloon.m; sourceTree = "<group>"; };
 		637F71FE110418A000A78F75 /* BuzzerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerViewController.h; sourceTree = "<group>"; };
 		637F71FF110418A000A78F75 /* BuzzerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzerViewController.m; sourceTree = "<group>"; };
 		637F73101104360400A78F75 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 				637F73111104360400A78F75 /* ConfigViewController.m */,
 				1D3623240D0F684500981E51 /* BuzzalotAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BuzzalotAppDelegate.m */,
+				631FF02E1106DE4D00EEFE78 /* TableViewCellBalloon.h */,
+				631FF02F1106DE4D00EEFE78 /* TableViewCellBalloon.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				631FF05D1106DF0A00EEFE78 /* images */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -122,6 +128,13 @@
 				28860BE40F44EE6400985440 /* CoreData.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		631FF05D1106DF0A00EEFE78 /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +204,7 @@
 				28860B770F44E54D00985440 /* Buzzalot.xcdatamodel in Sources */,
 				637F7201110418A000A78F75 /* BuzzerViewController.m in Sources */,
 				637F73131104360400A78F75 /* ConfigViewController.m in Sources */,
+				631FF0301106DE4D00EEFE78 /* TableViewCellBalloon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
