@@ -37,7 +37,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 
@@ -51,7 +51,8 @@
         case 0:
             rows = 3;
             break;
-        case 1:
+		case 1:
+        case 2:
             rows = 1;
             break;
         default:
@@ -71,37 +72,64 @@
     }
     
 	// Configure the cell.
-	if (indexPath.section == 0) {
-		NSString *cellText = nil;
-		CGRect frame = CGRectMake(0.0, 0.0, 210.0, 24.0);
-		UITextField *textField = [[UITextField alloc] initWithFrame:frame];
-		textField.autocorrectionType = UITextAutocorrectionTypeNo;
-//		textField.borderStyle = UITextBorderStyleBezel;
-//		[textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventValueChanged];
+	switch (indexPath.section) {
+		case 0: {
+			NSString *cellText = nil;
+			CGRect frame = CGRectMake(0.0, 0.0, 210.0, 24.0);
+			UITextField *textField = [[UITextField alloc] initWithFrame:frame];
+			textField.autocorrectionType = UITextAutocorrectionTypeNo;
+	//		textField.borderStyle = UITextBorderStyleBezel;
+	//		[textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventValueChanged];
 
-		switch (indexPath.row) {
-			case 0:
-				cellText = NSLocalizedString(@"Email", @"Email label");
-				textField.placeholder = NSLocalizedString(@"you@example.com", @"Email placeholder");
-				textField.keyboardType = UIKeyboardTypeEmailAddress;
-				break;
-			case 1:
-				cellText = NSLocalizedString(@"Password", @"Password label");
-				textField.secureTextEntry = YES;
-				textField.placeholder = NSLocalizedString(@"•••••••••••", @"Password placeholder");
-				textField.keyboardType = UIKeyboardTypeDefault;
-				break;
-			case 2:
-				cellText = NSLocalizedString(@"Code", @"Code label");
-				textField.keyboardType = UIKeyboardTypeNumberPad;
-				break;					
-			default:
-				break;
+			switch (indexPath.row) {
+				case 0:
+					cellText = NSLocalizedString(@"Email", @"Email label");
+					textField.placeholder = NSLocalizedString(@"you@example.com", @"Email placeholder");
+					textField.keyboardType = UIKeyboardTypeEmailAddress;
+					break;
+				case 1:
+					cellText = NSLocalizedString(@"Password", @"Password label");
+					textField.secureTextEntry = YES;
+					textField.placeholder = NSLocalizedString(@"•••••••••••", @"Password placeholder");
+					textField.keyboardType = UIKeyboardTypeDefault;
+					break;
+				case 2:
+					cellText = NSLocalizedString(@"Code", @"Code label");
+					textField.keyboardType = UIKeyboardTypeNumberPad;
+					break;
+				default:
+					break;
+			}
+			cell.textLabel.text = cellText;
+			cell.accessoryView = textField;
+			break;
+		} case 1: {
+			CGRect frame = CGRectMake(0.0, 0.0, 304.0, 45.0);
+			UIButton *submitButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+			submitButton.frame = frame;
+			[submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+			cell.accessoryView = submitButton;
+			break;
+		} case 2: {
+			UISegmentedControl *styleControl = [[UISegmentedControl alloc] initWithItems:
+										[NSArray arrayWithObjects:
+										 @"Default",
+										 @"Black",
+										 @"Translucent",
+										 nil]];
+
+			// XXX This looks okay, but the alignment is off. Make the h and w smaller to see it clearly. Why is it offset?
+			CGRect frame = CGRectMake(0.0, 0.0, 304.0, 45.0);
+			styleControl.frame = frame;
+			styleControl.segmentedControlStyle = UISegmentedControlStyleBar;
+			styleControl.selectedSegmentIndex = 0;
+			cell.accessoryView = styleControl;
+			break;
+		} default: {
+			break;
 		}
-		cell.textLabel.text = cellText;
-		cell.accessoryView = textField;
 	}
-
+	
     return cell;
 }
 //- (void) textChanged:(UITextField *)source {
@@ -115,7 +143,9 @@
         case 0:
             title = NSLocalizedString(@"Account", @"Account section title");
             break;
-        case 1:
+		case 1:
+			break;
+        case 2:
             title = NSLocalizedString(@"Style", @"Genre section title");
             break;
         default:
@@ -124,7 +154,14 @@
     return title;
 }
 
-//@"Enter your email address and a password and then check your email for the confirmation code";
+//- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+//	if (section == 0) {
+//		return NSLocalizedString(@"Enter your email address and a\npassword, then check your email\nfor the confirmation code.", @"Accound section footer");
+//	}
+//	return nil;
+//}
+
+//;
 
 
 /*
