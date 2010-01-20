@@ -13,7 +13,7 @@
 
 - (void)drawRect:(CGRect)rect {
 	UIImage* balloon = [[UIImage imageNamed:@"balloon.png"] stretchableImageWithLeftCapWidth:15  topCapHeight:15];
-	[balloon drawInRect: aRect];    
+//	[balloon drawInRect: aRect];    
 }
 
 @end
