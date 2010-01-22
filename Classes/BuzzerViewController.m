@@ -35,20 +35,20 @@
 									target: self
 									action: nil
 									];
-	UIBarButtonItem *refreshItem = [ [ UIBarButtonItem alloc ]
-									initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
-									target: self
-									action: nil
-									];
+//	UIBarButtonItem *refreshItem = [ [ UIBarButtonItem alloc ]
+//									initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
+//									target: self
+//									action: nil
+//									];
 	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
 	[self.navigationController setToolbarHidden:NO];
-	[self setToolbarItems: [NSArray arrayWithObjects: refreshItem, flexItem, trashItem, flexItem, replyItem, nil] animated: YES];
+	[self setToolbarItems: [NSArray arrayWithObjects: trashItem, flexItem, replyItem, nil] animated: YES];
 
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	[replyItem release];
 	[flexItem release];
-	[refreshItem release];
+//	[refreshItem release];
 	[super viewDidLoad];
 }
 

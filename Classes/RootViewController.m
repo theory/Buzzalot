@@ -35,22 +35,22 @@
 	UIBarButtonItem *composeItem = [ [ UIBarButtonItem alloc ] 
 									initWithBarButtonSystemItem: UIBarButtonSystemItemCompose 
 									target: self 
-									action:@selector(insertNewObject)
+									action:@selector(ComposeMessage)
 									];
-	UIBarButtonItem *refreshItem = [ [ UIBarButtonItem alloc ] 
-									initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh 
-									target: self 
-									action: @selector(insertNewObject)
-									];
+//	UIBarButtonItem *refreshItem = [ [ UIBarButtonItem alloc ] 
+//									initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh 
+//									target: self 
+//									action: @selector(ComposeMessage)
+//									];
 	// flex item used to separate the left groups items and right grouped items
 	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
 																			  target:nil
 																			  action:nil];
-	self.toolbarItems = [NSArray arrayWithObjects: refreshItem, flexItem, composeItem, nil];
+	self.toolbarItems = [NSArray arrayWithObjects: flexItem, composeItem, nil];
 	[self.navigationController setToolbarHidden:NO];
 	[composeItem release];
 	[flexItem release];
-	[refreshItem release];
+//	[refreshItem release];
 
 	// Set up the back button.
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Buzzers" style:UIBarButtonItemStyleDone target:nil action:nil];
@@ -119,11 +119,15 @@
  */
 
 
+- (void)ComposeMessage {
+	
+}
+
 #pragma mark -
 #pragma mark Add a new object
 
 - (void)insertNewObject {
-	
+
 	// Create a new instance of the entity managed by the fetched results controller.
 	NSManagedObjectContext *context = [fetchedResultsController managedObjectContext];
 	NSEntityDescription *entity = [[fetchedResultsController fetchRequest] entity];
@@ -155,8 +159,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+//	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
+//    return [sectionInfo numberOfObjects];
+	return 9;
 }
 
 
@@ -165,19 +170,83 @@
     
     static NSString *CellIdentifier = @"Cell";
     
+	// XXX Will want to create a custom cell class in order to format the image how I want. This will do for now.
+	// http://stackoverflow.com/questions/1812305/how-to-set-the-cell-imageview-frame
+	// To transform and store an image, see http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/.
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
+
+		cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
+		cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+		cell.detailTextLabel.numberOfLines = 2;
+		cell.detailTextLabel.textColor = [UIColor blackColor];
+	}
     
 	// Configure the cell.
-	NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
-	cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+//	NSManagedObject *managedObject = [fetchedResultsController objectAtIndexPath:indexPath];
+//	cell.textLabel.text = [[managedObject valueForKey:@"timeStamp"] description];
+
+	// XXX Replace this with a database query, as above. Probably in its own method.
+	switch (indexPath.row) {
+		case 0:
+			cell.textLabel.text = @"James Duncan Davidson";
+			cell.detailTextLabel.text = @"Love to, but I'm sick with a fever right now. Not much fun. :(";
+			cell.imageView.image = [UIImage imageNamed:@"duncan.jpg"];
+			break;
+		case 1:
+			cell.textLabel.text = @"Tim Bunce";
+			cell.detailTextLabel.text = @"I'm gonn'a try (but I know zero about pg internals so I'd be surprised if I can help)";
+			cell.imageView.image = [UIImage imageNamed:@"timbunce.jpg"];
+			break;
+		case 2:
+			cell.textLabel.text = @"Casey West";
+			cell.detailTextLabel.text = @"Bah. I'm not going to be around much this afternoon, alas, as I'm taking Anna to the Children’s Museum. Ping me though, maybe I can talk.";
+			cell.imageView.image = [UIImage imageNamed:@"caseywest.jpg"];
+			break;
+		case 3:
+			cell.textLabel.text = @"Rick Turoczy";
+			cell.detailTextLabel.text = @"Crap.  Thank you. I was really trying not to make that one :(";
+			cell.imageView.image = [UIImage imageNamed:@"turoczy.jpg"];
+			break;
+		case 4:
+			cell.textLabel.text = @"Julie Wheeler";
+			cell.detailTextLabel.text = @"Gab says 80s nite tomorrow if you want to go.";
+			cell.imageView.image = [UIImage imageNamed:@"strongrrl.jpg"];
+			break;
+		case 5:
+			cell.textLabel.text = @"Rick LePage";
+			cell.detailTextLabel.text = @"To whom was that directed? I was just about to meet Duncan at Hot Lips.";
+			cell.imageView.image = [UIImage imageNamed:@"rlepage.jpg"];
+			break;
+		case 6:
+			cell.textLabel.text = @"Duke Leto";
+			cell.detailTextLabel.text = @"my g # is  209.691.3853 aka 209.691.DUKE :)";
+			cell.imageView.image = [UIImage imageNamed:@"dukeleto.jpg"];
+			break;
+		case 7:
+			cell.textLabel.text = @"Pete Krawczyk";
+			cell.detailTextLabel.text = @"RJBS has sent me one. Thanks!";
+			cell.imageView.image = [UIImage imageNamed:@"sachmet.jpg"];
+			break;
+		case 8:
+			cell.textLabel.text = @"Gordon Meyer";
+			cell.detailTextLabel.text = @"I have an invite, d me your email address.";
+			cell.imageView.image = [UIImage imageNamed:@"gordonmeyer.jpg"];
+			break;
+		default:
+			break;
+	}
+
 	
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 60.0;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// Create and push a correspondent view controller.

@@ -12,8 +12,8 @@
 @implementation TableViewCellBalloon
 
 - (void)drawRect:(CGRect)rect {
-	UIImage* balloon = [[UIImage imageNamed:@"balloon.png"] stretchableImageWithLeftCapWidth:15  topCapHeight:15];
-//	[balloon drawInRect: aRect];    
+	UIImage* balloon = [[UIImage imageNamed:@"/Applications/MobileSMS.app/Balloon_1.png"] stretchableImageWithLeftCapWidth:15  topCapHeight:15];
+	[balloon drawInRect: rect];
 }
 
 @end
