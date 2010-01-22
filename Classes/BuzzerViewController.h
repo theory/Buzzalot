@@ -10,7 +10,10 @@
 
 
 @interface BuzzerViewController : UITableViewController {
-
+	CGFloat cellHeight;
 }
 
+@property (nonatomic) CGFloat cellHeight;
+
+-(NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
