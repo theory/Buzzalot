@@ -177,8 +177,7 @@
         [[NSBundle mainBundle] loadNibNamed:@"BuzzerCell" owner:self options:nil];
 		cell = self.buzzerCell;
 		self.buzzerCell = nil;
-		cell.iconView.layer.masksToBounds = YES;
-		cell.iconView.layer.cornerRadius = 4.0;
+		[cell configure];
 	}
     
 	// Configure the cell.

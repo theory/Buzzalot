@@ -45,11 +45,27 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIView" id="162694406">
+								<reference key="NSNextResponder" ref="518508974"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{3, 4}, {50, 50}}</string>
+								<reference key="NSSuperview" ref="518508974"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC45MjM5MTMwNDM1IDAuOTIzOTEzMDQzNSAwLjkyMzkxMzA0MzUAA</bytes>
+								</object>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<string key="IBUIContentStretch">{{0, 0}, {0.35, 0.5}}</string>
+							</object>
 							<object class="IBUIImageView" id="470447912">
 								<reference key="NSNextResponder" ref="518508974"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{4, 4}, {48, 48}}</string>
 								<reference key="NSSuperview" ref="518508974"/>
+								<object class="NSColor" key="IBUIBackgroundColor" id="899376572">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -125,10 +141,7 @@
 						</object>
 						<string key="NSFrameSize">{300, 59}</string>
 						<reference key="NSSuperview" ref="691162535"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="899376572"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -192,6 +205,14 @@
 					</object>
 					<int key="connectionID">12</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">dropShadow</string>
+						<reference key="source" ref="691162535"/>
+						<reference key="destination" ref="162694406"/>
+					</object>
+					<int key="connectionID">14</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -222,6 +243,7 @@
 							<reference ref="836217714"/>
 							<reference ref="682416881"/>
 							<reference ref="1315154"/>
+							<reference ref="162694406"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -245,6 +267,11 @@
 						<reference key="object" ref="1315154"/>
 						<reference key="parent" ref="691162535"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">13</int>
+						<reference key="object" ref="162694406"/>
+						<reference key="parent" ref="691162535"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -253,6 +280,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
+					<string>13.IBPluginDependency</string>
 					<string>2.CustomClassName</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
@@ -265,6 +293,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>RootViewController</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>BuzzerCell</string>
 					<string>{{425, 834}, {320, 60}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -290,7 +319,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">12</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -304,6 +333,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>bodyLabel</string>
 							<string>buzzerLabel</string>
+							<string>dropShadow</string>
 							<string>iconView</string>
 							<string>timeLabel</string>
 						</object>
@@ -311,6 +341,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIView</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
 						</object>
@@ -435,6 +466,20 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">Foundation.framework/Headers/NSXMLParser.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CAAnimation.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CALayer.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
