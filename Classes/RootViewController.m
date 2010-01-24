@@ -12,7 +12,7 @@
 
 @implementation RootViewController
 
-@synthesize fetchedResultsController, managedObjectContext;
+@synthesize fetchedResultsController, managedObjectContext, buzzerCell;
 
 
 #pragma mark -
@@ -167,21 +167,18 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *cellIdentifier = @"BuzzerCell";
     
 	// XXX Will want to create a custom cell class in order to format the image how I want. This will do for now.
 	// http://stackoverflow.com/questions/1812305/how-to-set-the-cell-imageview-frame
 	// To transform and store an image, see http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BuzzerCell *cell = (BuzzerCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-		cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-		cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-		cell.detailTextLabel.numberOfLines = 2;
-		cell.detailTextLabel.textColor = [UIColor blackColor];
+        [[NSBundle mainBundle] loadNibNamed:@"BuzzerCell" owner:self options:nil];
+		cell = self.buzzerCell;
+		self.buzzerCell = nil;
+		cell.iconView.layer.masksToBounds = YES;
+		cell.iconView.layer.cornerRadius = 4.0;
 	}
     
 	// Configure the cell.
@@ -191,49 +188,49 @@
 	// XXX Replace this with a database query, as above. Probably in its own method.
 	switch (indexPath.row) {
 		case 0:
-			cell.textLabel.text = @"James Duncan Davidson";
-			cell.detailTextLabel.text = @"Love to, but I'm sick with a fever right now. Not much fun. :(";
-			cell.imageView.image = [UIImage imageNamed:@"duncan.jpg"];
+			cell.buzzerLabel.text = @"James Duncan Davidson";
+			cell.bodyLabel.text = @"Love to, but I'm sick with a fever right now. Not much fun. :(";
+			cell.iconView.image = [UIImage imageNamed:@"duncan.jpg"];
 			break;
 		case 1:
-			cell.textLabel.text = @"Tim Bunce";
-			cell.detailTextLabel.text = @"I'm gonn'a try (but I know zero about pg internals so I'd be surprised if I can help)";
-			cell.imageView.image = [UIImage imageNamed:@"timbunce.jpg"];
+			cell.buzzerLabel.text = @"Tim Bunce";
+			cell.bodyLabel.text = @"I'm gonna try (but I know zero about pg internals so I'd be surprised if I can help)";
+			cell.iconView.image = [UIImage imageNamed:@"timbunce.jpg"];
 			break;
 		case 2:
-			cell.textLabel.text = @"Casey West";
-			cell.detailTextLabel.text = @"Bah. I'm not going to be around much this afternoon, alas, as I'm taking Anna to the Children’s Museum. Ping me though, maybe I can talk.";
-			cell.imageView.image = [UIImage imageNamed:@"caseywest.jpg"];
+			cell.buzzerLabel.text = @"Casey West";
+			cell.bodyLabel.text = @"Bah. I'm not going to be around much this afternoon, alas, as I'm taking Anna to the Children’s Museum. Ping me though, maybe I can talk.";
+			cell.iconView.image = [UIImage imageNamed:@"caseywest.jpg"];
 			break;
 		case 3:
-			cell.textLabel.text = @"Rick Turoczy";
-			cell.detailTextLabel.text = @"Crap.  Thank you. I was really trying not to make that one :(";
-			cell.imageView.image = [UIImage imageNamed:@"turoczy.jpg"];
+			cell.buzzerLabel.text = @"Rick Turoczy";
+			cell.bodyLabel.text = @"Crap.  Thank you. I was really trying not to make that one :(";
+			cell.iconView.image = [UIImage imageNamed:@"turoczy.jpg"];
 			break;
 		case 4:
-			cell.textLabel.text = @"Julie Wheeler";
-			cell.detailTextLabel.text = @"Gab says 80s nite tomorrow if you want to go.";
-			cell.imageView.image = [UIImage imageNamed:@"strongrrl.jpg"];
+			cell.buzzerLabel.text = @"Julie Wheeler";
+			cell.bodyLabel.text = @"Gab says 80s nite tomorrow if you want to go.";
+			cell.iconView.image = [UIImage imageNamed:@"strongrrl.jpg"];
 			break;
 		case 5:
-			cell.textLabel.text = @"Rick LePage";
-			cell.detailTextLabel.text = @"To whom was that directed? I was just about to meet Duncan at Hot Lips.";
-			cell.imageView.image = [UIImage imageNamed:@"rlepage.jpg"];
+			cell.buzzerLabel.text = @"Rick LePage";
+			cell.bodyLabel.text = @"To whom was that directed? I was just about to meet Duncan at Hot Lips.";
+			cell.iconView.image = [UIImage imageNamed:@"rlepage.jpg"];
 			break;
 		case 6:
-			cell.textLabel.text = @"Duke Leto";
-			cell.detailTextLabel.text = @"my g # is  209.691.3853 aka 209.691.DUKE :)";
-			cell.imageView.image = [UIImage imageNamed:@"dukeleto.jpg"];
+			cell.buzzerLabel.text = @"Duke Leto";
+			cell.bodyLabel.text = @"my g # is  209.691.3853 aka 209.691.DUKE :)";
+			cell.iconView.image = [UIImage imageNamed:@"dukeleto.jpg"];
 			break;
 		case 7:
-			cell.textLabel.text = @"Pete Krawczyk";
-			cell.detailTextLabel.text = @"RJBS has sent me one. Thanks!";
-			cell.imageView.image = [UIImage imageNamed:@"sachmet.jpg"];
+			cell.buzzerLabel.text = @"Pete Krawczyk";
+			cell.bodyLabel.text = @"RJBS has sent me one. Thanks!";
+			cell.iconView.image = [UIImage imageNamed:@"sachmet.jpg"];
 			break;
 		case 8:
-			cell.textLabel.text = @"Gordon Meyer";
-			cell.detailTextLabel.text = @"I have an invite, d me your email address.";
-			cell.imageView.image = [UIImage imageNamed:@"gordonmeyer.jpg"];
+			cell.buzzerLabel.text = @"Gordon Meyer";
+			cell.bodyLabel.text = @"I have an invite, d me your email address.";
+			cell.iconView.image = [UIImage imageNamed:@"gordonmeyer.jpg"];
 			break;
 		default:
 			break;
