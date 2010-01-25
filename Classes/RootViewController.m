@@ -174,7 +174,7 @@
 	// To transform and store an image, see http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/.
     BuzzerCell *cell = (BuzzerCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"BuzzerCell" owner:self options:nil];
+        [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
 		cell = self.buzzerCell;
 		self.buzzerCell = nil;
 		[cell configure];

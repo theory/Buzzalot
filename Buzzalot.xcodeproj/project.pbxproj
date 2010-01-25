@@ -26,10 +26,14 @@
 		63495F711109390500EE0CE2 /* rlepage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63495F701109390500EE0CE2 /* rlepage.jpg */; };
 		63495F731109390C00EE0CE2 /* dukeleto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63495F721109390C00EE0CE2 /* dukeleto.jpg */; };
 		63495F771109393500EE0CE2 /* gordonmeyer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63495F761109393500EE0CE2 /* gordonmeyer.jpg */; };
-		63496159110979AB00EE0CE2 /* aqua.png in Resources */ = {isa = PBXBuildFile; fileRef = 63496158110979AB00EE0CE2 /* aqua.png */; };
-		6349615B110979AF00EE0CE2 /* purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 6349615A110979AF00EE0CE2 /* purple.png */; };
 		637CD14B110BAF5A00B547D1 /* BuzzerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637CD14A110BAF5A00B547D1 /* BuzzerCell.xib */; };
 		637CD16F110BB94900B547D1 /* BuzzerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637CD16E110BB94900B547D1 /* BuzzerCell.m */; };
+		637CD270110C27A700B547D1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637CD26F110C27A700B547D1 /* QuartzCore.framework */; };
+		637CD299110D124000B547D1 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 637CD298110D124000B547D1 /* MessageCell.m */; };
+		637CD29B110D125600B547D1 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 637CD29A110D125600B547D1 /* MessageCell.xib */; };
+		637CD354110D4B2E00B547D1 /* theory.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 637CD353110D4B2E00B547D1 /* theory.jpg */; };
+		637CD357110D4B8A00B547D1 /* your_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 637CD355110D4B8A00B547D1 /* your_bubble.png */; };
+		637CD358110D4B8A00B547D1 /* my_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 637CD356110D4B8A00B547D1 /* my_bubble.png */; };
 		637F7201110418A000A78F75 /* BuzzerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637F71FF110418A000A78F75 /* BuzzerViewController.m */; };
 		637F73131104360400A78F75 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637F73111104360400A78F75 /* ConfigViewController.m */; };
 /* End PBXBuildFile section */
@@ -58,11 +62,16 @@
 		63495F701109390500EE0CE2 /* rlepage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rlepage.jpg; sourceTree = "<group>"; };
 		63495F721109390C00EE0CE2 /* dukeleto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dukeleto.jpg; sourceTree = "<group>"; };
 		63495F761109393500EE0CE2 /* gordonmeyer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gordonmeyer.jpg; sourceTree = "<group>"; };
-		63496158110979AB00EE0CE2 /* aqua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aqua.png; sourceTree = "<group>"; };
-		6349615A110979AF00EE0CE2 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple.png; sourceTree = "<group>"; };
 		637CD14A110BAF5A00B547D1 /* BuzzerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = BuzzerCell.xib; path = Classes/BuzzerCell.xib; sourceTree = "<group>"; };
 		637CD16D110BB94900B547D1 /* BuzzerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerCell.h; sourceTree = "<group>"; };
 		637CD16E110BB94900B547D1 /* BuzzerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzerCell.m; sourceTree = "<group>"; };
+		637CD26F110C27A700B547D1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		637CD297110D124000B547D1 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		637CD298110D124000B547D1 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		637CD29A110D125600B547D1 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		637CD353110D4B2E00B547D1 /* theory.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theory.jpg; sourceTree = "<group>"; };
+		637CD355110D4B8A00B547D1 /* your_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = your_bubble.png; sourceTree = "<group>"; };
+		637CD356110D4B8A00B547D1 /* my_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_bubble.png; sourceTree = "<group>"; };
 		637F71FE110418A000A78F75 /* BuzzerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerViewController.h; sourceTree = "<group>"; };
 		637F71FF110418A000A78F75 /* BuzzerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzerViewController.m; sourceTree = "<group>"; };
 		637F73101104360400A78F75 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -79,6 +88,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
+				637CD270110C27A700B547D1 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +108,8 @@
 				1D3623250D0F684500981E51 /* BuzzalotAppDelegate.m */,
 				637CD16D110BB94900B547D1 /* BuzzerCell.h */,
 				637CD16E110BB94900B547D1 /* BuzzerCell.m */,
+				637CD297110D124000B547D1 /* MessageCell.h */,
+				637CD298110D124000B547D1 /* MessageCell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -134,11 +146,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6349611D1109742B00EE0CE2 /* icons */,
+				637CD355110D4B8A00B547D1 /* your_bubble.png */,
+				637CD356110D4B8A00B547D1 /* my_bubble.png */,
 				63495F2F1109361B00EE0CE2 /* avatars */,
 				28860B760F44E54D00985440 /* Buzzalot.xcdatamodel */,
-				637CD14A110BAF5A00B547D1 /* BuzzerCell.xib */,
 				2899E55F0DE3E45000AC0155 /* RootViewController.xib */,
+				637CD14A110BAF5A00B547D1 /* BuzzerCell.xib */,
+				637CD29A110D125600B547D1 /* MessageCell.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Buzzalot-Info.plist */,
 			);
@@ -152,6 +166,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
+				637CD26F110C27A700B547D1 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,6 +174,7 @@
 		63495F2F1109361B00EE0CE2 /* avatars */ = {
 			isa = PBXGroup;
 			children = (
+				637CD353110D4B2E00B547D1 /* theory.jpg */,
 				63495F68110938C100EE0CE2 /* turoczy.jpg */,
 				63495F761109393500EE0CE2 /* gordonmeyer.jpg */,
 				63495F721109390C00EE0CE2 /* dukeleto.jpg */,
@@ -170,15 +186,6 @@
 				63495ED91109321700EE0CE2 /* duncan.jpg */,
 			);
 			name = avatars;
-			sourceTree = "<group>";
-		};
-		6349611D1109742B00EE0CE2 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				6349615A110979AF00EE0CE2 /* purple.png */,
-				63496158110979AB00EE0CE2 /* aqua.png */,
-			);
-			name = icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,9 +248,11 @@
 				63495F711109390500EE0CE2 /* rlepage.jpg in Resources */,
 				63495F731109390C00EE0CE2 /* dukeleto.jpg in Resources */,
 				63495F771109393500EE0CE2 /* gordonmeyer.jpg in Resources */,
-				63496159110979AB00EE0CE2 /* aqua.png in Resources */,
-				6349615B110979AF00EE0CE2 /* purple.png in Resources */,
 				637CD14B110BAF5A00B547D1 /* BuzzerCell.xib in Resources */,
+				637CD29B110D125600B547D1 /* MessageCell.xib in Resources */,
+				637CD354110D4B2E00B547D1 /* theory.jpg in Resources */,
+				637CD357110D4B8A00B547D1 /* your_bubble.png in Resources */,
+				637CD358110D4B8A00B547D1 /* my_bubble.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +270,7 @@
 				637F7201110418A000A78F75 /* BuzzerViewController.m in Sources */,
 				637F73131104360400A78F75 /* ConfigViewController.m in Sources */,
 				637CD16F110BB94900B547D1 /* BuzzerCell.m in Sources */,
+				637CD299110D124000B547D1 /* MessageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

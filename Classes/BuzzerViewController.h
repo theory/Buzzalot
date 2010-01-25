@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MessageCell.h"
 
 @interface BuzzerViewController : UITableViewController {
-	CGFloat cellHeight;
+	MessageCell *messageCell;
 }
 
-@property (nonatomic) CGFloat cellHeight;
+@property (nonatomic, assign) IBOutlet MessageCell *messageCell;
 
 -(NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end

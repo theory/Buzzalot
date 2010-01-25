@@ -3,11 +3,11 @@
 //  Buzzalot
 //
 //  Created by David E. Wheeler on 1/23/10.
-//  Copyright 2010 Kineticode, Inc.. All rights reserved.
+//  Copyright Kineticode, Inc. 2010. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h> // Required to round image corners.
+#import <QuartzCore/QuartzCore.h> // Required for graphical effects.
 
 @interface BuzzerCell : UITableViewCell {
     IBOutlet UIImageView *iconView;
