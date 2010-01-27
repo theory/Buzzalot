@@ -82,7 +82,7 @@
 								</object>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC43MDEwODY5NTY1IDAuNzAxMDg2OTU2NSAwLjcwMTA4Njk1NjUAA</bytes>
+									<bytes key="NSRGB">MC41NDM0NzgyNjA5IDAuNTQzNDc4MjYwOSAwLjU0MzQ3ODI2MDkAA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -101,7 +101,7 @@
 							<object class="IBUILabel" id="358231229">
 								<reference key="NSNextResponder" ref="377187200"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{13, 23}, {246, 21}}</string>
+								<string key="NSFrame">{{11, 23}, {244, 21}}</string>
 								<reference key="NSSuperview" ref="377187200"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -281,7 +281,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>MessageCell</string>
-					<string>{{333, 889}, {320, 60}}</string>
+					<string>{{333, 796}, {320, 60}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

@@ -35,10 +35,11 @@
 	self.bodyLabel.text = body;
 	[self.bodyLabel sizeToFit];
 	CGSize size = self.bodyLabel.frame.size;
+//	CGSize screen = [UIScreen mainScreen].bounds.size;
 
 //	CGSize textSize = { 245.0, 20000.0 };		// width and height of text area
 //	CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:textSize lineBreakMode:UILineBreakModeWordWrap];
-	CGPoint o = self.bodyLabel.frame.origin;
+//	CGPoint o = self.bodyLabel.frame.origin;
 //	self.bodyLabel.frame = CGRectMake(o.x, o.y, size.width, size.height);
 //	self.bodyLabel.layer.borderWidth = 1.0;
 //	o = self.bubbleView.frame.origin;
@@ -62,20 +63,19 @@
 //	}
 	
 	if (fromMe) {
-		self.bubbleView.image = [[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:18];
+		self.bubbleView.image = [[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18];
 		self.bubbleView.transform = CGAffineTransformMakeScale(-1, 1);
-		self.bubbleView.frame = CGRectMake(4.0, 20.0, size.width + 20, size.height + 8);
-		self.iconView.image = [UIImage imageNamed:@"theory.jpg"];
-		self.bodyLabel.frame = CGRectMake(10.0, o.y, size.width, size.height);
+		self.bubbleView.frame = CGRectMake(4.0, 20.0, 262.0, size.height + 8);
+		self.iconView.image = [UIImage imageNamed:@"theory.jpg"]; // XXX Replace
+		self.iconView.frame = CGRectMake(268.0, 4.0, 48.0, 48.0);
+//		self.bodyLabel.frame = CGRectMake(10.0, 23.0, 240.0, size.height);
 	} else {
-		self.bubbleView.image = [[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:18];
-		self.bubbleView.frame = CGRectMake(55.0, 20.0, size.width + 20, size.height + 8);
+		self.bubbleView.image = [[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18];
+		self.bubbleView.frame = CGRectMake(55.0, 20.0, size.width + 15, size.height + 8);
 		self.iconView.image = [UIImage imageNamed:icon];
 		self.iconView.frame = CGRectMake(4.0, 4.0, 48.0, 48.0);
 		self.dropShadow.frame = CGRectMake(3.0, 3.0, 50.0, 50.0);
-		o = self.bodyLabel.frame.origin;
-		self.bodyLabel.frame = CGRectMake(70.0, o.y, size.width, size.height);
-//		self.bubbleView.frame = CGRectMake(-148.0, 15.0, size.width, size.height);
+//		self.bodyLabel.frame = CGRectMake(70.0, 23.0, 240.0, size.height);
 	}
 //	[self.bodyView sizeToFit];
 }
