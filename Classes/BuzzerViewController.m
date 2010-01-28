@@ -55,7 +55,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	//	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
 	//    return [sectionInfo numberOfObjects];
-	return 9;
+	return 7;
 }
 
 // XXX It annoys the shit out of me that the cell can't calculate its height
@@ -66,7 +66,7 @@
 // should handle populating the cell and determining the size of things?
 // It doesn't make much sense to me.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	CGSize	textSize = { 246.0, 20000.0 };		// width and height of text area
+	CGSize	textSize = { 224.0, 20000.0 };		// width and height of text area
 	CGSize size = [[self textForRowAtIndexPath:indexPath] sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:textSize lineBreakMode:UILineBreakModeWordWrap];
 	return size.height + 35;
 }

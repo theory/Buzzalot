@@ -14,16 +14,17 @@
     IBOutlet UIImageView *iconView;
 	IBOutlet UIView  *dropShadow;
 	IBOutlet UIView  *bodyView;
-	IBOutlet UIImageView *bubbleView;
+	IBOutlet UIImageView *myBubbleView;
+	IBOutlet UIImageView *yourBubbleView;
     IBOutlet UILabel *bodyLabel;
-
 }
 
 @property(retain) UILabel *timeLabel;
 @property(retain) UIImageView *iconView;
 @property(retain) UIView *dropShadow;
 @property(retain) UIView *bodyView;
-@property(retain) UIImageView *bubbleView;
+@property(retain) UIImageView *myBubbleView;
+@property(retain) UIImageView *yourBubbleView;
 @property(retain) UILabel *bodyLabel;
 
 -(void)configure;
