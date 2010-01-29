@@ -46,10 +46,17 @@
 	[self setToolbarItems: [NSArray arrayWithObjects: trashItem, flexItem, replyItem, nil] animated: YES];
 
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
 	[replyItem release];
 	[flexItem release];
 //	[refreshItem release];
 	[super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+	[self.tableView reloadData];
+	NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+	[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -97,25 +104,25 @@
 	NSString *body = nil;
 	switch (indexPath.row) {
 		case 0:
-			body = @"I'm gonn'a try (but I know zero about pg internals so I'd be surprised if I can help)";
+			body = @"Any chance you'd be able to review the plperl changes sometime soonish? I'm concerned that at least some will fall of the end of the 'fest";
 			break;
 		case 1:
-			body = @"Are you helping with it?";
+			body = @"Yes, I'm going to try. I’m overcommitted these days. :-( There’s a *lot* of interest in your patches, though, so I doubt they’ll fall off.";
 			break;
 		case 2:
-			body = @"Okay, thanks. I hope Andrew doesn't get stuck on the GUC problem that currently blocking his progress.";
+			body = @"I hope you're right. I've not detected \"a lot of interest\" on pgsql-hackers. Seemed like an uphill struggle.";
 			break;
 		case 3:
 			body = @"Enough of us expressed interest that Robert asked two of us to look at something else in the CF. Plus Andrew is aggressively shepherding it.";
 			break;
 		case 4:
-			body = @"I hope you're right. I've not detected \"a lot of interest\" on pgsql-hackers. Seemed like an uphill struggle.";
+			body = @"Okay, thanks. I hope Andrew doesn't get stuck on the GUC problem that currently blocking his progress.";
 			break;
 		case 5:
-			body = @"Yes, I'm going to try. I’m overcommitted these days. :-( There’s a *lot* of interest in your patches, though, so I doubt they’ll fall off.";
+			body = @"Are you helping with it?";
 			break;
 		case 6:
-			body = @"Any chance you'd be able to review the plperl changes sometime soonish? I'm concerned that at least some will fall of the end of the 'fest";
+			body = @"I'm gonn'a try (but I know zero about pg internals so I'd be surprised if I can help)";
 			break;
 		default:
 			break;
