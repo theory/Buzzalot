@@ -23,7 +23,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	// XXX Fill in with the Buzzer's name. The OS automatically truncates as appropriate for the space.
+	// TODO: Fill in with the Buzzer's name. The OS automatically truncates as appropriate for the space.
 	self.title = NSLocalizedString(@"Theory", @"Buzzer view navigation title");
 	UIBarButtonItem *replyItem = [ [ UIBarButtonItem alloc ]
 									initWithBarButtonSystemItem: UIBarButtonSystemItemReply
@@ -55,8 +55,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 	[self.tableView reloadData];
-	NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
-	[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+	int lastRowNumber = [self.tableView numberOfRowsInSection:0];
+	if (lastRowNumber > 0) {
+		NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber - 1 inSection:0];
+		[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -65,7 +68,7 @@
 	return 7;
 }
 
-// XXX It annoys the shit out of me that the cell can't calculate its height
+// TODO: It annoys the shit out of me that the cell can't calculate its height
 // itself. Grrr. This method is also called for all of the cells to be
 // displayed before cellForRowAtIndexPath is called, so there's no cell to
 // look at here, either. I tried to comment this out and get the cell to
@@ -80,7 +83,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"MessageCell";
-	// XXX Will want to create a custom cell class in order to format the image how I want. This will do for now.
+	// TODO: Will want to create a custom cell class in order to format the image how I want. This will do for now.
 	// http://stackoverflow.com/questions/1812305/how-to-set-the-cell-imageview-frame
 	// To transform and store an image, see http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/.
     MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -100,7 +103,7 @@
 }
 
 -(NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath {
-	// XXX Switch to use a data store, of course.
+	// TODO: Switch to use a data store, of course.
 	NSString *body = nil;
 	switch (indexPath.row) {
 		case 0:

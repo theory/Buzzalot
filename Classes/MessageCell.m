@@ -26,7 +26,7 @@
 	self.yourBubbleView.image = [[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18];
 	self.myBubbleView.transform = CGAffineTransformMakeScale(-1, 1);
 	
-	// XXX This might be better done with a real drop shadow rather than
+	// TODO: This might be better done with a real drop shadow rather than
 	// faking it with another view, but this will do for now. See
 	// http://stackoverflow.com/questions/1943087/i-am-trying-to-add-a-drop-shadow-to-a-uimageview.
 	self.dropShadow.layer.masksToBounds = YES;
@@ -40,11 +40,13 @@
 	CGSize textSize = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake( 224.0, 20000.0 ) lineBreakMode:UILineBreakModeWordWrap];
 //	self.bodyLabel.layer.borderWidth = 1.0;
 
+	// TODO: Need to move things in from the margin a bit more, to prevent the
+	// scroll bar from overlapping the right icon.
 	if (fromMe) {
 		self.yourBubbleView.hidden = YES;
 		self.myBubbleView.hidden = NO;
 		self.myBubbleView.frame = CGRectMake(266, 20.0, -textSize.width - 24, textSize.height + 8);
-		self.iconView.image = [UIImage imageNamed:@"theory.jpg"]; // XXX Replace
+		self.iconView.image = [UIImage imageNamed:@"theory.jpg"]; // TODO: Replace
 		self.iconView.frame = CGRectMake(268.0, 4.0, 48.0, 48.0);
 		self.bodyLabel.frame = CGRectMake(251, 23.0, -textSize.width, textSize.height);
 	} else {
