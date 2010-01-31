@@ -91,14 +91,45 @@
         [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
 		cell = self.messageCell;
 		self.messageCell = nil;
-		[cell configure];
+		cell.iconView.layer.masksToBounds = YES;
+		cell.iconView.layer.cornerRadius = 4.0;
+		cell.myBubbleView.image = [[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18];
+		cell.yourBubbleView.image = [[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18];
+		cell.myBubbleView.transform = CGAffineTransformMakeScale(-1, 1);
+		
+		// TODO: This might be better done with a real drop shadow rather than
+		// faking it with another view, but this will do for now. See
+		// http://stackoverflow.com/questions/1943087/i-am-trying-to-add-a-drop-shadow-to-a-uimageview.
+		cell.dropShadow.layer.masksToBounds = YES;
+		cell.dropShadow.layer.cornerRadius = 4.0;
 	}
 
 	NSString *body = [self textForRowAtIndexPath:indexPath];
+	BOOL fromMe = indexPath.row % 2 == 0;
 
 	if (body != nil) {
-		[cell setBody:body icon:@"duncan.jpg" on:[NSDate date] fromMe:indexPath.row % 2 == 0];
-	}
+			cell.timeLabel.text = @"1/30/2010 15:01";
+			cell.bodyLabel.text = body;
+			CGSize textSize = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake( 224.0, 20000.0 ) lineBreakMode:UILineBreakModeWordWrap];
+
+			// TODO: Need to move things in from the margin a bit more, to prevent the
+			// scroll bar from overlapping the right icon.
+			if (fromMe) {
+				cell.yourBubbleView.hidden = YES;
+				cell.myBubbleView.hidden = NO;
+				cell.myBubbleView.frame = CGRectMake(266, 20.0, -textSize.width - 24, textSize.height + 8);
+				cell.iconView.image = [UIImage imageNamed:@"theory.jpg"]; // TODO: Replace
+				cell.iconView.frame = CGRectMake(268.0, 4.0, 48.0, 48.0);
+				cell.bodyLabel.frame = CGRectMake(251, 23.0, -textSize.width, textSize.height);
+			} else {
+				cell.myBubbleView.hidden = YES;
+				cell.yourBubbleView.hidden = NO;
+				cell.yourBubbleView.frame = CGRectMake(55.0, 20.0, textSize.width + 24, textSize.height + 8);
+				cell.iconView.image = [UIImage imageNamed:@"duncan.jpg"];
+				cell.iconView.frame = CGRectMake(4.0, 4.0, 48.0, 48.0);
+				cell.bodyLabel.frame = CGRectMake(70.0, 23.0, textSize.width, textSize.height);
+			}
+		}		
 	return cell;
 }
 

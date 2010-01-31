@@ -27,7 +27,4 @@
 @property(retain) UIImageView *yourBubbleView;
 @property(retain) UILabel *bodyLabel;
 
--(void)configure;
--(void)setBody:(NSString *)body icon:(NSString *)icon on:(NSDate *)date fromMe:(BOOL)fromMe;
-
 @end
