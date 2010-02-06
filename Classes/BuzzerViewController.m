@@ -13,7 +13,6 @@
 @synthesize messages;
 
 - (void)viewDidLoad {
-	self.title = NSLocalizedString(@"Tim Bunce", nil);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     UIBarButtonItem *replyItem = [ [ UIBarButtonItem alloc ]

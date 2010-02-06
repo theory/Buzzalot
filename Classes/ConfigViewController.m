@@ -23,8 +23,6 @@
 	self.navigationItem.leftBarButtonItem = doneButton;
 	[doneButton release];
 
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
     //	[self.navigationController setToolbarHidden:NO];
     [super viewDidLoad];
 }

@@ -170,6 +170,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
+    buzzerViewController.title = [[self.buzzers objectAtIndex:indexPath.row] objectForKey:@"name"];
 	[self.navigationController pushViewController:buzzerViewController animated:YES];
 	[buzzerViewController release];
 }
