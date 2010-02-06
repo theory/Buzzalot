@@ -2,7 +2,7 @@
 //  ConfigViewController.h
 //  Buzzalot
 //
-//  Created by David E. Wheeler on 1/17/10.
+//  Created by David E. Wheeler on 2/4/10.
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
@@ -10,15 +10,18 @@
 
 @protocol ConfigViewControllerDelegate;
 
-@interface ConfigViewController : UITableViewController {
+@interface ConfigViewController : UIViewController {
 	id <ConfigViewControllerDelegate> delegate;
+
 }
 
 @property (nonatomic, assign) id <ConfigViewControllerDelegate> delegate;
-- (IBAction)done;
+- (void)done;
+
 @end
 
 @protocol ConfigViewControllerDelegate
-- (void)configViewControllerDidFinish:(ConfigViewController *)controller;
-@end
 
+- (void)configViewControllerDidFinish:(ConfigViewController *)controller;
+
+@end

@@ -2,29 +2,26 @@
 //  MessageCell.h
 //  Buzzalot
 //
-//  Created by David E. Wheeler on 1/24/10.
-//  Copyright Kineticode, Inc. 2010. All rights reserved.
+//  Created by David E. Wheeler on 2/5/10.
+//  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h> // Required for graphical effects.
+#import <Foundation/Foundation.h>
+#import "ABTableViewCell.h"
 
-@interface MessageCell : UITableViewCell {
-    IBOutlet UILabel *timeLabel;
-    IBOutlet UIImageView *iconView;
-	IBOutlet UIView  *dropShadow;
-	IBOutlet UIView  *bodyView;
-	IBOutlet UIImageView *myBubbleView;
-	IBOutlet UIImageView *yourBubbleView;
-    IBOutlet UILabel *bodyLabel;
+#define kBubbleBodyWidth 230
+#define kBubbleBodyY 25
+
+@interface MessageCell : ABTableViewCell {
+	NSString *bodyText;
+    NSString *iconName;
+    NSString *whenText;
+    BOOL fromMe;
 }
 
-@property(retain) UILabel *timeLabel;
-@property(retain) UIImageView *iconView;
-@property(retain) UIView *dropShadow;
-@property(retain) UIView *bodyView;
-@property(retain) UIImageView *myBubbleView;
-@property(retain) UIImageView *yourBubbleView;
-@property(retain) UILabel *bodyLabel;
+@property (nonatomic, copy) NSString *bodyText;
+@property (nonatomic, copy) NSString *iconName;
+@property (nonatomic, copy) NSString *whenText;
+@property BOOL fromMe;
 
 @end

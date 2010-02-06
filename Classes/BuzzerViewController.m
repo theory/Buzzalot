@@ -2,193 +2,154 @@
 //  BuzzerViewController.m
 //  Buzzalot
 //
-//  Created by David E. Wheeler on 1/17/10.
+//  Created by David E. Wheeler on 2/4/10.
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
 #import "BuzzerViewController.h"
+#import "MessageCell.h"
 
 @implementation BuzzerViewController
-@synthesize messageCell;
+@synthesize messages;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	// TODO: Fill in with the Buzzer's name. The OS automatically truncates as appropriate for the space.
-	self.title = NSLocalizedString(@"Theory", @"Buzzer view navigation title");
-	UIBarButtonItem *replyItem = [ [ UIBarButtonItem alloc ]
-									initWithBarButtonSystemItem: UIBarButtonSystemItemReply
-									target: self
-									action: nil
-									];
-	UIBarButtonItem *trashItem = [ [ UIBarButtonItem alloc ]
-									initWithBarButtonSystemItem: UIBarButtonSystemItemTrash
-									target: self
-									action: nil
-									];
-//	UIBarButtonItem *refreshItem = [ [ UIBarButtonItem alloc ]
-//									initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
-//									target: self
-//									action: nil
-//									];
-	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	self.title = NSLocalizedString(@"Tim Bunce", nil);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-	[self.navigationController setToolbarHidden:NO];
-	[self setToolbarItems: [NSArray arrayWithObjects: trashItem, flexItem, replyItem, nil] animated: YES];
-
-	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    UIBarButtonItem *replyItem = [ [ UIBarButtonItem alloc ]
+                                  initWithBarButtonSystemItem: UIBarButtonSystemItemReply
+                                  target: self
+                                  action: @selector(reply)
+                                  ];
+    self.navigationItem.rightBarButtonItem = replyItem;
 	[replyItem release];
-	[flexItem release];
-//	[refreshItem release];
-	[super viewDidLoad];
-}
 
-/* For now, assume reverse cron. That's how email and Tweetie work.
--(void)viewWillAppear:(BOOL)animated {
-	[self.tableView reloadData];
-	int lastRowNumber = [self.tableView numberOfRowsInSection:0];
-	if (lastRowNumber > 0) {
-		NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber - 1 inSection:0];
-		[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-	}
-}
-*/
+    NSDictionary *m0 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          @"Actually that's plperlu. I'll ponder plperl more carefully and formulate a reply email.", @"body",
+                          @"no", @"from_me",
+                          @"10 minutes ago", @"when",
+                          nil ];
+    NSDictionary *m1 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                        @"a. Don't tell me! b. Reach me on IRC.", @"body",
+                        @"yes", @"from_me",
+                        @"15 minutes ago", @"when",
+                        nil ];
+    NSDictionary *m2 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                        @"Sure, there's nothing to stop plperl (or pltcl or plpython) closing file descriptors for example.", @"body",
+                        @"no", @"from_me",
+                        @"18 minutes ago", @"when",
+                        nil ];
+    NSDictionary *m3 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"Andrew says see http://anoncvs.postgresql.org/cvsweb.cgi/pgsql/src/pl/plperl/plperl.c, rev 1.101.", @"body",
+                       @"yes", @"from_me",
+                       @"20 minutes ago", @"when",
+                       nil ];
+    NSDictionary *m4 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"You need to address his complaints about Perl messing with PostgreSQL's internals. I asked for links to specific examples.", @"body",
+                       @"yes", @"from_me",
+                       @"21 minutes ago", @"when",
+                       nil ];
+    NSDictionary *m5 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"Hi David. Any thoughts on Toms position re on_perl_init and END?", @"body",
+                       @"no", @"from_me",
+                       @"1 hour ago", @"when",
+                       nil ];
+    NSDictionary *m6 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"I'm gonn'a try (but I know zero about pg internals so I'd be surprised if I can help)", @"body",
+                       @"no", @"from_me",
+                       @"2 days ago", @"when",
+                       nil ];
+    NSDictionary *m7 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"Are you helping with it?", @"body",
+                       @"yes", @"from_me",
+                       @"2 days ago", @"when",
+                       nil ];
+    NSDictionary *m8 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"Okay, thanks. I hope Andrew doesn't get stuck on the GUC problem that currently blocking his progress.", @"body",
+                       @"no", @"from_me",
+                       @"2 days ago", @"when",
+                       nil ];
+    NSDictionary *m9 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"Enough of us expressed interest that Robert asked two of us to look at something else in the CF. Plus Andrew is aggressively shepherding it.", @"body",
+                       @"yes", @"from_me",
+                       @"2 days ago", @"when",
+                       nil ];
+    NSDictionary *m10 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"I hope you're right. I've not detected \"a lot of interest\" on pgsql-hackers. Seemed like an uphill struggle.", @"body",
+                       @"no", @"from_me",
+                       @"22 days ago", @"when",
+                       nil ];
+    NSDictionary *m11 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"Yes, I'm going to try. I’m overcommitted these days. :-( There’s a *lot* of interest in your patches, though, so I doubt they’ll fall off.", @"body",
+                       @"yes", @"from_me",
+                       @"23 days ago", @"when",
+                       nil ];
+    NSDictionary *m12 = [[NSDictionary alloc] initWithObjectsAndKeys:
+                       @"Any chance you'd be able to review the plperl changes sometime soonish? I'm concerned that at least some will fall off the end of the 'fest", @"body",
+                       @"no", @"from_me",
+                       @"23 days ago", @"when",
+                       nil ];
+    NSArray *array = [[NSArray alloc] initWithObjects:m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, nil];
+    self.messages = array;
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	//	id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchedResultsController sections] objectAtIndex:section];
-	//    return [sectionInfo numberOfObjects];
-	return 7;
-}
-
-// TODO: It annoys the shit out of me that the cell can't calculate its height
-// itself. Grrr. This method is also called for all of the cells to be
-// displayed before cellForRowAtIndexPath is called, so there's no cell to
-// look at here, either. I tried to comment this out and get the cell to
-// size itself, but that was just ignored. I guess the delegate class here
-// should handle populating the cell and determining the size of things?
-// It doesn't make much sense to me.
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	CGSize	textSize = { 224.0, 20000.0 };		// width and height of text area
-	CGSize size = [[self textForRowAtIndexPath:indexPath] sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:textSize lineBreakMode:UILineBreakModeWordWrap];
-	return size.height + 35;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"MessageCell";
-	// TODO: Will want to create a custom cell class in order to format the image how I want. This will do for now.
-	// http://stackoverflow.com/questions/1812305/how-to-set-the-cell-imageview-frame
-	// To transform and store an image, see http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/.
-    MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
-		cell = self.messageCell;
-		self.messageCell = nil;
-		cell.iconView.layer.masksToBounds = YES;
-		cell.iconView.layer.cornerRadius = 4.0;
-		cell.myBubbleView.image = [[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18];
-		cell.yourBubbleView.image = [[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18];
-		cell.myBubbleView.transform = CGAffineTransformMakeScale(-1, 1);
-		
-		// TODO: This might be better done with a real drop shadow rather than
-		// faking it with another view, but this will do for now. See
-		// http://stackoverflow.com/questions/1943087/i-am-trying-to-add-a-drop-shadow-to-a-uimageview.
-		cell.dropShadow.layer.masksToBounds = YES;
-		cell.dropShadow.layer.cornerRadius = 4.0;
-	}
-
-	NSString *body = [self textForRowAtIndexPath:indexPath];
-	BOOL fromMe = indexPath.row % 2 == 0;
-
-	if (body != nil) {
-			cell.timeLabel.text = @"1/30/2010 15:01";
-			cell.bodyLabel.text = body;
-			CGSize textSize = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake( 224.0, 20000.0 ) lineBreakMode:UILineBreakModeWordWrap];
-
-			// TODO: Need to move things in from the margin a bit more, to prevent the
-			// scroll bar from overlapping the right icon.
-			if (fromMe) {
-				cell.yourBubbleView.hidden = YES;
-				cell.myBubbleView.hidden = NO;
-				cell.myBubbleView.frame = CGRectMake(266, 20.0, -textSize.width - 24, textSize.height + 8);
-				cell.iconView.image = [UIImage imageNamed:@"theory.jpg"]; // TODO: Replace
-				cell.iconView.frame = CGRectMake(268.0, 4.0, 48.0, 48.0);
-				cell.bodyLabel.frame = CGRectMake(251, 23.0, -textSize.width, textSize.height);
-			} else {
-				cell.myBubbleView.hidden = YES;
-				cell.yourBubbleView.hidden = NO;
-				cell.yourBubbleView.frame = CGRectMake(55.0, 20.0, textSize.width + 24, textSize.height + 8);
-				cell.iconView.image = [UIImage imageNamed:@"duncan.jpg"];
-				cell.iconView.frame = CGRectMake(4.0, 4.0, 48.0, 48.0);
-				cell.bodyLabel.frame = CGRectMake(70.0, 23.0, textSize.width, textSize.height);
-			}
-		}		
-	return cell;
-}
-
--(NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath {
-	// TODO: Switch to use a data store, of course.
-	NSString *body = nil;
-	switch (indexPath.row) {
-		case 0:
-			body = @"I'm gonn'a try (but I know zero about pg internals so I'd be surprised if I can help)";
-			break;
-		case 1:
-			body = @"Are you helping with it?";
-			break;
-		case 2:
-			body = @"Okay, thanks. I hope Andrew doesn't get stuck on the GUC problem that currently blocking his progress.";
-			break;
-		case 3:
-			body = @"Enough of us expressed interest that Robert asked two of us to look at something else in the CF. Plus Andrew is aggressively shepherding it.";
-			break;
-		case 4:
-			body = @"I hope you're right. I've not detected \"a lot of interest\" on pgsql-hackers. Seemed like an uphill struggle.";
-			break;
-		case 5:
-			body = @"Yes, I'm going to try. I’m overcommitted these days. :-( There’s a *lot* of interest in your patches, though, so I doubt they’ll fall off.";
-			break;
-		case 6:
-			body = @"Any chance you'd be able to review the plperl changes sometime soonish? I'm concerned that at least some will fall of the end of the 'fest";
-			break;
-		default:
-			break;
-	}
-	return body;
-}
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
+    [m0 release];
+    [m1 release];
+    [m2 release];
+    [m3 release];
+    [m4 release];
+    [m5 release];
+    [m6 release];
+    [m7 release];
+    [m8 release];
+    [m9 release];
+    [m10 release];
+    [m11 release];
+    [m12 release];
+    [array release];
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+	self.messages = nil;
 }
 
-
 - (void)dealloc {
+	[messages release];
     [super dealloc];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+- (void) reply {
+    // TODO: Bring up screen to edit and send message.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.messages count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *body = [[self.messages objectAtIndex:indexPath.row] objectForKey:@"body"];
+    CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(kBubbleBodyWidth, 2000)];
+    return MAX(size.height + kBubbleBodyY + 6, 60);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"MessageCell";
+    
+    MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    NSDictionary *buzzer = [self.messages objectAtIndex:indexPath.row];
+    cell.bodyText = [buzzer objectForKey:@"body"];
+    cell.whenText = [buzzer objectForKey:@"when"];
+    cell.fromMe = [buzzer objectForKey:@"from_me"] == @"yes";
+    [cell setIconName:cell.fromMe ? @"theory.jpg" : @"timbunce.jpg"];
+        
+    return cell;
 }
 
 @end

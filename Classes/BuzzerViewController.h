@@ -2,18 +2,15 @@
 //  BuzzerViewController.h
 //  Buzzalot
 //
-//  Created by David E. Wheeler on 1/17/10.
+//  Created by David E. Wheeler on 2/4/10.
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "MessageCell.h"
 
 @interface BuzzerViewController : UITableViewController {
-	MessageCell *messageCell;
+    NSArray *messages;
 }
 
-@property (nonatomic, assign) IBOutlet MessageCell *messageCell;
+@property (nonatomic, retain) NSArray *messages;
 
--(NSString *)textForRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
