@@ -15,6 +15,8 @@
 		6304B581111D00C5006C0A31 /* your_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 6304B57F111D00C5006C0A31 /* your_bubble.png */; };
 		6304B582111D00C5006C0A31 /* my_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 6304B580111D00C5006C0A31 /* my_bubble.png */; };
 		636479BA111E79AD009E1544 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 636479B9111E79AD009E1544 /* icon.png */; };
+		636479F0111E8CD8009E1544 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */; };
+		636479F7111E8DAF009E1544 /* Legal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 636479F6111E8DAF009E1544 /* Legal.rtf */; };
 		6394376B1119356500E39D09 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6394376A1119356500E39D09 /* ABTableViewCell.m */; };
 		6394382D1119404200E39D09 /* theory.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 639438231119404200E39D09 /* theory.jpg */; };
 		6394382E1119404200E39D09 /* turoczy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 639438241119404200E39D09 /* turoczy.jpg */; };
@@ -47,6 +49,9 @@
 		6304B57F111D00C5006C0A31 /* your_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = your_bubble.png; sourceTree = "<group>"; };
 		6304B580111D00C5006C0A31 /* my_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_bubble.png; sourceTree = "<group>"; };
 		636479B9111E79AD009E1544 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		636479EE111E8CD8009E1544 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "../scifihifi-iphone/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
+		636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "../scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
+		636479F6111E8DAF009E1544 /* Legal.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Legal.rtf; sourceTree = "<group>"; };
 		639437691119356500E39D09 /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
 		6394376A1119356500E39D09 /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
 		639438231119404200E39D09 /* theory.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theory.jpg; sourceTree = "<group>"; };
@@ -131,6 +136,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				636479EE111E8CD8009E1544 /* SFHFKeychainUtils.h */,
+				636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */,
 				639437691119356500E39D09 /* ABTableViewCell.h */,
 				6394376A1119356500E39D09 /* ABTableViewCell.m */,
 				32CA4F630368D1EE00C91783 /* Buzzalot_Prefix.pch */,
@@ -144,6 +151,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				636479F6111E8DAF009E1544 /* Legal.rtf */,
 				636479B9111E79AD009E1544 /* icon.png */,
 				6304B57F111D00C5006C0A31 /* your_bubble.png */,
 				6304B580111D00C5006C0A31 /* my_bubble.png */,
@@ -237,6 +245,7 @@
 				6304B581111D00C5006C0A31 /* your_bubble.png in Resources */,
 				6304B582111D00C5006C0A31 /* my_bubble.png in Resources */,
 				636479BA111E79AD009E1544 /* icon.png in Resources */,
+				636479F7111E8DAF009E1544 /* Legal.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +265,7 @@
 				63FE1A39111BE20900B855D7 /* ConfigViewController.m in Sources */,
 				63FE1AC1111BEC9800B855D7 /* BuzzerViewController.m in Sources */,
 				63FE1BC0111CF41C00B855D7 /* MessageCell.m in Sources */,
+				636479F0111E8CD8009E1544 /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

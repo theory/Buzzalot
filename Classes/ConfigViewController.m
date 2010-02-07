@@ -7,6 +7,7 @@
 //
 
 #import "ConfigViewController.h"
+#import "SFHFKeychainUtils.h"
 
 @implementation ConfigViewController
 @synthesize delegate;
