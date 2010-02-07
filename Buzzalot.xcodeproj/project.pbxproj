@@ -17,6 +17,7 @@
 		636479BA111E79AD009E1544 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 636479B9111E79AD009E1544 /* icon.png */; };
 		636479F0111E8CD8009E1544 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */; };
 		636479F7111E8DAF009E1544 /* Legal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 636479F6111E8DAF009E1544 /* Legal.rtf */; };
+		63647A2C111E8F83009E1544 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63647A2B111E8F83009E1544 /* Security.framework */; };
 		6394376B1119356500E39D09 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6394376A1119356500E39D09 /* ABTableViewCell.m */; };
 		6394382D1119404200E39D09 /* theory.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 639438231119404200E39D09 /* theory.jpg */; };
 		6394382E1119404200E39D09 /* turoczy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 639438241119404200E39D09 /* turoczy.jpg */; };
@@ -52,6 +53,7 @@
 		636479EE111E8CD8009E1544 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "../scifihifi-iphone/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
 		636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "../scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
 		636479F6111E8DAF009E1544 /* Legal.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Legal.rtf; sourceTree = "<group>"; };
+		63647A2B111E8F83009E1544 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		639437691119356500E39D09 /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
 		6394376A1119356500E39D09 /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
 		639438231119404200E39D09 /* theory.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theory.jpg; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				63647A2C111E8F83009E1544 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +171,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				63647A2B111E8F83009E1544 /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
