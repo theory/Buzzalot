@@ -88,7 +88,7 @@
                        @"no", @"from_me",
                        @"23 days ago", @"when",
                        nil ];
-    NSArray *array = [[NSArray alloc] initWithObjects:m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, nil];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, nil];
     self.messages = array;
 
     [m0 release];
@@ -149,6 +149,16 @@
     [cell setIconName:cell.fromMe ? @"theory.jpg" : @"timbunce.jpg"];
         
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    [self.messages removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
+    //    }
 }
 
 @end

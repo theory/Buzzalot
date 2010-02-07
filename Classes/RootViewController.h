@@ -9,9 +9,9 @@
 #import "ConfigViewController.h"
 
 @interface RootViewController : UITableViewController <ConfigViewControllerDelegate> {
-    NSArray *buzzers;
+    NSMutableArray *buzzers;
 }
 
-@property (nonatomic, retain) NSArray *buzzers;
+@property (nonatomic, retain) NSMutableArray*buzzers;
 
 @end

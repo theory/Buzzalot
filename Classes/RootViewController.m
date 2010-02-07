@@ -91,7 +91,7 @@
                           @"12/19/09", @"when",
                           nil ];
     
-    NSArray *array = [[NSArray alloc] initWithObjects:duncan, tim, casey, rick, julie, lepage, duke, pete, gord, nil];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:duncan, tim, casey, rick, julie, lepage, duke, pete, gord, nil];
     self.buzzers = array;
     
     [duncan release];
@@ -109,7 +109,7 @@
 }
 
 - (void)viewDidUnload {
-    self.buzzers = nil;
+//    self.buzzers = nil;
 }
 
 - (void)dealloc {
@@ -161,18 +161,27 @@
 
     NSDictionary *buzzer = [self.buzzers objectAtIndex:indexPath.row];
     cell.buzzerName = [buzzer objectForKey:@"name"];
-    cell.bodyText = [buzzer objectForKey:@"body"];
-    cell.iconName = [buzzer objectForKey:@"icon"];
-    cell.whenText = [buzzer objectForKey:@"when"];
+    cell.bodyText   = [buzzer objectForKey:@"body"];
+    cell.iconName   = [buzzer objectForKey:@"icon"];
+    cell.whenText   = [buzzer objectForKey:@"when"];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
     buzzerViewController.title = [[self.buzzers objectAtIndex:indexPath.row] objectForKey:@"name"];
 	[self.navigationController pushViewController:buzzerViewController animated:YES];
 	[buzzerViewController release];
+}
+
+- (void)tableView:(UITableView *)tableView
+        commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+        forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.buzzers removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
 }
 
 @end

@@ -6,8 +6,6 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @protocol ConfigViewControllerDelegate;
 
 @interface ConfigViewController : UIViewController {

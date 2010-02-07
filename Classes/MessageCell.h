@@ -6,7 +6,6 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ABTableViewCell.h"
 
 #define kBubbleBodyWidth 230

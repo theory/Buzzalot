@@ -6,8 +6,6 @@
 //  Copyright Kineticode, Inc. 2010. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface BuzzalotAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
 	UINavigationController *navController;
