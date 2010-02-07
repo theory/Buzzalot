@@ -7,11 +7,14 @@
 //
 
 #import "ConfigViewController.h"
+#import "BuzzerViewController.h"
 
 @interface RootViewController : UITableViewController <ConfigViewControllerDelegate> {
     NSMutableArray *buzzers;
+    BuzzerViewController *buzzerViewController;
 }
 
-@property (nonatomic, retain) NSMutableArray*buzzers;
+@property (nonatomic, retain) NSMutableArray *buzzers;
+@property (nonatomic, retain) BuzzerViewController *buzzerViewController;
 
 @end

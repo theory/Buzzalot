@@ -12,7 +12,7 @@
 #import "BuzzerViewController.h"
 
 @implementation RootViewController
-@synthesize buzzers;
+@synthesize buzzers, buzzerViewController;
 
 - (void)viewDidLoad {
 	self.title = NSLocalizedString(@"Buzzalot", nil);
@@ -110,10 +110,13 @@
 
 - (void)viewDidUnload {
 //    self.buzzers = nil;
+    [buzzerViewController release];
+    self.buzzerViewController = nil;
 }
 
 - (void)dealloc {
     [buzzers release];
+    [buzzerViewController release];
     [super dealloc];
 }
 
@@ -170,10 +173,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
+    if (buzzerViewController == nil)
+        buzzerViewController = [BuzzerViewController alloc];
     buzzerViewController.title = [[self.buzzers objectAtIndex:indexPath.row] objectForKey:@"name"];
 	[self.navigationController pushViewController:buzzerViewController animated:YES];
-	[buzzerViewController release];
 }
 
 - (void)tableView:(UITableView *)tableView
