@@ -18,6 +18,10 @@
 		636479F0111E8CD8009E1544 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */; };
 		636479F7111E8DAF009E1544 /* Legal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 636479F6111E8DAF009E1544 /* Legal.rtf */; };
 		63647A2C111E8F83009E1544 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63647A2B111E8F83009E1544 /* Security.framework */; };
+		63647A40111F6FA5009E1544 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63647A3F111F6FA5009E1544 /* libsqlite3.0.dylib */; };
+		63647A42111F70F1009E1544 /* 001-tables.sql in Resources */ = {isa = PBXBuildFile; fileRef = 63647A41111F70F1009E1544 /* 001-tables.sql */; };
+		63647A48111F89A7009E1544 /* buzzalot.db in Resources */ = {isa = PBXBuildFile; fileRef = 63647A47111F89A7009E1544 /* buzzalot.db */; };
+		63647B1C111FBB03009E1544 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63647B1B111FBB03009E1544 /* AddressBook.framework */; };
 		6394376B1119356500E39D09 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6394376A1119356500E39D09 /* ABTableViewCell.m */; };
 		6394382D1119404200E39D09 /* theory.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 639438231119404200E39D09 /* theory.jpg */; };
 		6394382E1119404200E39D09 /* turoczy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 639438241119404200E39D09 /* turoczy.jpg */; };
@@ -54,6 +58,12 @@
 		636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "../scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
 		636479F6111E8DAF009E1544 /* Legal.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Legal.rtf; sourceTree = "<group>"; };
 		63647A2B111E8F83009E1544 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		63647A3F111F6FA5009E1544 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		63647A41111F70F1009E1544 /* 001-tables.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "001-tables.sql"; sourceTree = "<group>"; };
+		63647A43111F711E009E1544 /* buzzalot.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buzzalot.sql; sourceTree = "<group>"; };
+		63647A46111F7C21009E1544 /* test_data.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_data.sql; sourceTree = "<group>"; };
+		63647A47111F89A7009E1544 /* buzzalot.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = buzzalot.db; sourceTree = "<group>"; };
+		63647B1B111FBB03009E1544 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		639437691119356500E39D09 /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
 		6394376A1119356500E39D09 /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
 		639438231119404200E39D09 /* theory.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = theory.jpg; sourceTree = "<group>"; };
@@ -91,6 +101,8 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				63647A2C111E8F83009E1544 /* Security.framework in Frameworks */,
+				63647A40111F6FA5009E1544 /* libsqlite3.0.dylib in Frameworks */,
+				63647B1C111FBB03009E1544 /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +166,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63647A47111F89A7009E1544 /* buzzalot.db */,
+				63647A41111F70F1009E1544 /* 001-tables.sql */,
 				636479F6111E8DAF009E1544 /* Legal.rtf */,
 				636479B9111E79AD009E1544 /* icon.png */,
 				6304B57F111D00C5006C0A31 /* your_bubble.png */,
@@ -161,6 +175,8 @@
 				639438CE111A3D4C00E39D09 /* icon_frame.png */,
 				639438221119404200E39D09 /* avatars */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				63647A43111F711E009E1544 /* buzzalot.sql */,
+				63647A46111F7C21009E1544 /* test_data.sql */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -172,6 +188,8 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				63647A2B111E8F83009E1544 /* Security.framework */,
+				63647A3F111F6FA5009E1544 /* libsqlite3.0.dylib */,
+				63647B1B111FBB03009E1544 /* AddressBook.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,6 +268,8 @@
 				6304B582111D00C5006C0A31 /* my_bubble.png in Resources */,
 				636479BA111E79AD009E1544 /* icon.png in Resources */,
 				636479F7111E8DAF009E1544 /* Legal.rtf in Resources */,
+				63647A42111F70F1009E1544 /* 001-tables.sql in Resources */,
+				63647A48111F89A7009E1544 /* buzzalot.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

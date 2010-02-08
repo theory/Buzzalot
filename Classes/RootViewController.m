@@ -10,9 +10,55 @@
 #import "BuzzerCell.h"
 #import "ConfigViewController.h"
 #import "BuzzerViewController.h"
+#import "BuzzalotAppDelegate.h"
 
 @implementation RootViewController
 @synthesize buzzers, buzzerViewController;
+
+- (void)initBuzzerData {
+    sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
+    sqlite3_stmt *statement;
+    NSString *email, *name, *body, *when;
+    BOOL from_me;
+    NSDictionary *data;
+    // TODO: Replace with address book lookup/local cache.
+    NSDictionary *icons = [[NSDictionary alloc] initWithObjectsAndKeys:
+                           @"duncan.jpg",      @"duncan@duncandavidson.com",
+                           @"timbunce.jpg",    @"Tim.Bunce@pobox.com",
+                           @"caseywest.jpg",   @"casey@geeknest.com",
+                           @"strongrrl.jpg",   @"julie@strongrrl.com",
+                           @"turoczy.jpg",     @"siliconflorist@gmail.com",
+                           @"gordonmeyer.jpg", @"gmeyer@apple.com",
+                           @"dukeleto.jpg",    @"duke@leto.com",
+                           @"rlepage.jpg",     @"rick@lepage.com",
+                           @"sachmet.jpg",     @"pete@krawczyk.com",
+                           nil ];
+    if (sqlite3_prepare_v2(db, "SELECT email, name, from_me, body, sent_at FROM most_recent ORDER BY sent_at DESC", -1, &statement, nil) == SQLITE_OK ) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            email = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 0)];
+            name  = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 1)];
+            from_me = sqlite3_column_int(statement, 2) == 1;
+            body  = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 3)];
+            when  = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 4)];
+            data = [[NSDictionary alloc] initWithObjectsAndKeys:
+                    email, @"email",
+                    name, @"name",
+                    body, @"body",
+                    from_me ? @"yes" : @"no", @"from_me",
+                    when, @"when",
+                    [icons objectForKey:email], @"icon",
+                    nil ];
+            [buzzers addObject: data];
+        }
+        sqlite3_finalize(statement);
+    }
+    [email release];
+    [name release];
+    [body release];
+    [when release];
+    [data release];  
+    [icons release];
+}
 
 - (void)viewDidLoad {
 	self.title = NSLocalizedString(@"Buzzalot", nil);
@@ -34,77 +80,9 @@
 	self.navigationItem.backBarButtonItem = backButton;
 	[backButton release];
 
-    NSDictionary *duncan = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            @"James Duncan Davidson", @"name",
-                            @"Love to, but I'm sick with a fever right now. Not much fun. :(", @"body",
-                            @"duncan.jpg", @"icon",
-                            @"15 secs", @"when",
-                            nil ];
-    NSDictionary *tim = [[NSDictionary alloc] initWithObjectsAndKeys:
-                         @"Tim Bunce", @"name",
-                         @"I'm gonna try (but I know zero about pg internals so I'd be surprised if I can help)", @"body",
-                         @"timbunce.jpg", @"icon",
-                         @"38 mins", @"when",
-                         nil ];
-
-    NSDictionary *casey = [[NSDictionary alloc] initWithObjectsAndKeys:
-                           @"Casey West", @"name",
-                           @"Bah. I'm not going to be around much this afternoon, alas, as I'm taking Anna to the Children’s Museum. Ping me though, maybe I can talk.", @"body",
-                           @"caseywest.jpg", @"icon",
-                           @"1 hour", @"when",
-                           nil ];
-
-    NSDictionary *rick = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Rick Turoczy", @"name",
-                          @"Crap.  Thank you. I was really trying not to make that one :(", @"body",
-                          @"turoczy.jpg", @"icon",
-                          @"4 hours", @"when",
-                          nil ];
-    NSDictionary *julie = [[NSDictionary alloc] initWithObjectsAndKeys:
-                           @"Julie Wheeler", @"name",
-                           @"Gab says 80s nite tomorrow if you want to go.", @"body",
-                           @"strongrrl.jpg", @"icon",
-                           @"yesterday", @"when",
-                           nil ];
-    NSDictionary *lepage = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            @"Rick LePage", @"name",
-                            @"To whom was that directed? I was just about to meet Duncan at Hot Lips.", @"body",
-                            @"rlepage.jpg", @"icon",
-                            @"Saturday", @"when",
-                            nil ];
-    NSDictionary *duke = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Duke Leto", @"name",
-                          @"my g # is  209.691.3853 aka 209.691.DUKE :)", @"body",
-                          @"dukeleto.jpg", @"icon",
-                          @"1/28/10", @"when",
-                          nil ];
-    NSDictionary *pete = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Pete Krawczyk", @"name",
-                          @"RJBS has sent me one. Thanks!", @"body",
-                          @"sachmet.jpg", @"icon",
-                          @"1/15/10 ", @"when",
-                          nil ];
-    NSDictionary *gord = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"Gordon Meyer", @"name",
-                          @"I have an invite, d me your email address.", @"body",
-                          @"gordonmeyer.jpg", @"icon",
-                          @"12/19/09", @"when",
-                          nil ];
-    
-    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:duncan, tim, casey, rick, julie, lepage, duke, pete, gord, nil];
-    self.buzzers = array;
-    
-    [duncan release];
-    [tim release];
-    [casey release];
-    [rick release];
-    [julie release];
-    [lepage release];
-    [duke release];
-    [pete release];
-    [gord release];
-    [array release];
-
+    // Load the data and go!
+    self.buzzers = [[NSMutableArray alloc] init];
+    [self initBuzzerData];
     [super viewDidLoad];
 }
 

@@ -6,6 +6,9 @@
 //  Copyright Kineticode, Inc. 2010. All rights reserved.
 //
 
+#define kDBFilename @"buzzalot.db"
+#import <sqlite3.h>
+
 @interface BuzzalotAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
 	UINavigationController *navController;
@@ -13,6 +16,7 @@
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navController;
++ (sqlite3 *) getDBConnection;
 
 @end
 
