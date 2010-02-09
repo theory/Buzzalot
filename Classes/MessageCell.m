@@ -31,7 +31,6 @@ static UIImage *yourBubble    = nil;
 }
 
 - (void)setMessage:(MessageModel *)m {
-    [message release];
     message = m;
     [self setNeedsDisplay]; 
 }
