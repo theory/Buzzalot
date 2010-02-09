@@ -7,19 +7,14 @@
 //
 
 #import "ABTableViewCell.h"
+#import "Buzzer.h"
 #define kBuzzerBodyWidth 235
 #define kBuzzerBodyY 22
 
 @interface BuzzerCell : ABTableViewCell {
-	NSString *buzzerName;
-	NSString *bodyText;
-    NSString *iconName;
-    NSString *whenText;
+    Buzzer *buzzer;
 }
 
-@property (nonatomic, copy) NSString *buzzerName;
-@property (nonatomic, copy) NSString *bodyText;
-@property (nonatomic, copy) NSString *iconName;
-@property (nonatomic, copy) NSString *whenText;
+@property (nonatomic, copy) Buzzer *buzzer;
 
 @end

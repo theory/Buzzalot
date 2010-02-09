@@ -11,54 +11,10 @@
 #import "ConfigViewController.h"
 #import "BuzzerViewController.h"
 #import "BuzzalotAppDelegate.h"
+#import "Buzzer.h"
 
 @implementation RootViewController
 @synthesize buzzers, buzzerViewController;
-
-- (void)initBuzzerData {
-    sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
-    sqlite3_stmt *statement;
-    NSString *email, *name, *body, *when;
-    BOOL from_me;
-    NSDictionary *data;
-    // TODO: Replace with address book lookup/local cache.
-    NSDictionary *icons = [[NSDictionary alloc] initWithObjectsAndKeys:
-                           @"duncan.jpg",      @"duncan@duncandavidson.com",
-                           @"timbunce.jpg",    @"Tim.Bunce@pobox.com",
-                           @"caseywest.jpg",   @"casey@geeknest.com",
-                           @"strongrrl.jpg",   @"julie@strongrrl.com",
-                           @"turoczy.jpg",     @"siliconflorist@gmail.com",
-                           @"gordonmeyer.jpg", @"gmeyer@apple.com",
-                           @"dukeleto.jpg",    @"duke@leto.com",
-                           @"rlepage.jpg",     @"rick@lepage.com",
-                           @"sachmet.jpg",     @"pete@krawczyk.com",
-                           nil ];
-    if (sqlite3_prepare_v2(db, "SELECT email, name, from_me, body, sent_at FROM most_recent ORDER BY sent_at DESC", -1, &statement, nil) == SQLITE_OK ) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            email = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 0)];
-            name  = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 1)];
-            from_me = sqlite3_column_int(statement, 2) == 1;
-            body  = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 3)];
-            when  = [[NSString alloc] initWithUTF8String:(char *)sqlite3_column_text(statement, 4)];
-            data = [[NSDictionary alloc] initWithObjectsAndKeys:
-                    email, @"email",
-                    name, @"name",
-                    body, @"body",
-                    from_me ? @"yes" : @"no", @"from_me",
-                    when, @"when",
-                    [icons objectForKey:email], @"icon",
-                    nil ];
-            [buzzers addObject: data];
-        }
-        sqlite3_finalize(statement);
-    }
-    [email release];
-    [name release];
-    [body release];
-    [when release];
-    [data release];  
-    [icons release];
-}
 
 - (void)viewDidLoad {
 	self.title = NSLocalizedString(@"Buzzalot", nil);
@@ -81,8 +37,7 @@
 	[backButton release];
 
     // Load the data and go!
-    self.buzzers = [[NSMutableArray alloc] init];
-    [self initBuzzerData];
+    self.buzzers = [Buzzer selectBuzzers];
     [super viewDidLoad];
 }
 
@@ -125,8 +80,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *body = [[self.buzzers objectAtIndex:indexPath.row] objectForKey:@"body"];
-    CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)];
+    CGSize size = [((Buzzer *) [self.buzzers objectAtIndex:indexPath.row]).body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)];
     return MAX(size.height + kBuzzerBodyY + 6, 60);
 }
 
@@ -140,11 +94,7 @@
 
     }
 
-    NSDictionary *buzzer = [self.buzzers objectAtIndex:indexPath.row];
-    cell.buzzerName = [buzzer objectForKey:@"name"];
-    cell.bodyText   = [buzzer objectForKey:@"body"];
-    cell.iconName   = [buzzer objectForKey:@"icon"];
-    cell.whenText   = [buzzer objectForKey:@"when"];
+    cell.buzzer = [self.buzzers objectAtIndex:indexPath.row];
 
     return cell;
 }
@@ -153,7 +103,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (buzzerViewController == nil)
         buzzerViewController = [BuzzerViewController alloc];
-    buzzerViewController.title = [[self.buzzers objectAtIndex:indexPath.row] objectForKey:@"name"];
+    buzzerViewController.title = ((Buzzer *) [self.buzzers objectAtIndex:indexPath.row]).name;
 	[self.navigationController pushViewController:buzzerViewController animated:YES];
 }
 
@@ -161,6 +111,8 @@
         commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Buzzer *buzzer = (Buzzer *) [self.buzzers objectAtIndex:indexPath.row];
+    [buzzer deleteBuzzer];
     [self.buzzers removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
 }
