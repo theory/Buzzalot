@@ -14,7 +14,7 @@
 #import "Buzzer.h"
 
 @implementation RootViewController
-@synthesize buzzers, buzzerViewController;
+@synthesize buzzers;
 
 - (void)viewDidLoad {
 	self.title = NSLocalizedString(@"Buzzalot", nil);
@@ -43,13 +43,10 @@
 
 - (void)viewDidUnload {
 //    self.buzzers = nil;
-    [buzzerViewController release];
-    self.buzzerViewController = nil;
 }
 
 - (void)dealloc {
     [buzzers release];
-    [buzzerViewController release];
     [super dealloc];
 }
 
@@ -101,9 +98,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (buzzerViewController == nil)
-        buzzerViewController = [BuzzerViewController alloc];
-    buzzerViewController.title = ((Buzzer *) [self.buzzers objectAtIndex:indexPath.row]).name;
+     BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
+    [buzzerViewController initWithBuzzer: (Buzzer *)[self.buzzers objectAtIndex:indexPath.row]];
 	[self.navigationController pushViewController:buzzerViewController animated:YES];
 }
 
@@ -111,7 +107,7 @@
         commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Buzzer *buzzer = (Buzzer *) [self.buzzers objectAtIndex:indexPath.row];
+    Buzzer *buzzer = [self.buzzers objectAtIndex:indexPath.row];
     [buzzer deleteBuzzer];
     [self.buzzers removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];

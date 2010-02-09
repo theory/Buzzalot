@@ -40,6 +40,7 @@ static UIFont *whenTextFont   = nil;
     buzzer = b;
     [self setNeedsDisplay]; 
 }
+
 - (void)drawContentView:(CGRect)r {
     CGContextRef context = UIGraphicsGetCurrentContext();
 	UIColor *backgroundColor = [UIColor whiteColor];

@@ -7,20 +7,15 @@
 //
 
 #import "ABTableViewCell.h"
+#import "Message.h"
 
 #define kBubbleBodyWidth 230
 #define kBubbleBodyY 25
 
 @interface MessageCell : ABTableViewCell {
-	NSString *bodyText;
-    NSString *iconName;
-    NSString *whenText;
-    BOOL fromMe;
+    Message *message;
 }
 
-@property (nonatomic, copy) NSString *bodyText;
-@property (nonatomic, copy) NSString *iconName;
-@property (nonatomic, copy) NSString *whenText;
-@property BOOL fromMe;
+@property (nonatomic, copy) Message *message;
 
 @end

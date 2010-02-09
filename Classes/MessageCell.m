@@ -9,7 +9,7 @@
 #import "MessageCell.h"
 
 @implementation MessageCell
-@synthesize bodyText, iconName, whenText, fromMe;
+@synthesize message;
 
 static UIFont *bodyTextFont   = nil;
 static UIFont *whenTextFont   = nil;
@@ -26,32 +26,13 @@ static UIImage *yourBubble    = nil;
 }
 
 - (void)dealloc {
-    [bodyText release];
-    [iconName release];
-    [whenText release];
+    [message release];
     [super dealloc];
 }
 
-- (void)setBodyText:(NSString *)s {
-    [bodyText release];
-    bodyText = [s copy];
-    [self setNeedsDisplay]; 
-}
-
-- (void)setIconName:(NSString *)s {
-    [iconName release];
-    iconName = [s copy];
-    [self setNeedsDisplay]; 
-}
-
-- (void)setWhenText:(NSString *)s {
-    [whenText release];
-    whenText = [s copy];
-    [self setNeedsDisplay]; 
-}
-
-- (void)setFromMe:(BOOL)b {
-    fromMe = b;
+- (void)setMessage:(Message *)m {
+    [message release];
+    message = m;
     [self setNeedsDisplay]; 
 }
 
@@ -72,22 +53,22 @@ static UIImage *yourBubble    = nil;
     
     // Draw date/time.
 	CGPoint p = {140, 4};
-    [whenText drawAtPoint:p withFont:whenTextFont];
+    [message.sent drawAtPoint:p withFont:whenTextFont];
 
     // Get body size.
-    CGSize size = [bodyText sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 2000)];
+    CGSize size = [message.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 2000)];
 
-    if (self.fromMe) {
+    if (message.fromMe) {
         // Draw bubble.
         [myBubble drawInRect:CGRectMake(240 - size.width, 22, size.width + 22, size.height + 8)];
         
         // Draw body.
         [textColor = [UIColor darkTextColor] set];
         // CGContextStrokeRect(context, CGRectMake(248 - size.width, kBubbleBodyY, size.width, size.height));
-        [bodyText drawInRect:CGRectMake(248 - size.width, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
+        [message.body drawInRect:CGRectMake(248 - size.width, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
         
         // Draw icon.
-        UIImage *icon = [UIImage imageNamed:self.iconName];
+        UIImage *icon = [UIImage imageNamed:@"theory.jpg"]; // TODO: Get icon from address book.
         [icon drawInRect:CGRectMake(265, 7, 48, 48)];
     } else {
         // Draw bubble.
@@ -96,11 +77,10 @@ static UIImage *yourBubble    = nil;
         // Draw body.
         [textColor = [UIColor darkTextColor] set];
         // CGContextStrokeRect(context, CGRectMake(72, kBubbleBodyY, size.width, size.height));
-        [bodyText drawInRect:CGRectMake(72, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
+        [message.body drawInRect:CGRectMake(72, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
 
         // Draw icon.
-        UIImage *icon = [UIImage imageNamed:self.iconName];
-        [icon drawInRect:CGRectMake(7, 7, 48, 48)];
+        [message.icon drawInRect:CGRectMake(7, 7, 48, 48)];
     }
 }
 

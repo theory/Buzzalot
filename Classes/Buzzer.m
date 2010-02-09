@@ -19,11 +19,11 @@
     if (sqlite3_prepare_v2(db, "SELECT email, name, body, sent_at FROM most_recent ORDER BY sent_at DESC", -1, &sth, nil) == SQLITE_OK ) {
         while (sqlite3_step(sth) == SQLITE_ROW) {
             [buzzers addObject: [[Buzzer alloc]
-                                 initWithEmail: (char *) sqlite3_column_text(sth, 0)
-                                 name: (char *) sqlite3_column_text(sth, 1)
-                                 when: (char *) sqlite3_column_text(sth, 3)
-                                 body: (char *) sqlite3_column_text(sth, 2)
-                                 ]];
+                initWithEmail: (char *) sqlite3_column_text(sth, 0)
+                         name: (char *) sqlite3_column_text(sth, 1)
+                         when: (char *) sqlite3_column_text(sth, 3)
+                         body: (char *) sqlite3_column_text(sth, 2)
+            ]];
         }
         sqlite3_finalize(sth);
     }
@@ -74,6 +74,5 @@
     sqlite3_step(sth);
     sqlite3_finalize(sth);
 }
-
 
 @end
