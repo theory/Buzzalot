@@ -77,7 +77,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize size = [((Buzzer *) [self.buzzers objectAtIndex:indexPath.row]).body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)];
+    CGSize size = [((Buzzer *) [self.buzzers objectAtIndex:indexPath.row]).body
+             sizeWithFont:[UIFont systemFontOfSize:14.0]
+        constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)
+    ];
     return MAX(size.height + kBuzzerBodyY + 6, 60);
 }
 

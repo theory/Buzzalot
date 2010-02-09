@@ -36,7 +36,6 @@ static UIFont *whenTextFont   = nil;
 }
 
 - (void)setBuzzer:(Buzzer *)b {
-    [buzzer release];
     buzzer = b;
     [self setNeedsDisplay]; 
 }
