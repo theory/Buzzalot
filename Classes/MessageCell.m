@@ -30,7 +30,7 @@ static UIImage *yourBubble    = nil;
     [super dealloc];
 }
 
-- (void)setMessage:(Message *)m {
+- (void)setMessage:(MessageModel *)m {
     [message release];
     message = m;
     [self setNeedsDisplay]; 

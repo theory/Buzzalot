@@ -7,14 +7,14 @@
 //
 
 #import "ABTableViewCell.h"
-#import "Buzzer.h"
+#import "BuzzerModel.h"
 #define kBuzzerBodyWidth 235
 #define kBuzzerBodyY 22
 
 @interface BuzzerCell : ABTableViewCell {
-    Buzzer *buzzer;
+    BuzzerModel *buzzer;
 }
 
-@property (nonatomic, copy) Buzzer *buzzer;
+@property (nonatomic, copy) BuzzerModel *buzzer;
 
 @end

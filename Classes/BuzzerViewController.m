@@ -8,16 +8,16 @@
 
 #import "BuzzerViewController.h"
 #import "MessageCell.h"
-#import "Buzzer.h"
-#import "Message.h"
+#import "BuzzerModel.h"
+#import "MessageModel.h"
 
 @implementation BuzzerViewController
 @synthesize messages;
 
-- (void) initWithBuzzer:(Buzzer *)buzzer {
+- (void) initWithBuzzer:(BuzzerModel *)buzzer {
     self.title = buzzer.name;
     [self.messages release];
-    self.messages = [Message selectForBuzzer:buzzer];
+    self.messages = [MessageModel selectForBuzzer:buzzer];
 }
 
 - (void)viewDidLoad {
@@ -55,7 +55,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize size = [((Message *) [self.messages objectAtIndex:indexPath.row]).body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(kBubbleBodyWidth, 2000)];
+    CGSize size = [((MessageModel *) [self.messages objectAtIndex:indexPath.row]).body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(kBubbleBodyWidth, 2000)];
     return MAX(size.height + kBubbleBodyY + 6, 60);
 }
 
@@ -77,7 +77,7 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    if (editingStyle == UITableViewCellEditingStyleDelete) {
-    Message *message = [self.messages objectAtIndex:indexPath.row];
+    MessageModel *message = [self.messages objectAtIndex:indexPath.row];
     [message deleteMessage];
     [self.messages removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];

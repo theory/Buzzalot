@@ -11,7 +11,7 @@
 #import "ConfigViewController.h"
 #import "BuzzerViewController.h"
 #import "BuzzalotAppDelegate.h"
-#import "Buzzer.h"
+#import "BuzzerModel.h"
 
 @implementation RootViewController
 @synthesize buzzers;
@@ -37,7 +37,7 @@
 	[backButton release];
 
     // Load the data and go!
-    self.buzzers = [Buzzer selectBuzzers];
+    self.buzzers = [BuzzerModel selectBuzzers];
     [super viewDidLoad];
 }
 
@@ -77,7 +77,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize size = [((Buzzer *) [self.buzzers objectAtIndex:indexPath.row]).body
+    CGSize size = [((BuzzerModel *) [self.buzzers objectAtIndex:indexPath.row]).body
              sizeWithFont:[UIFont systemFontOfSize:14.0]
         constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)
     ];
@@ -102,7 +102,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
      BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
-    [buzzerViewController initWithBuzzer: (Buzzer *)[self.buzzers objectAtIndex:indexPath.row]];
+    [buzzerViewController initWithBuzzer: (BuzzerModel *)[self.buzzers objectAtIndex:indexPath.row]];
 	[self.navigationController pushViewController:buzzerViewController animated:YES];
 }
 
@@ -110,7 +110,7 @@
         commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
         forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Buzzer *buzzer = [self.buzzers objectAtIndex:indexPath.row];
+    BuzzerModel *buzzer = [self.buzzers objectAtIndex:indexPath.row];
     [buzzer deleteBuzzer];
     [self.buzzers removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];

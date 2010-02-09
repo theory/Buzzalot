@@ -6,10 +6,10 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import "Buzzer.h"
+#import "BuzzerModel.h"
 #import "BuzzalotAppDelegate.h"
 
-@implementation Buzzer
+@implementation BuzzerModel
 @synthesize email, name, body, when, icon;
 
 + (NSMutableArray *) selectBuzzers {
@@ -18,7 +18,7 @@
     NSMutableArray *buzzers = [[NSMutableArray alloc] init];
     if (sqlite3_prepare_v2(db, "SELECT email, name, body, sent_at FROM most_recent ORDER BY sent_at DESC", -1, &sth, nil) == SQLITE_OK ) {
         while (sqlite3_step(sth) == SQLITE_ROW) {
-            [buzzers addObject: [[Buzzer alloc]
+            [buzzers addObject: [[BuzzerModel alloc]
                 initWithEmail: (char *) sqlite3_column_text(sth, 0)
                          name: (char *) sqlite3_column_text(sth, 1)
                          when: (char *) sqlite3_column_text(sth, 3)
@@ -30,7 +30,7 @@
     return buzzers;
 }    
 
--(Buzzer *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b {
+-(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b {
     if (self = [super init]) {
         self.email = [[NSString alloc] initWithUTF8String:e];
         self.name  = [[NSString alloc] initWithUTF8String:n];

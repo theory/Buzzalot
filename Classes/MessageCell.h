@@ -7,15 +7,15 @@
 //
 
 #import "ABTableViewCell.h"
-#import "Message.h"
+#import "MessageModel.h"
 
 #define kBubbleBodyWidth 230
 #define kBubbleBodyY 25
 
 @interface MessageCell : ABTableViewCell {
-    Message *message;
+    MessageModel *message;
 }
 
-@property (nonatomic, copy) Message *message;
+@property (nonatomic, copy) MessageModel *message;
 
 @end

@@ -6,13 +6,13 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-@class Buzzer;
+@class BuzzerModel;
 @interface BuzzerViewController : UITableViewController {
     NSMutableArray *messages;
 }
 
 @property (nonatomic, retain) NSMutableArray *messages;
 
--(void)initWithBuzzer:(Buzzer *)buzzer;
+-(void)initWithBuzzer:(BuzzerModel *)buzzer;
 
 @end

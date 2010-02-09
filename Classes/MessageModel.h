@@ -6,9 +6,9 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import "Buzzer.h"
+#import "BuzzerModel.h"
 
-@interface Message : NSObject {
+@interface MessageModel : NSObject {
     NSString *message_id;
     NSString *sent;
     NSString *body;
@@ -22,8 +22,8 @@
 @property (nonatomic, retain) UIImage  *icon;
 @property BOOL fromMe;
 
-+(NSMutableArray *) selectForBuzzer:(Buzzer *)buzzer;
--(Message *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f icon:(UIImage *)m;
++(NSMutableArray *) selectForBuzzer:(BuzzerModel *)buzzer;
+-(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f icon:(UIImage *)m;
 -(void)deleteMessage;
 
 @end

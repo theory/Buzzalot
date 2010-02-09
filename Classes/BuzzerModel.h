@@ -6,7 +6,7 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-@interface Buzzer : NSObject {
+@interface BuzzerModel : NSObject {
     NSString *email;
     NSString *name;
     NSString *body;
@@ -21,7 +21,7 @@
 @property (nonatomic, retain) UIImage  *icon;
 
 +(NSMutableArray *) selectBuzzers;
--(Buzzer *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b;
+-(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b;
 -(void)deleteBuzzer;
 
 @end

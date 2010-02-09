@@ -35,7 +35,7 @@ static UIFont *whenTextFont   = nil;
     [super dealloc];
 }
 
-- (void)setBuzzer:(Buzzer *)b {
+- (void)setBuzzer:(BuzzerModel *)b {
     buzzer = b;
     [self setNeedsDisplay]; 
 }

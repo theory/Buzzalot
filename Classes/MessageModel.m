@@ -6,20 +6,20 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import "Message.h"
+#import "MessageModel.h"
 #import "BuzzalotAppDelegate.h"
 
-@implementation Message
+@implementation MessageModel
 @synthesize message_id, sent, body, icon, fromMe;
 
-+(NSMutableArray *) selectForBuzzer:(Buzzer *)buzzer {
++(NSMutableArray *) selectForBuzzer:(BuzzerModel *)buzzer {
     sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
     sqlite3_stmt *sth;
     NSMutableArray *messages = [[NSMutableArray alloc] init];
     if (sqlite3_prepare_v2(db, "SELECT message_id, sent_at, body, from_me FROM messages WHERE email = ? ORDER BY sent_at DESC", -1, &sth, nil) == SQLITE_OK ) {
         sqlite3_bind_text(sth, 1, [buzzer.email UTF8String], -1, NULL);
         while (sqlite3_step(sth) == SQLITE_ROW) {
-            [messages addObject: [[Message alloc]
+            [messages addObject: [[MessageModel alloc]
                                  initWithId: (char *) sqlite3_column_text(sth, 0)
                                        sent: (char *) sqlite3_column_text(sth, 1)
                                        body: (char *) sqlite3_column_text(sth, 2)
@@ -32,7 +32,7 @@
     return messages;    
 }
 
--(Message *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f icon:(UIImage *)m {
+-(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f icon:(UIImage *)m {
     if (self = [super init]) {
         self.message_id = [[NSString alloc] initWithUTF8String:i];
         self.sent       = [[NSString alloc] initWithUTF8String:s];
