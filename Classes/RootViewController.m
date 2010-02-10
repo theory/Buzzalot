@@ -114,6 +114,7 @@
 {
     BuzzerModel *buzzer = [self.buzzers objectAtIndex:indexPath.row];
     [buzzer deleteBuzzer];
+    [buzzer release];
     [self.buzzers removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
 }

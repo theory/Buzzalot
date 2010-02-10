@@ -36,8 +36,11 @@ static UIFont *whenTextFont   = nil;
 }
 
 - (void)setBuzzer:(BuzzerModel *)b {
-    buzzer = b;
-    [self setNeedsDisplay]; 
+    if (buzzer != b) {
+        [buzzer release];
+        buzzer = [b retain];
+        [self setNeedsDisplay];
+    }
 }
 
 - (void)drawContentView:(CGRect)r {

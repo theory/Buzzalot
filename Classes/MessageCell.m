@@ -31,8 +31,11 @@ static UIImage *yourBubble    = nil;
 }
 
 - (void)setMessage:(MessageModel *)m {
-    message = m;
-    [self setNeedsDisplay]; 
+    if (message != m) {
+        [message release];
+        message = [m retain];
+        [self setNeedsDisplay];
+    }
 }
 
 - (void)drawContentView:(CGRect)r {

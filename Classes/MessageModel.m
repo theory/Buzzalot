@@ -29,7 +29,7 @@
         }
         sqlite3_finalize(sth);
     }
-    return messages;    
+    return [messages autorelease];
 }
 
 -(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f icon:(UIImage *)m {

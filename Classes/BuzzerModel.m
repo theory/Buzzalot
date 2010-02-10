@@ -27,8 +27,8 @@
         }
         sqlite3_finalize(sth);
     }
-    return buzzers;
-}    
+    return [buzzers autorelease];
+}
 
 -(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b {
     if (self = [super init]) {
@@ -40,19 +40,26 @@
     return self;
 }
 
+// TODO: Move this to an icon lookup library of some kind.
+static NSDictionary *icons = nil;
+
++(void) initialize {
+    if (self == [BuzzerModel class]) {
+        icons = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                 @"duncan.jpg",      @"duncan@duncandavidson.com",
+                 @"timbunce.jpg",    @"Tim.Bunce@pobox.com",
+                 @"caseywest.jpg",   @"casey@geeknest.com",
+                 @"strongrrl.jpg",   @"julie@strongrrl.com",
+                 @"turoczy.jpg",     @"siliconflorist@gmail.com",
+                 @"gordonmeyer.jpg", @"gmeyer@apple.com",
+                 @"dukeleto.jpg",    @"duke@leto.com",
+                 @"rlepage.jpg",     @"rick@lepage.com",
+                 @"sachmet.jpg",     @"pete@krawczyk.com",
+                 nil ] retain];
+    }
+}            
+
 - (UIImage *) icon {
-    // TODO: Replace with address book lookup/local cache.
-    NSDictionary *icons = [[NSDictionary alloc] initWithObjectsAndKeys:
-                           @"duncan.jpg",      @"duncan@duncandavidson.com",
-                           @"timbunce.jpg",    @"Tim.Bunce@pobox.com",
-                           @"caseywest.jpg",   @"casey@geeknest.com",
-                           @"strongrrl.jpg",   @"julie@strongrrl.com",
-                           @"turoczy.jpg",     @"siliconflorist@gmail.com",
-                           @"gordonmeyer.jpg", @"gmeyer@apple.com",
-                           @"dukeleto.jpg",    @"duke@leto.com",
-                           @"rlepage.jpg",     @"rick@lepage.com",
-                           @"sachmet.jpg",     @"pete@krawczyk.com",
-                           nil ];
     return [UIImage imageNamed:[icons objectForKey:self.email]];
 }
 
