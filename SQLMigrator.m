@@ -35,12 +35,16 @@ NSInteger intSort(id num1, id num2, void *context) {
     NSArray *paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"sql" inDirectory:dir ];
     
     // Iterate through the migration files and execute them.
-    NSString *fileContents;
     char *errorMsg;
+    NSString *fileContents;
     for (NSString *filename in paths) {
         int fileVersion = [[[filename componentsSeparatedByString:@"/"] lastObject] intValue];
         if (fileVersion > version) {
-            fileContents = [[NSString alloc] initWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:nil];
+            fileContents = [[NSString alloc]
+                initWithContentsOfFile: filename
+                              encoding: NSUTF8StringEncoding
+                                 error: nil
+            ];
             if (sqlite3_exec(db, [fileContents UTF8String], NULL, NULL, &errorMsg) != SQLITE_OK) {
                 sqlite3_close(db);
                 NSAssert2(0, @"Error executing %s: %s", filename, errorMsg);
@@ -50,12 +54,9 @@ NSInteger intSort(id num1, id num2, void *context) {
                     NSAssert2(0, @"Error executing PRAGMA schema_version = %u: %s", fileVersion, errorMsg);
                 }
             }
+            [fileContents release];
         }
     }
-
-    // Clean up.
-//    [paths release];
-    [fileContents release];
 }
 
 @end

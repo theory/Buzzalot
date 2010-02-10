@@ -75,4 +75,12 @@
     sqlite3_finalize(sth);
 }
 
+- (void)dealloc {
+    [email release];
+    [name  release];
+    [when  release];
+    [body  release];
+    [super dealloc];
+}
+
 @end

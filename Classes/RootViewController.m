@@ -30,6 +30,7 @@
 									action: @selector(compose)
 									];
     self.navigationItem.rightBarButtonItem = composeItem;
+    [composeItem release];
 
 	// Set up the back button.
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Buzzers" style:UIBarButtonItemStyleDone target:nil action:nil];
@@ -101,6 +102,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // TODO: Why does releasing buzzerViewController cause a crash?
      BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
     [buzzerViewController initWithBuzzer: (BuzzerModel *)[self.buzzers objectAtIndex:indexPath.row]];
 	[self.navigationController pushViewController:buzzerViewController animated:YES];

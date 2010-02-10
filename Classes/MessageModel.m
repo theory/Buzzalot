@@ -55,4 +55,12 @@
     sqlite3_finalize(sth);
 }
 
+- (void)dealloc {
+    [message_id release];
+    [sent release];
+    [body release];
+    [icon release];
+    [super dealloc];
+}
+
 @end
