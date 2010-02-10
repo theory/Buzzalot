@@ -54,7 +54,7 @@ NSInteger intSort(id num1, id num2, void *context) {
     }
 
     // Clean up.
-    [paths release];
+//    [paths release];
     [fileContents release];
 }
 
