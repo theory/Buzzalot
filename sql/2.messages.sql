@@ -1,11 +1,6 @@
 PRAGMA foreign_keys = ON; -- Future-proof.
 
-CREATE TABLE correspondents (
-    email TEXT COLLATE nocase NOT NULL PRIMARY KEY,
-    name  TEXT                NOT NULL
-);
-
-CREATE INDEX idx_correspondent_name ON correspondents(name);
+BEGIN;
 
 CREATE TABLE messages (
     message_id  TEXT COLLATE nocase PRIMARY KEY,
@@ -27,3 +22,5 @@ SELECT c.email, c.name, COALESCE(m.from_me, 0) AS from_me, COALESCE(m.body, '') 
     OR (m.sent_at = m2.sent_at AND m.message_id < m2.message_id)
   )
  WHERE m2.email iS NULL;
+
+COMMIT;

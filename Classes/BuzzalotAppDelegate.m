@@ -8,6 +8,7 @@
 
 #import "BuzzalotAppDelegate.h"
 #import "RootViewController.h"
+#import "SQLMigrator.h"
 
 @implementation BuzzalotAppDelegate
 
@@ -15,20 +16,8 @@
 
 + (NSString *) dbFilePath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSLog(@"DB: %@", [[paths objectAtIndex:0] stringByAppendingPathComponent:kDBFilename]);
     return [[paths objectAtIndex:0] stringByAppendingPathComponent:kDBFilename];
-}
-
-- (void)createEditableCopyOfDatabaseIfNeeded {
-    // First, test for existence.
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *dbFilePath = [[self class] dbFilePath];
-    if ([fileManager fileExistsAtPath:dbFilePath]) return;
-    
-    // The writable database does not exist, so copy the default to the appropriate location.
-    NSError *error;
-    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:kDBFilename];
-    if (![fileManager copyItemAtPath:defaultDBPath toPath:dbFilePath error:&error])
-        NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
@@ -39,7 +28,7 @@
 	[viewController release];
 
     // Make sure we have a database.
-    [self createEditableCopyOfDatabaseIfNeeded];
+    [SQLMigrator migrateDb:[BuzzalotAppDelegate getDBConnection] directory: @"sql"];
 
     // onfigure and show the window.
     [window addSubview:[navController view]];
@@ -52,6 +41,7 @@
     [super dealloc];
 }
 
+// TODO: Make this into an instance attribute.
 +(sqlite3 *) getDBConnection {
     sqlite3 *conn;
     if (sqlite3_open([[self dbFilePath] UTF8String], &conn) != SQLITE_OK) {
