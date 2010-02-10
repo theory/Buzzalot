@@ -46,7 +46,15 @@
     if (sqlite3_open([[self dbFilePath] UTF8String], &conn) != SQLITE_OK) {
         sqlite3_close(conn);
         NSAssert(0, @"Failed to open database");
+    } else {
+        // Future-proof: Eventually we'll have SQLite 3.6.19 or greater.
+        char *errorMsg;
+        if (sqlite3_exec(conn, "PRAGMA foreign_keys = ON;", NULL, NULL, &errorMsg) != SQLITE_OK) {
+            sqlite3_close(conn);
+            NSAssert1(0, @"Error enabling foreign-key constraints: %s", errorMsg);
+        }
     }
+
     return conn;
 }
 @end
