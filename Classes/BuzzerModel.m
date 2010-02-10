@@ -66,18 +66,14 @@ static NSDictionary *icons = nil;
 -(void)deleteBuzzer {
     sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
     sqlite3_stmt *sth;
-    // Delete messages.
-    if (sqlite3_prepare_v2(db, "DELETE FROM messages WHERE email = ?", -1, &sth, nil) == SQLITE_OK ) {
-        sqlite3_bind_text(sth, 1, [self.email UTF8String], -1, NULL);
-    }
+    char *errorMsg;
 
-    sqlite3_step(sth);
-    sqlite3_finalize(sth);
-
-    // Delete correspondent.
-    if (sqlite3_prepare_v2(db, "DELETE FROM correspondents WHERE email = ?", -1, &sth, nil) == SQLITE_OK ) {
-        sqlite3_bind_text(sth, 1, [self.email UTF8String], -1, NULL);
+    // Delete correspondent. Message deletions will cascade.
+    if (sqlite3_prepare_v2(db, "DELETE FROM correspondents WHERE email = ?", -1, &sth, nil) != SQLITE_OK ) {
+        sqlite3_close(db);
+        NSAssert1(0, @"Error deleting correspondent: %s", errorMsg);
     }
+    sqlite3_bind_text(sth, 1, [self.email UTF8String], -1, NULL);
     sqlite3_step(sth);
     sqlite3_finalize(sth);
 }

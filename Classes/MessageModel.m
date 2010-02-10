@@ -46,11 +46,15 @@
 -(void)deleteMessage {
     sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
     sqlite3_stmt *sth;
+    char *errorMsg;
+
     // Delete messages.
-    if (sqlite3_prepare_v2(db, "DELETE FROM messages WHERE message_id = ?", -1, &sth, nil) == SQLITE_OK ) {
-        sqlite3_bind_text(sth, 1, [self.message_id UTF8String], -1, NULL);
+    if (sqlite3_prepare_v2(db, "DELETE FROM messages WHERE message_id = ?", -1, &sth, nil) != SQLITE_OK ) {
+        sqlite3_close(db);
+        NSAssert1(0, @"Error deleting correspondent: %s", errorMsg);
     }
     
+    sqlite3_bind_text(sth, 1, [self.message_id UTF8String], -1, NULL);
     sqlite3_step(sth);
     sqlite3_finalize(sth);
 }

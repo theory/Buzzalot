@@ -17,7 +17,7 @@
 		630A5ED911211EC8000AD362 /* BuzzerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A5ED811211EC8000AD362 /* BuzzerModel.m */; };
 		630A602711213810000AD362 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 630A602611213810000AD362 /* MessageModel.m */; };
 		630C15A811222E4100465A4E /* SQLMigrator.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C15A711222E4100465A4E /* SQLMigrator.m */; };
-		630C16621122623800465A4E /* sql in Resources */ = {isa = PBXBuildFile; fileRef = 630C165E1122623800465A4E /* sql */; };
+		630C17D111236DD200465A4E /* sql in Resources */ = {isa = PBXBuildFile; fileRef = 630C17CC11236DD200465A4E /* sql */; };
 		636479BA111E79AD009E1544 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 636479B9111E79AD009E1544 /* icon.png */; };
 		636479F0111E8CD8009E1544 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */; };
 		636479F7111E8DAF009E1544 /* Legal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 636479F6111E8DAF009E1544 /* Legal.rtf */; };
@@ -61,7 +61,7 @@
 		630A602611213810000AD362 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		630C15A611222E4100465A4E /* SQLMigrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLMigrator.h; sourceTree = "<group>"; };
 		630C15A711222E4100465A4E /* SQLMigrator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLMigrator.m; sourceTree = "<group>"; };
-		630C165E1122623800465A4E /* sql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sql; sourceTree = "<group>"; };
+		630C17CC11236DD200465A4E /* sql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sql; sourceTree = "<group>"; };
 		636479B9111E79AD009E1544 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		636479EE111E8CD8009E1544 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "../scifihifi-iphone/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
 		636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "../scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
@@ -179,7 +179,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				630C165E1122623800465A4E /* sql */,
+				630C17CC11236DD200465A4E /* sql */,
 				63647A41111F70F1009E1544 /* 001-tables.sql */,
 				636479F6111E8DAF009E1544 /* Legal.rtf */,
 				636479B9111E79AD009E1544 /* icon.png */,
@@ -280,7 +280,7 @@
 				6304B582111D00C5006C0A31 /* my_bubble.png in Resources */,
 				636479BA111E79AD009E1544 /* icon.png in Resources */,
 				636479F7111E8DAF009E1544 /* Legal.rtf in Resources */,
-				630C16621122623800465A4E /* sql in Resources */,
+				630C17D111236DD200465A4E /* sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
