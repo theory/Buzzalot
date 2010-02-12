@@ -8,6 +8,7 @@
 
 #import "BuzzerModel.h"
 #import "BuzzalotAppDelegate.h"
+#import "IconFinder.h"
 
 @implementation BuzzerModel
 @synthesize email, name, body, when, icon;
@@ -60,6 +61,7 @@ static NSDictionary *icons = nil;
 }            
 
 - (UIImage *) icon {
+    return [[IconFinder findForEmails:[[[NSArray alloc] initWithObjects:self.email, nil] autorelease]] objectAtIndex:0];
     return [UIImage imageNamed:[icons objectForKey:self.email]];
 }
 
