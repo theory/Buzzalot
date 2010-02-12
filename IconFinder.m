@@ -7,17 +7,10 @@
 //
 
 #import "IconFinder.h"
+#import "UIImage+Resize.h"
 #import <AddressBook/AddressBook.h>
 
 @implementation IconFinder
-
-static UIImage *default_icon = nil;
-
-+(void) initialize {
-    if (self == [IconFinder class]) {
-        default_icon = [UIImage imageNamed:@"silhouette.png"];
-    }
-}
 
 +(NSArray *)findForEmails:(NSArray *)emails {
     NSDictionary *found = [[NSMutableDictionary alloc] initWithCapacity:[emails count]];
@@ -35,7 +28,7 @@ static UIImage *default_icon = nil;
         for (CFIndex i = 0; i < ABMultiValueGetCount(addrs); i++) {
             emailAddr = (NSString *) ABMultiValueCopyValueAtIndex(addrs, i);
             if ([emails containsObject:emailAddr]) {
-                [found setValue:[UIImage imageWithData:(NSData *)ABPersonCopyImageData(rec)] forKey:emailAddr];
+                [found setValue:[[UIImage imageWithData:(NSData *)ABPersonCopyImageData(rec)] thumbnailImage:48 transparentBorder:0 cornerRadius:4 interpolationQuality:kCGInterpolationHigh] forKey:emailAddr];
                 break;
             }
         }
@@ -48,7 +41,7 @@ static UIImage *default_icon = nil;
 
     NSMutableArray *icons = [NSMutableArray arrayWithCapacity:[emails count]];
     for (NSString *emailAddr in emails) {
-        [icons addObject: [found objectForKey:emailAddr] == nil ? default_icon : [found objectForKey:emailAddr]];
+        [icons addObject: [found objectForKey:emailAddr] == nil ? [UIImage imageNamed:@"silhouette.png"] : [found objectForKey:emailAddr]];
     }
 
     // Use silhouett.png as the default for any that are missing.

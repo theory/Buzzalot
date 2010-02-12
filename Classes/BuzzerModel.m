@@ -41,28 +41,11 @@
     return self;
 }
 
-// TODO: Move this to an icon lookup library of some kind.
-static NSDictionary *icons = nil;
-
-+(void) initialize {
-    if (self == [BuzzerModel class]) {
-        icons = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                 @"duncan.jpg",      @"duncan@duncandavidson.com",
-                 @"timbunce.jpg",    @"Tim.Bunce@pobox.com",
-                 @"caseywest.jpg",   @"casey@geeknest.com",
-                 @"strongrrl.jpg",   @"julie@strongrrl.com",
-                 @"turoczy.jpg",     @"siliconflorist@gmail.com",
-                 @"gordonmeyer.jpg", @"gmeyer@apple.com",
-                 @"dukeleto.jpg",    @"duke@leto.com",
-                 @"rlepage.jpg",     @"rick@lepage.com",
-                 @"sachmet.jpg",     @"pete@krawczyk.com",
-                 nil ] retain];
-    }
-}            
-
 - (UIImage *) icon {
-    return [[IconFinder findForEmails:[[[NSArray alloc] initWithObjects:self.email, nil] autorelease]] objectAtIndex:0];
-    return [UIImage imageNamed:[icons objectForKey:self.email]];
+    UIImage *img = [[IconFinder findForEmails:[[[NSArray alloc] initWithObjects:self.email, nil] autorelease]] objectAtIndex:0];
+    if (img != nil)
+        return img;
+    return [UIImage imageNamed:@"silhouette.png"];
 }
 
 -(void)deleteBuzzer {

@@ -20,6 +20,10 @@
 		630C17D111236DD200465A4E /* sql in Resources */ = {isa = PBXBuildFile; fileRef = 630C17CC11236DD200465A4E /* sql */; };
 		630C17F21123711200465A4E /* IconFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C17F11123711200465A4E /* IconFinder.m */; };
 		630C182711238A8F00465A4E /* silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = 630C182611238A8F00465A4E /* silhouette.png */; };
+		630C191F11250EB000465A4E /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C191A11250EB000465A4E /* UIImage+Alpha.m */; };
+		630C192011250EB000465A4E /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C191C11250EB000465A4E /* UIImage+Resize.m */; };
+		630C192111250EB000465A4E /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C191E11250EB000465A4E /* UIImage+RoundedCorner.m */; };
+		630C19281125103B00465A4E /* UIImage+SaveTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 630C19271125103B00465A4E /* UIImage+SaveTo.m */; };
 		636479BA111E79AD009E1544 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 636479B9111E79AD009E1544 /* icon.png */; };
 		636479F0111E8CD8009E1544 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */; };
 		636479F7111E8DAF009E1544 /* Legal.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 636479F6111E8DAF009E1544 /* Legal.rtf */; };
@@ -67,6 +71,14 @@
 		630C17F01123711200465A4E /* IconFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconFinder.h; sourceTree = "<group>"; };
 		630C17F11123711200465A4E /* IconFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconFinder.m; sourceTree = "<group>"; };
 		630C182611238A8F00465A4E /* silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silhouette.png; sourceTree = "<group>"; };
+		630C191911250EB000465A4E /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		630C191A11250EB000465A4E /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		630C191B11250EB000465A4E /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		630C191C11250EB000465A4E /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		630C191D11250EB000465A4E /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		630C191E11250EB000465A4E /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		630C19261125103B00465A4E /* UIImage+SaveTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SaveTo.h"; sourceTree = "<group>"; };
+		630C19271125103B00465A4E /* UIImage+SaveTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SaveTo.m"; sourceTree = "<group>"; };
 		636479B9111E79AD009E1544 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		636479EE111E8CD8009E1544 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = "../scifihifi-iphone/security/SFHFKeychainUtils.h"; sourceTree = SOURCE_ROOT; };
 		636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = "../scifihifi-iphone/security/SFHFKeychainUtils.m"; sourceTree = SOURCE_ROOT; };
@@ -167,6 +179,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				630C191811250EA200465A4E /* UIImage-categories */,
 				636479EE111E8CD8009E1544 /* SFHFKeychainUtils.h */,
 				636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */,
 				639437691119356500E39D09 /* ABTableViewCell.h */,
@@ -212,6 +225,21 @@
 				63647B1B111FBB03009E1544 /* AddressBook.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		630C191811250EA200465A4E /* UIImage-categories */ = {
+			isa = PBXGroup;
+			children = (
+				630C191911250EB000465A4E /* UIImage+Alpha.h */,
+				630C191A11250EB000465A4E /* UIImage+Alpha.m */,
+				630C191B11250EB000465A4E /* UIImage+Resize.h */,
+				630C191C11250EB000465A4E /* UIImage+Resize.m */,
+				630C191D11250EB000465A4E /* UIImage+RoundedCorner.h */,
+				630C191E11250EB000465A4E /* UIImage+RoundedCorner.m */,
+				630C19261125103B00465A4E /* UIImage+SaveTo.h */,
+				630C19271125103B00465A4E /* UIImage+SaveTo.m */,
+			);
+			name = "UIImage-categories";
 			sourceTree = "<group>";
 		};
 		639438221119404200E39D09 /* avatars */ = {
@@ -314,6 +342,10 @@
 				630A602711213810000AD362 /* MessageModel.m in Sources */,
 				630C15A811222E4100465A4E /* SQLMigrator.m in Sources */,
 				630C17F21123711200465A4E /* IconFinder.m in Sources */,
+				630C191F11250EB000465A4E /* UIImage+Alpha.m in Sources */,
+				630C192011250EB000465A4E /* UIImage+Resize.m in Sources */,
+				630C192111250EB000465A4E /* UIImage+RoundedCorner.m in Sources */,
+				630C19281125103B00465A4E /* UIImage+SaveTo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
