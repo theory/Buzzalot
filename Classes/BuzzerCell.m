@@ -77,7 +77,6 @@ static UIFont *whenTextFont   = nil;
     [self.buzzer.body drawInRect:CGRectMake(p.x, 22, 235, size.height) withFont:bodyTextFont];
 
 //    CGContextStrokeRect(context, CGRectMake(p.x, kBuzzerBodyY, kBuzzerBodyWidth, size.height));
-    
     [self.buzzer.icon drawInRect:CGRectMake(4, 4, 48, 48)];
 
     // Need to figure out how to round the corners and add the frame. Somehow

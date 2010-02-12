@@ -2,6 +2,7 @@
 // Created by Trevor Harmon on 8/5/09.
 // Free for personal or commercial use, with or without modification.
 // No warranty is expressed or implied.
+// http://vocaro.com/trevor/blog/2009/10/12/resize-a-uiimage-the-right-way/
 
 #import "UIImage+Resize.h"
 #import "UIImage+RoundedCorner.h"
