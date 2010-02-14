@@ -42,10 +42,9 @@
 }
 
 - (UIImage *) icon {
-    UIImage *img = [[IconFinder findForEmails:[[[NSArray alloc] initWithObjects:self.email, nil] autorelease]] objectAtIndex:0];
-    if (img != nil)
-        return img;
-    return [UIImage imageNamed:@"silhouette.png"];
+    if (icon == nil)
+        self.icon = [IconFinder loadForEmail: self.email];
+    return icon;
 }
 
 -(void)deleteBuzzer {

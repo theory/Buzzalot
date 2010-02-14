@@ -6,11 +6,11 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-
 @interface IconFinder : NSObject {
 
 }
 
-+(NSArray *)findForEmails:(NSArray *)emails;
++(UIImage *)loadForEmail:(NSString *)email;
++(void)updateThumbsForEmails:(NSArray *)emails;
 
 @end

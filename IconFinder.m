@@ -12,6 +12,23 @@
 
 @implementation IconFinder
 
+static NSString *docDir  = nil;
+
++ (void)initialize {
+    if (self == [IconFinder class]) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        docDir = [[paths objectAtIndex:0] retain];
+    }
+}
+
++(NSString *)pngPathFor:(NSString *)email {
+    return [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", email]];
+}
+
++(void)saveImage:(UIImage *)img to:(NSString *)fn {
+    [[NSFileManager defaultManager] createFileAtPath:fn contents:UIImagePNGRepresentation(img) attributes:nil];
+}
+
 +(NSArray *)findForEmails:(NSArray *)emails {
     NSDictionary *found = [[NSMutableDictionary alloc] initWithCapacity:[emails count]];
 
@@ -28,12 +45,15 @@
         for (CFIndex i = 0; i < ABMultiValueGetCount(addrs); i++) {
             emailAddr = (NSString *) ABMultiValueCopyValueAtIndex(addrs, i);
             if ([emails containsObject:emailAddr]) {
-                [found setValue:[[UIImage imageWithData:(NSData *)ABPersonCopyImageData(rec)] thumbnailImage:48 transparentBorder:0 cornerRadius:4 interpolationQuality:kCGInterpolationHigh] forKey:emailAddr];
+                [found setValue:[[UIImage imageWithData:(NSData *)ABPersonCopyImageData(rec)]
+                                 thumbnailImage:48
+                                 transparentBorder:0
+                                 cornerRadius:4
+                                 interpolationQuality:kCGInterpolationHigh
+                                 ] forKey:emailAddr];
                 break;
             }
         }
-//        CFRelease(rec);
-//        CFRelease(addrs);
         if ([found count] == [emails count]) {
             break;
         }
@@ -50,6 +70,30 @@
     [emailAddr release];
     [found release];
     return [icons autorelease];
+}
+
++(UIImage *)findForEmail:(NSString *)email {
+    UIImage *img = [[self findForEmails:[NSArray arrayWithObject: email]] objectAtIndex:0];
+    return img;
+}
+
++(UIImage *)loadForEmail:(NSString *)email {
+    NSString *fn = [self pngPathFor:email];
+    UIImage *img = [UIImage imageWithContentsOfFile:fn];
+    if (img != nil)
+        return img;
+    img = [[self findForEmails:[NSArray arrayWithObject: email]] objectAtIndex:0];
+    [self saveImage:img to: fn];
+    return img;
+}
+
++(void)updateThumbsForEmails:(NSArray *)emails {
+    NSArray *images = [self findForEmails:emails];
+    int i;
+    for(i = 0; i < [emails count]; i++) {
+        [self saveImage:[images objectAtIndex:i] to: [self pngPathFor:[emails objectAtIndex: i]]];
+    }
+    [images release];
 }
 
 @end
