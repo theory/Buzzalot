@@ -11,7 +11,6 @@
     NSString *name;
     NSString *body;
     NSString *when;
-    UIImage  *icon;
 }
 
 @property (nonatomic, retain) NSString *email;

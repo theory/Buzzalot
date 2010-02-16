@@ -82,7 +82,7 @@ static UIImage *yourBubble    = nil;
         [message.body drawInRect:CGRectMake(72, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
 
         // Draw icon.
-        [message.icon drawInRect:CGRectMake(7, 7, 48, 48)];
+//        [message.icon drawInRect:CGRectMake(7, 7, 48, 48)];
     }
 }
 

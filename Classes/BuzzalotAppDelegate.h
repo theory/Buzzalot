@@ -12,10 +12,13 @@
 @interface BuzzalotAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
 	UINavigationController *navController;
+    NSOperationQueue * iconQueue;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navController;
+@property (retain) NSOperationQueue * iconQueue;
+
 + (sqlite3 *) getDBConnection;
 
 @end

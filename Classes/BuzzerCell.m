@@ -8,6 +8,8 @@
 
 #import "BuzzerCell.h"
 #import "MyColors.h"
+#import "IconFinder.h"
+#import "BuzzalotAppDelegate.h"
 
 @implementation BuzzerCell
 
@@ -77,13 +79,28 @@ static UIFont *whenTextFont   = nil;
     [self.buzzer.body drawInRect:CGRectMake(p.x, 22, 235, size.height) withFont:bodyTextFont];
 
 //    CGContextStrokeRect(context, CGRectMake(p.x, kBuzzerBodyY, kBuzzerBodyWidth, size.height));
-    [self.buzzer.icon drawInRect:CGRectMake(4, 4, 48, 48)];
 
-    // Need to figure out how to round the corners and add the frame. Somehow
-    // involves a clip to mask, I'm sure.
-    // Or maybe layer drawing? http://developer.apple.com/iphone/library/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_layers/dq_layers.html#//apple_ref/doc/uid/TP30001066-CH219-TPXREF101
+    UIImage *img = [IconFinder cachedForEmail: self.buzzer.email];
+    if (img) {
+        [img drawInRect:CGRectMake(4, 4, 48, 48)];
+    } else {
+        // Find the image asynchronously.
+        BuzzalotAppDelegate * app = (BuzzalotAppDelegate *)([UIApplication sharedApplication].delegate);
+        NSInvocationOperation * findOp = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(findIcon:) object:self.buzzer.email];
+        [app.iconQueue addOperation:findOp];
+        [findOp release];
+    }
+
+    // Need to figure out how to add the frame. Somehow involves a clip to
+    // mask, I'm sure. Or maybe layer drawing?
+    // http://developer.apple.com/iphone/library/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_layers/dq_layers.html#//apple_ref/doc/uid/TP30001066-CH219-TPXREF101
     // UIImage *frame = [UIImage imageNamed:@"icon_frame.png"];
     // [frame drawInRect:CGRectMake(4, 4, 52, 52)];
+}
+
+-(void)findIcon:(NSString *)email {
+    [IconFinder cacheForEmail:email];
+    [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
 }
 
 @end

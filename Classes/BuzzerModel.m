@@ -8,10 +8,9 @@
 
 #import "BuzzerModel.h"
 #import "BuzzalotAppDelegate.h"
-#import "IconFinder.h"
 
 @implementation BuzzerModel
-@synthesize email, name, body, when, icon;
+@synthesize email, name, body, when;
 
 + (NSMutableArray *) selectBuzzers {
     sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
@@ -39,12 +38,6 @@
         self.body  = [[NSString alloc] initWithUTF8String:b];
     }
     return self;
-}
-
-- (UIImage *) icon {
-    if (icon == nil)
-        self.icon = [IconFinder loadForEmail: self.email];
-    return icon;
 }
 
 -(void)deleteBuzzer {

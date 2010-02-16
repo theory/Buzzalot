@@ -10,7 +10,7 @@
 #import "BuzzalotAppDelegate.h"
 
 @implementation MessageModel
-@synthesize message_id, sent, body, icon, fromMe;
+@synthesize message_id, sent, body, fromMe;
 
 +(NSMutableArray *) selectForBuzzer:(BuzzerModel *)buzzer {
     sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
@@ -24,7 +24,6 @@
                                        sent: (char *) sqlite3_column_text(sth, 1)
                                        body: (char *) sqlite3_column_text(sth, 2)
                                      fromMe: sqlite3_column_int(sth, 3)
-                                       icon: buzzer.icon
             ]];
         }
         sqlite3_finalize(sth);
@@ -32,13 +31,12 @@
     return [messages autorelease];
 }
 
--(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f icon:(UIImage *)m {
+-(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f {
     if (self = [super init]) {
         self.message_id = [[NSString alloc] initWithUTF8String:i];
         self.sent       = [[NSString alloc] initWithUTF8String:s];
         self.body       = [[NSString alloc] initWithUTF8String:b];
         self.fromMe     = f == 1;
-        self.icon       = m;
     }
     return self;
 }
@@ -63,7 +61,6 @@
     [message_id release];
     [sent release];
     [body release];
-    [icon release];
     [super dealloc];
 }
 

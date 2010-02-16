@@ -12,18 +12,16 @@
     NSString *message_id;
     NSString *sent;
     NSString *body;
-    UIImage  *icon;
     BOOL     fromMe;
 }
 
 @property (nonatomic, retain) NSString *message_id;
 @property (nonatomic, retain) NSString *sent;
 @property (nonatomic, retain) NSString *body;
-@property (nonatomic, retain) UIImage  *icon;
 @property BOOL fromMe;
 
 +(NSMutableArray *) selectForBuzzer:(BuzzerModel *)buzzer;
--(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f icon:(UIImage *)m;
+-(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f;
 -(void)deleteMessage;
 
 @end

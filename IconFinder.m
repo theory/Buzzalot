@@ -77,14 +77,16 @@ static NSString *docDir  = nil;
     return img;
 }
 
-+(UIImage *)loadForEmail:(NSString *)email {
++(UIImage *)cachedForEmail:(NSString *)email {
+    return [UIImage imageWithContentsOfFile:[self pngPathFor:email]];
+}
+
++(void)cacheForEmail:(NSString *)email {
     NSString *fn = [self pngPathFor:email];
     UIImage *img = [UIImage imageWithContentsOfFile:fn];
-    if (img != nil)
-        return img;
-    img = [[self findForEmails:[NSArray arrayWithObject: email]] objectAtIndex:0];
+    if (img != nil) return;
+    img = [self findForEmail:email];
     [self saveImage:img to: fn];
-    return img;
 }
 
 +(void)updateThumbsForEmails:(NSArray *)emails {

@@ -10,7 +10,10 @@
 
 }
 
-+(UIImage *)loadForEmail:(NSString *)email;
 +(void)updateThumbsForEmails:(NSArray *)emails;
+
++(UIImage *)cachedForEmail:(NSString *)email;
++(void)cacheForEmail:(NSString *)email;
+
 
 @end

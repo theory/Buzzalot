@@ -12,7 +12,7 @@
 
 @implementation BuzzalotAppDelegate
 
-@synthesize window, navController;
+@synthesize window, navController, iconQueue;
 
 + (NSString *) dbFilePath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -29,12 +29,16 @@
     // Make sure we have a database.
     [SQLMigrator migrateDb:[BuzzalotAppDelegate getDBConnection] directory: @"sql"];
 
+    // Set up the icon queue.
+    self.iconQueue = [[NSOperationQueue alloc] init];
+
     // onfigure and show the window.
     [window addSubview:[navController view]];
 	[window makeKeyAndVisible];
 }
 
 - (void)dealloc {
+    [iconQueue release];
 	[navController release];
     [window release];
     [super dealloc];
