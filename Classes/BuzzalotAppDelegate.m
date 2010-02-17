@@ -39,7 +39,7 @@
 
 - (void)dealloc {
     [iconQueue release];
-	[navController release];
+    [navController release];
     [window release];
     [super dealloc];
 }

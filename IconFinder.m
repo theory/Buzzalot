@@ -12,17 +12,17 @@
 
 @implementation IconFinder
 
-static NSString *docDir  = nil;
+static NSString *cacheDir  = nil;
 
 + (void)initialize {
     if (self == [IconFinder class]) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        docDir = [[paths objectAtIndex:0] retain];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        cacheDir = [[paths objectAtIndex:0] retain];
     }
 }
 
 +(NSString *)pngPathFor:(NSString *)email {
-    return [docDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", email]];
+    return [cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", email]];
 }
 
 +(void)saveImage:(UIImage *)img to:(NSString *)fn {

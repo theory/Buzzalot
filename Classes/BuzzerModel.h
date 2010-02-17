@@ -17,7 +17,6 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *body;
 @property (nonatomic, retain) NSString *when;
-@property (nonatomic, retain) UIImage  *icon;
 
 +(NSMutableArray *) selectBuzzers;
 -(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b;
