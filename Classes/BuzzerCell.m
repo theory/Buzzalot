@@ -61,9 +61,10 @@ static UIFont *whenTextFont   = nil;
 
     // Draw date/time.
     if (!self.selected) [textColor = [UIColor blueGrayColor] set];
-    CGSize size = [self.buzzer.when sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(120, 2000)];
+    NSString *reltime = [self relativeTimeSince:self.buzzer.when];
+    CGSize size = [reltime sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(120, 2000)];
 	CGPoint p = {296 - size.width, 4};
-    [self.buzzer.when drawAtPoint:p withFont:whenTextFont];
+    [reltime drawAtPoint:p withFont:whenTextFont];
     
 	// Draw buzzer name.
     if (!self.selected) [textColor = [UIColor darkTextColor] set];
@@ -101,6 +102,44 @@ static UIFont *whenTextFont   = nil;
 -(void)findIcon:(NSString *)email {
     [IconFinder findForEmail:email];
     [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
+}
+
+#define SECOND 1
+#define MINUTE ( 60 * SECOND)
+#define HOUR   ( 60 * MINUTE)
+#define DAY    ( 24 * HOUR)
+#define WEEK   (  7 * DAY)
+#define MONTH  ( 30 * DAY)
+#define YEAR   (365 * DAY)
+
+-(NSString *) relativeTimeSince:(NSInteger)epoch {
+    if (epoch <= 0 ) return @"";
+    NSInteger delta = time(NULL) - epoch;
+    if (delta <= 30 * SECOND) {
+        return @"just now";
+    } else if (delta < 1 * MINUTE) {
+        return [NSString stringWithFormat:@"%u secs", delta];
+    } else if (delta < 2 * MINUTE) {
+        return @"1 min";
+    } else if (delta < 45 * MINUTE) {
+        return [NSString stringWithFormat:@"%u mins", delta / MINUTE];
+    } else if (delta < 90 * MINUTE) {
+        return @"1 hour";
+    } else if (delta < 24 * HOUR) {
+        return [NSString stringWithFormat:@"%u hours", delta / HOUR];
+    } else if (delta < 36 * HOUR) {
+        return @"1 day";
+    } else if (delta < 7 * DAY) {
+        return [NSString stringWithFormat:@"%u days", delta / DAY];
+    } else if (delta < 10 * DAY) {
+        return @"1 week";
+    } else if (delta < 13 * WEEK) {
+        return [NSString stringWithFormat:@"%u weeks", delta / WEEK];
+    } else if (delta < 2 * YEAR) {
+        return [NSString stringWithFormat:@"%u months", delta / MONTH];        
+    } else {
+        return [NSString stringWithFormat:@"%u years", delta / YEAR];        
+    }
 }
 
 @end

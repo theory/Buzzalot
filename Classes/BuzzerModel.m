@@ -21,7 +21,7 @@
             [buzzers addObject: [[BuzzerModel alloc]
                 initWithEmail: (char *) sqlite3_column_text(sth, 0)
                          name: (char *) sqlite3_column_text(sth, 1)
-                         when: (char *) sqlite3_column_text(sth, 3)
+                         when: sqlite3_column_int64(sth, 3)
                          body: (char *) sqlite3_column_text(sth, 2)
             ]];
         }
@@ -30,11 +30,11 @@
     return [buzzers autorelease];
 }
 
--(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b {
+-(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(int)w body:(char *)b {
     if (self = [super init]) {
         self.email = [[NSString alloc] initWithUTF8String:e];
         self.name  = [[NSString alloc] initWithUTF8String:n];
-        self.when  = [[NSString alloc] initWithUTF8String:w];
+        self.when  = w;
         self.body  = [[NSString alloc] initWithUTF8String:b];
     }
     return self;
@@ -58,7 +58,6 @@
 - (void)dealloc {
     [email release];
     [name  release];
-    [when  release];
     [body  release];
     [super dealloc];
 }

@@ -17,4 +17,6 @@
 
 @property (nonatomic, copy) BuzzerModel *buzzer;
 
+-(NSString *) relativeTimeSince:(NSInteger)epoch;
+
 @end

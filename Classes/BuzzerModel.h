@@ -10,16 +10,16 @@
     NSString *email;
     NSString *name;
     NSString *body;
-    NSString *when;
+    NSInteger when;
 }
 
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *body;
-@property (nonatomic, retain) NSString *when;
+@property NSInteger when;
 
 +(NSMutableArray *) selectBuzzers;
--(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(char *)w body:(char *)b;
+-(BuzzerModel *)initWithEmail:(char *)e name:(char *)n when:(int)w body:(char *)b;
 -(void)deleteBuzzer;
 
 @end
