@@ -13,11 +13,12 @@
 @implementation IconFinder
 
 static NSString *cacheDir  = nil;
+static NSMutableDictionary *cache = nil;
 
 + (void)initialize {
     if (self == [IconFinder class]) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        cacheDir = [[paths objectAtIndex:0] retain];
+        cacheDir = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] retain];
+        cache = [[NSMutableDictionary dictionary] retain];
     }
 }
 
@@ -72,21 +73,27 @@ static NSString *cacheDir  = nil;
     return [icons autorelease];
 }
 
-+(UIImage *)findForEmail:(NSString *)email {
-    UIImage *img = [[self findForEmails:[NSArray arrayWithObject: email]] objectAtIndex:0];
++(UIImage *)getForEmail:(NSString *)email {
+    // Is it in the in-memory cache?
+    UIImage *img = [cache objectForKey:email];
+    if (img != nil) return img;
+
+    // Is it cached in a file on the file system?
+    img = [UIImage imageWithContentsOfFile:[self pngPathFor:email]];
+    if (img != nil) [cache setObject:img forKey:email];
     return img;
 }
 
-+(UIImage *)cachedForEmail:(NSString *)email {
-    return [UIImage imageWithContentsOfFile:[self pngPathFor:email]];
-}
-
-+(void)cacheForEmail:(NSString *)email {
-    NSString *fn = [self pngPathFor:email];
-    UIImage *img = [UIImage imageWithContentsOfFile:fn];
++(void)findForEmail:(NSString *)email {
+    // Is it cached locally already?
+    UIImage *img = [self getForEmail:email];
     if (img != nil) return;
-    img = [self findForEmail:email];
+
+    // Search the address book for it.
+    NSString *fn = [self pngPathFor:email];
+    img = [[self findForEmails:[NSArray arrayWithObject: email]] objectAtIndex:0];
     [self saveImage:img to: fn];
+    [cache setObject:img forKey:email];
 }
 
 +(void)updateThumbsForEmails:(NSArray *)emails {
@@ -96,6 +103,10 @@ static NSString *cacheDir  = nil;
         [self saveImage:[images objectAtIndex:i] to: [self pngPathFor:[emails objectAtIndex: i]]];
     }
     [images release];
+}
+
++(void)clearCache {
+    [cache removeAllObjects];
 }
 
 @end

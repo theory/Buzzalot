@@ -80,7 +80,7 @@ static UIFont *whenTextFont   = nil;
 
 //    CGContextStrokeRect(context, CGRectMake(p.x, kBuzzerBodyY, kBuzzerBodyWidth, size.height));
 
-    UIImage *img = [IconFinder cachedForEmail: self.buzzer.email];
+    UIImage *img = [IconFinder getForEmail: self.buzzer.email];
     if (img) {
         [img drawInRect:CGRectMake(4, 4, 48, 48)];
     } else {
@@ -99,7 +99,7 @@ static UIFont *whenTextFont   = nil;
 }
 
 -(void)findIcon:(NSString *)email {
-    [IconFinder cacheForEmail:email];
+    [IconFinder findForEmail:email];
     [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
 }
 

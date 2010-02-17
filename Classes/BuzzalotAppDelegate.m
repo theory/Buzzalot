@@ -9,6 +9,7 @@
 #import "BuzzalotAppDelegate.h"
 #import "RootViewController.h"
 #import "SQLMigrator.h"
+#import "IconFinder.h"
 
 @implementation BuzzalotAppDelegate
 
@@ -35,6 +36,9 @@
     // onfigure and show the window.
     [window addSubview:[navController view]];
 	[window makeKeyAndVisible];
+}
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [IconFinder clearCache];
 }
 
 - (void)dealloc {

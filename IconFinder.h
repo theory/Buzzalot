@@ -12,8 +12,9 @@
 
 +(void)updateThumbsForEmails:(NSArray *)emails;
 
-+(UIImage *)cachedForEmail:(NSString *)email;
-+(void)cacheForEmail:(NSString *)email;
++(void)clearCache;
++(UIImage *)getForEmail:(NSString *)email;
++(void)findForEmail:(NSString *)email;
 
 
 @end
