@@ -14,8 +14,10 @@
 
 @interface MessageCell : ABTableViewCell {
     MessageModel *message;
+    UIImage *icon;
 }
 
 @property (nonatomic, copy) MessageModel *message;
+@property (nonatomic, retain) UIImage *icon;
 
 @end

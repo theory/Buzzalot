@@ -9,9 +9,11 @@
 @class BuzzerModel;
 @interface BuzzerViewController : UITableViewController {
     NSMutableArray *messages;
+    UIImage *icon;
 }
 
 @property (nonatomic, retain) NSMutableArray *messages;
+@property (nonatomic, retain) UIImage *icon;
 
 -(void)initWithBuzzer:(BuzzerModel *)buzzer;
 

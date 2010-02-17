@@ -9,7 +9,7 @@
 #import "MessageCell.h"
 
 @implementation MessageCell
-@synthesize message;
+@synthesize message, icon;
 
 static UIFont *bodyTextFont   = nil;
 static UIFont *whenTextFont   = nil;
@@ -70,8 +70,8 @@ static UIImage *yourBubble    = nil;
         [message.body drawInRect:CGRectMake(248 - size.width, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
         
         // Draw icon.
-        UIImage *icon = [UIImage imageNamed:@"theory.jpg"]; // TODO: Get icon from address book.
-        [icon drawInRect:CGRectMake(265, 7, 48, 48)];
+        UIImage *me = [UIImage imageNamed:@"theory.jpg"]; // TODO: Get icon from address book.
+        [me drawInRect:CGRectMake(265, 7, 48, 48)];
     } else {
         // Draw bubble.
         [yourBubble drawInRect:CGRectMake(58, 22, size.width + 22, size.height + 8)];
@@ -82,7 +82,7 @@ static UIImage *yourBubble    = nil;
         [message.body drawInRect:CGRectMake(72, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
 
         // Draw icon.
-//        [message.icon drawInRect:CGRectMake(7, 7, 48, 48)];
+        [self.icon drawInRect:CGRectMake(7, 7, 48, 48)];
     }
 }
 

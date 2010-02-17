@@ -10,12 +10,14 @@
 #import "MessageCell.h"
 #import "BuzzerModel.h"
 #import "MessageModel.h"
+#import "IconFinder.h"
 
 @implementation BuzzerViewController
-@synthesize messages;
+@synthesize messages, icon;
 
 - (void) initWithBuzzer:(BuzzerModel *)buzzer {
     self.title = buzzer.name;
+    self.icon = [IconFinder getForEmail:buzzer.email];
     [self.messages release];
     self.messages = [MessageModel selectForBuzzer:buzzer];
 }
@@ -35,10 +37,13 @@
 
 - (void)viewDidUnload {
 	self.messages = nil;
+    self.icon = nil;
+    [super viewDidUnload];
 }
 
 - (void)dealloc {
 	[messages release];
+    [icon release];
     [super dealloc];
 }
 
@@ -68,7 +73,7 @@
     }
 
     cell.message = [self.messages objectAtIndex:indexPath.row];
-        
+    cell.icon = self.icon;
     return cell;
 }
 
