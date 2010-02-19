@@ -1,7 +1,7 @@
 BEGIN;
 
 CREATE VIEW most_recent AS
-SELECT c.email, c.name, COALESCE(m.from_me, 0) AS from_me, COALESCE(m.body, '') AS body, COALESCE(strftime('%s', m.sent_at), 0) AS sent_at
+SELECT c.email, c.name, COALESCE(m.from_me, 0) AS from_me, COALESCE(m.body, '') AS body, m.sent_at AS sent_at
   FROM correspondents c
   LEFT JOIN messages m ON c.email = m.email
   LEFT JOIN messages m2 ON m.email = m2.email AND (
