@@ -15,6 +15,7 @@ static UIFont *bodyTextFont   = nil;
 static UIFont *whenTextFont   = nil;
 static UIImage *myBubble      = nil;
 static UIImage *yourBubble    = nil;
+static NSDateFormatter *df    = nil;
 
 + (void)initialize {
     if (self == [MessageCell class]) {
@@ -22,6 +23,9 @@ static UIImage *yourBubble    = nil;
         whenTextFont = [[UIFont systemFontOfSize:12] retain];
         myBubble     = [[[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18] retain];
         yourBubble   = [[[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:18] retain];
+        df           = [[[NSDateFormatter alloc] init] retain];
+        df.dateStyle = NSDateFormatterShortStyle;
+        df.timeStyle = NSDateFormatterShortStyle;
 	}
 }
 
@@ -54,11 +58,12 @@ static UIImage *yourBubble    = nil;
 	[textColor set];
     
     // Draw date/time.
-	CGPoint p = {140, 4};
-    [message.sent drawAtPoint:p withFont:whenTextFont];
+    NSString *sentAt = [df stringFromDate:message.sent];
+    CGSize size = [sentAt sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(235, 2000)];
+    [sentAt drawAtPoint:CGPointMake((self.contentView.bounds.size.width - size.width) / 2, 4) withFont:whenTextFont];
 
     // Get body size.
-    CGSize size = [message.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 2000)];
+    size = [message.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 2000)];
 
     if (message.fromMe) {
         // Draw bubble.

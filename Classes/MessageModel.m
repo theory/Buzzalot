@@ -16,12 +16,12 @@
     sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
     sqlite3_stmt *sth;
     NSMutableArray *messages = [[NSMutableArray alloc] init];
-    if (sqlite3_prepare_v2(db, "SELECT message_id, sent_at, body, from_me FROM messages WHERE email = ? ORDER BY sent_at DESC", -1, &sth, nil) == SQLITE_OK ) {
+    if (sqlite3_prepare_v2(db, "SELECT message_id, strftime('%s', sent_at, 'localtime'), body, from_me FROM messages WHERE email = ? ORDER BY sent_at DESC", -1, &sth, nil) == SQLITE_OK ) {
         sqlite3_bind_text(sth, 1, [buzzer.email UTF8String], -1, NULL);
         while (sqlite3_step(sth) == SQLITE_ROW) {
             [messages addObject: [[MessageModel alloc]
                                  initWithId: (char *) sqlite3_column_text(sth, 0)
-                                       sent: (char *) sqlite3_column_text(sth, 1)
+                                       sent: sqlite3_column_int64(sth, 1)
                                        body: (char *) sqlite3_column_text(sth, 2)
                                      fromMe: sqlite3_column_int(sth, 3)
             ]];
@@ -31,10 +31,10 @@
     return [messages autorelease];
 }
 
--(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f {
+-(MessageModel *) initWithId:(char *)i sent:(NSInteger)s body:(char *)b fromMe:(int)f {
     if (self = [super init]) {
         self.message_id = [[NSString alloc] initWithUTF8String:i];
-        self.sent       = [[NSString alloc] initWithUTF8String:s];
+        self.sent       = [NSDate dateWithTimeIntervalSince1970:s];
         self.body       = [[NSString alloc] initWithUTF8String:b];
         self.fromMe     = f == 1;
     }

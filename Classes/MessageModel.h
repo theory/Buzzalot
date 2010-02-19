@@ -10,18 +10,18 @@
 
 @interface MessageModel : NSObject {
     NSString *message_id;
-    NSString *sent;
+    NSDate   *sent;
     NSString *body;
     BOOL     fromMe;
 }
 
 @property (nonatomic, retain) NSString *message_id;
-@property (nonatomic, retain) NSString *sent;
+@property (nonatomic, retain) NSDate   *sent;
 @property (nonatomic, retain) NSString *body;
 @property BOOL fromMe;
 
 +(NSMutableArray *) selectForBuzzer:(BuzzerModel *)buzzer;
--(MessageModel *) initWithId:(char *)i sent:(char *)s body:(char *)b fromMe:(int)f;
+-(MessageModel *) initWithId:(char *)i sent:(NSInteger)s body:(char *)b fromMe:(int)f;
 -(void)deleteMessage;
 
 @end

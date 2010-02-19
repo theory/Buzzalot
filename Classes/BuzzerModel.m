@@ -16,7 +16,7 @@
     sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
     sqlite3_stmt *sth;
     NSMutableArray *buzzers = [[NSMutableArray alloc] init];
-    if (sqlite3_prepare_v2(db, "SELECT email, name, body, COALESCE(strftime('%s', sent_at), 0) FROM most_recent ORDER BY sent_at DESC", -1, &sth, nil) == SQLITE_OK ) {
+    if (sqlite3_prepare_v2(db, "SELECT email, name, body, COALESCE(strftime('%s', sent_at, 'localtime'), 0) FROM most_recent ORDER BY sent_at DESC", -1, &sth, nil) == SQLITE_OK ) {
         while (sqlite3_step(sth) == SQLITE_ROW) {
             [buzzers addObject: [[BuzzerModel alloc]
                 initWithEmail: (char *) sqlite3_column_text(sth, 0)
