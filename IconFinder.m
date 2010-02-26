@@ -31,21 +31,28 @@ static NSMutableDictionary *cache = nil;
 }
 
 +(NSArray *)findForEmails:(NSArray *)emails {
+    NSString *emailAddr;
+    NSMutableArray *lcemails = [NSMutableArray arrayWithCapacity:[emails count]];
+    for (emailAddr in emails) {
+        [lcemails addObject:[emailAddr lowercaseString]];
+    }
     NSDictionary *found = [[NSMutableDictionary alloc] initWithCapacity:[emails count]];
 
     ABAddressBookRef book = ABAddressBookCreate();
     CFArrayRef people = ABAddressBookCopyArrayOfAllPeople(book);
     
-    NSString *emailAddr;
-    
     for (CFIndex i = 0; i < ABAddressBookGetPersonCount(book); i++) {
         ABRecordRef rec = CFArrayGetValueAtIndex(people, i);
+
+        // No point if there's no image.
         if (!ABPersonHasImageData(rec))
-            break;
+            continue;
+
+        // Examine the email addresses.
         ABMutableMultiValueRef addrs = ABRecordCopyValue(rec, kABPersonEmailProperty);
         for (CFIndex i = 0; i < ABMultiValueGetCount(addrs); i++) {
-            emailAddr = (NSString *) ABMultiValueCopyValueAtIndex(addrs, i);
-            if ([emails containsObject:emailAddr]) {
+            emailAddr = [(NSString *) ABMultiValueCopyValueAtIndex(addrs, i) lowercaseString];
+            if ([lcemails containsObject:emailAddr]) {
                 [found setValue:[[UIImage imageWithData:(NSData *)ABPersonCopyImageData(rec)]
                                  thumbnailImage:48
                                  transparentBorder:0
@@ -61,7 +68,7 @@ static NSMutableDictionary *cache = nil;
     }
 
     NSMutableArray *icons = [NSMutableArray arrayWithCapacity:[emails count]];
-    for (NSString *emailAddr in emails) {
+    for (emailAddr in lcemails) {
         [icons addObject: [found objectForKey:emailAddr] == nil ? [UIImage imageNamed:@"silhouette.png"] : [found objectForKey:emailAddr]];
     }
 
@@ -101,6 +108,7 @@ static NSMutableDictionary *cache = nil;
     int i;
     for(i = 0; i < [emails count]; i++) {
         [self saveImage:[images objectAtIndex:i] to: [self pngPathFor:[emails objectAtIndex: i]]];
+        [cache setObject:[images objectAtIndex:i] forKey:[emails objectAtIndex: i]];
     }
     [images release];
 }
