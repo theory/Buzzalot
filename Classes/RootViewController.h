@@ -15,4 +15,6 @@
 
 @property (nonatomic, retain) NSMutableArray *buzzers;
 
+- (void)showConfig;
+
 @end

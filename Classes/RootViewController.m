@@ -56,7 +56,7 @@
 }
 
 - (void)showConfig { 
-	ConfigViewController *configViewController = [[ConfigViewController alloc] init];
+	ConfigViewController *configViewController = [[[ConfigViewController alloc] init] initWithStyle:UITableViewStyleGrouped];
 	configViewController.delegate = self;
 	UINavigationController *configNavController = [[UINavigationController alloc] initWithRootViewController:configViewController];
 	configNavController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

@@ -33,8 +33,24 @@
     // Set up the icon queue.
     self.iconQueue = [[NSOperationQueue alloc] init];
 
-    // onfigure and show the window.
+    // Configure and show the window.
     [window addSubview:[navController view]];
+
+	NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kPrimaryEmailKey];
+	if (testValue == nil) {
+		// Create the default configuration values.
+		NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     [NSNumber numberWithInt:86400], kCacheRefreshIntervalKey,
+                                     nil];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+
+        // Load the ConfigViewController
+        [viewController showConfig];
+    }
+
+    //    NSLog(@"Refresh: %u", [[NSUserDefaults standardUserDefaults] integerForKey:kCacheRefreshIntervalKey]);
+
 	[window makeKeyAndVisible];
 }
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

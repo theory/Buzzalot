@@ -8,9 +8,8 @@
 
 @protocol ConfigViewControllerDelegate;
 
-@interface ConfigViewController : UIViewController {
+@interface ConfigViewController : UITableViewController {
 	id <ConfigViewControllerDelegate> delegate;
-
 }
 
 @property (nonatomic, assign) id <ConfigViewControllerDelegate> delegate;
@@ -21,5 +20,6 @@
 @protocol ConfigViewControllerDelegate
 
 - (void)configViewControllerDidFinish:(ConfigViewController *)controller;
+- (void) emailChanged:(id)sender;
 
 @end

@@ -6,7 +6,10 @@
 //  Copyright Kineticode, Inc. 2010. All rights reserved.
 //
 
-#define kDBFilename @"buzzalot.db"
+#define kDBFilename               @"buzzalot.db"
+#define kPrimaryEmailKey          @"PrimaryEmail"
+#define kCacheRefreshIntervalKey  @"CacheRefreshInterval"
+
 #import <sqlite3.h>
 
 @interface BuzzalotAppDelegate : NSObject <UIApplicationDelegate> {

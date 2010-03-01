@@ -219,7 +219,7 @@ VALUES ('88766bf8-1d8a-11df-a5b8-c7c48d731436', 'duke@leto.com', 0,
 -- LePage
 
 INSERT INTO messages ( message_id, email, from_me, body, sent_at )
-VALUES ('2120e8e2-1d8b-11df-be29-bbfa5e31229e', 'rick@lepage.com', 0,
+VALUES ('2120e8e2-1d8b-11df-be29-bbfa5e31229e', 'rick@lepage.com', 1,
         'To whom was that directed? I was just about to meet Duncan at Hot Lips.',
         datetime(strftime('%s','now') - 86400 * 23 * 3, 'unixepoch')
        );
