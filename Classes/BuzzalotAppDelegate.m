@@ -49,8 +49,6 @@
         [viewController showConfig];
     }
 
-    //    NSLog(@"Refresh: %u", [[NSUserDefaults standardUserDefaults] integerForKey:kCacheRefreshIntervalKey]);
-
 	[window makeKeyAndVisible];
 }
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

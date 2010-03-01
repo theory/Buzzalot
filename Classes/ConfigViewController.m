@@ -63,6 +63,7 @@
     CGRect frame = CGRectMake(0.0, 0.0, 210.0, 24.0);
     UITextField *textField = [[UITextField alloc] initWithFrame:frame];
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
     switch (indexPath.row) {
         case 0:
