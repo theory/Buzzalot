@@ -13,8 +13,11 @@
 #import "AddressModel.h"
 #import "MyColors.h"
 
+#define kButtonWidth   55.0
+#define kButtonHeight  40.0
+
 @implementation ConfigViewController
-@synthesize delegate, addresses, editButton, doneButton, addButton, nameField;
+@synthesize delegate, addresses, editButton, doneButton, addButton, nameField, whiteButtonBg, blueButtonBg, editView;
 
 - (void)viewDidLoad {
 	self.title = NSLocalizedString(@"Who are you?", nil);
@@ -33,7 +36,24 @@
                        target: self
                        action:@selector(toggleEdit)
                        ];
-	if ([self.addresses count] > 1) self.navigationItem.rightBarButtonItem = editButton;
+//	if ([self.addresses count] > 1) self.navigationItem.rightBarButtonItem = editButton;
+
+    self.whiteButtonBg = [[UIImage imageNamed:@"whiteButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+    self.blueButtonBg = [[UIImage imageNamed:@"blueButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+
+    self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    editButton.frame = CGRectMake(10, 5, kButtonWidth, kButtonHeight);
+    [editButton setBackgroundImage:self.whiteButtonBg forState:UIControlStateNormal];
+    [editButton setBackgroundImage:self.blueButtonBg forState:UIControlStateHighlighted];
+
+    [editButton setImage:[UIImage imageNamed:@"shuffle.png"] forState:UIControlStateNormal];
+    [editButton setAccessibilityLabel:NSLocalizedString(@"Edit", @"")];
+    editButton.backgroundColor = [UIColor clearColor];
+    [editButton addTarget:self action:@selector(toggleEdit) forControlEvents:UIControlEventTouchUpInside];
+
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    self.editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, 44.0)];
+    [editView addSubview:self.editButton];
 
     CGRect frame = CGRectMake(0, 0, 210.0, 24.0);
     self.nameField = [[UITextField alloc] initWithFrame:frame];
@@ -54,14 +74,18 @@
     self.addButton  = nil;
     self.editButton = nil;
     self.nameField = nil;
+    self.whiteButtonBg = nil;
+    self.blueButtonBg = nil;
 }
 
 - (void)dealloc {
-    [addresses  release];
-    [doneButton release];
-    [addButton  release];
-    [editButton release];
-    [nameField  release];
+    [addresses     release];
+    [doneButton    release];
+    [addButton     release];
+    [editButton    release];
+    [nameField     release];
+    [whiteButtonBg release];
+    [blueButtonBg  release];
     [super dealloc];
 }
 
@@ -77,15 +101,13 @@
 -(void) toggleEdit {
     if (self.tableView.editing) {
         [self.tableView setEditing:NO animated:YES];
-        self.doneButton.action = @selector(done);
-        [self.navigationItem setLeftBarButtonItem: doneButton animated: YES];
-        [self.navigationItem setRightBarButtonItem: editButton animated: YES];
+        [editButton setBackgroundImage:self.whiteButtonBg forState:UIControlStateNormal];
+        [editButton setBackgroundImage:self.blueButtonBg forState:UIControlStateHighlighted];
     } else {
         [nameField resignFirstResponder];
         [self.tableView setEditing:YES animated:YES];
-        self.doneButton.action = @selector(toggleEdit);
-        [self.navigationItem setRightBarButtonItem: doneButton animated: YES];
-        [self.navigationItem setLeftBarButtonItem: nil animated: YES];
+        [editButton setBackgroundImage:self.blueButtonBg forState:UIControlStateNormal];
+        [editButton setBackgroundImage:self.whiteButtonBg forState:UIControlStateHighlighted];
     }
 }
 
@@ -126,16 +148,17 @@
 }
 
 #pragma mark -
-#pragma mark Table Data Source Methods
+#pragma mark Table Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return section == 0 ? 1 : [self.addresses count] + 1;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if (section == 1) return @"Email Addresses";
-//    return nil;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    // Without this, the edit button is unclickable!
+    if (section == 1) return kButtonHeight + 5;
+    return self.tableView.sectionFooterHeight;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = indexPath.section == 1 ? @"AddressCell" : @"ConfigCell";
@@ -176,8 +199,13 @@
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == 1 && [self.addresses count] > 1) return self.editView;
+    return nil;
+}
+
 #pragma mark -
-#pragma mark Table Delegate Methods
+#pragma mark Table Data Source Methods
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     AddressModel *addr = [[self.addresses objectAtIndex:fromIndexPath.row] retain];

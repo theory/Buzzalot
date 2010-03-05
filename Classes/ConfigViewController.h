@@ -12,17 +12,23 @@
 	id <ConfigViewControllerDelegate> delegate;
     NSMutableArray  *addresses;
     UIBarButtonItem *doneButton;
-    UIBarButtonItem *editButton;
-    UIBarButtonItem *addButton;
+    UIButton        *editButton;
+    UIButton        *addButton;
     UITextField     *nameField;
+    UIImage         *whiteButtonBg;
+    UIImage         *blueButtonBg;
+    UIView          *editView;
 }
 
 @property (nonatomic, assign) id <ConfigViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray  *addresses;
 @property (nonatomic, retain) UIBarButtonItem *doneButton;
-@property (nonatomic, retain) UIBarButtonItem *editButton;
-@property (nonatomic, retain) UIBarButtonItem *addButton;
+@property (nonatomic, retain) UIButton        *editButton;
+@property (nonatomic, retain) UIButton        *addButton;
 @property (nonatomic, retain) UITextField     *nameField;
+@property (nonatomic, retain) UIImage         *whiteButtonBg;
+@property (nonatomic, retain) UIImage         *blueButtonBg;
+@property (nonatomic, retain) UIView          *editView;
 
 - (void)done;
 - (void)bakgroundTap:(id)sender;
