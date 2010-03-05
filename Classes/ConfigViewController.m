@@ -228,23 +228,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     return indexPath.section == 1 && indexPath.row != [self.addresses count];
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AddressModel *addr = [self.addresses objectAtIndex:indexPath.row];
-    if (addr.confirmed) {
-        // The primary address (the first confirmed address) is not deletable.
-        for (AddressModel *tmp in addresses) {
-            if (tmp.confirmed) {
-                if (addr == tmp) {
-                    return UITableViewCellEditingStyleNone;
-                } else {
-                    return UITableViewCellEditingStyleDelete;
-                }
-            }
-        }
-    }
-    return UITableViewCellEditingStyleDelete;
-}
-
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
