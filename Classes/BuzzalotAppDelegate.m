@@ -36,8 +36,7 @@
     // Configure and show the window.
     [window addSubview:[navController view]];
 
-	NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kPrimaryEmailKey];
-	if (testValue == nil) {
+	if ([[NSUserDefaults standardUserDefaults] stringForKey:kUserNameKey] == nil) {
 		// Create the default configuration values.
 		NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSNumber numberWithInt:86400], kCacheRefreshIntervalKey,

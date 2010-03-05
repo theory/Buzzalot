@@ -8,18 +8,29 @@
 
 @protocol ConfigViewControllerDelegate;
 
-@interface ConfigViewController : UITableViewController {
+@interface ConfigViewController : UITableViewController <UITextFieldDelegate> {
 	id <ConfigViewControllerDelegate> delegate;
+    NSMutableArray  *addresses;
+    UIBarButtonItem *doneButton;
+    UIBarButtonItem *editButton;
+    UIBarButtonItem *addButton;
+    UITextField     *nameField;
 }
 
 @property (nonatomic, assign) id <ConfigViewControllerDelegate> delegate;
+@property (nonatomic, retain) NSMutableArray  *addresses;
+@property (nonatomic, retain) UIBarButtonItem *doneButton;
+@property (nonatomic, retain) UIBarButtonItem *editButton;
+@property (nonatomic, retain) UIBarButtonItem *addButton;
+@property (nonatomic, retain) UITextField     *nameField;
+
 - (void)done;
+- (void)bakgroundTap:(id)sender;
 
 @end
 
 @protocol ConfigViewControllerDelegate
 
 - (void)configViewControllerDidFinish:(ConfigViewController *)controller;
-- (void) emailChanged:(id)sender;
 
 @end

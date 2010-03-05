@@ -10,4 +10,5 @@
 
 @interface UIColor(NewColors)
 + (UIColor *)blueGrayColor;
++ (UIColor *)configTextColor;
 @end

@@ -92,7 +92,6 @@
     if (cell == nil) {
         cell = [[[BuzzerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     }
 
     cell.buzzer = [self.buzzers objectAtIndex:indexPath.row];

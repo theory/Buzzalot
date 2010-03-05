@@ -21,6 +21,15 @@ VALUES ('pete@krawczyk.com', 'Pete Krawczyk');
 INSERT INTO correspondents
 VALUES ('gmeyer@apple.com', 'Gordon Meyer');
 
+INSERT INTO addresses (email, position, confirmed)
+VALUES ('david@kineticode.com', 1, 1);
+INSERT INTO addresses (email, position)
+VALUES ('david@justatheory.com', 2);
+INSERT INTO addresses (email, position)
+VALUES ('david.wheeler@pgexperts.com', 3);
+INSERT INTO addresses (email, position)
+VALUES ('dwheeler@cpan.org', 4);
+
 -- Tim
 INSERT INTO messages ( message_id, email, from_me, body, sent_at )
 VALUES ('65dfcef0-143d-11df-bef0-7f981bcf9818', 'Tim.Bunce@pobox.com', 0,
