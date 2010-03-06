@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
 	self.title = NSLocalizedString(@"Who are you?", nil);
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view.backgroundColor = [UIColor tweetieBlue];
     self.addresses = [AddressModel selectAll];
 
 	self.doneButton = [[ UIBarButtonItem alloc ]

@@ -23,4 +23,11 @@
     return configTextColor;
 }
 
++ (UIColor *)tweetieBlue {
+    static UIColor *tweetieBlue = nil;
+    if (! tweetieBlue)
+        tweetieBlue = [[UIColor colorWithRed:0.886 green:0.906 blue:0.929 alpha:1.0] retain];
+    return tweetieBlue;
+}
+
 @end

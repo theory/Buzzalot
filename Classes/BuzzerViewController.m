@@ -12,6 +12,7 @@
 #import "MessageModel.h"
 #import "IconFinder.h"
 #import "BuzzalotAppDelegate.h"
+#import "MyColors.h"
 
 @implementation BuzzerViewController
 @synthesize messages, myIcon, yourIcon;
@@ -33,6 +34,7 @@
                                   action: @selector(reply)
                                   ];
     self.navigationItem.rightBarButtonItem = replyItem;
+    self.tableView.backgroundColor = [UIColor tweetieBlue];
 	[replyItem release];
     [super viewDidLoad];
 }

@@ -11,4 +11,5 @@
 @interface UIColor(NewColors)
 + (UIColor *)blueGrayColor;
 + (UIColor *)configTextColor;
++ (UIColor *)tweetieBlue;
 @end

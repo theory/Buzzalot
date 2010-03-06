@@ -7,6 +7,7 @@
 //
 
 #import "MessageCell.h"
+#import "MyColors.h"
 
 @implementation MessageCell
 @synthesize message, icon;
@@ -45,7 +46,7 @@ static NSDateFormatter *df    = nil;
 - (void)drawContentView:(CGRect)r {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-	UIColor *backgroundColor = [UIColor whiteColor];
+	UIColor *backgroundColor = [UIColor tweetieBlue];
 	UIColor *textColor = [UIColor darkGrayColor];
 
 	if (self.selected) {
