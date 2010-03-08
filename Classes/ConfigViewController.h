@@ -15,7 +15,7 @@
     UIButton        *editButton;
     UIButton        *addButton;
     UITextField     *nameField;
-    UIImage         *whiteButtonBg;
+    UIImage         *greyButtonBg;
     UIImage         *blueButtonBg;
     UIView          *editView;
 }
@@ -26,7 +26,7 @@
 @property (nonatomic, retain) UIButton        *editButton;
 @property (nonatomic, retain) UIButton        *addButton;
 @property (nonatomic, retain) UITextField     *nameField;
-@property (nonatomic, retain) UIImage         *whiteButtonBg;
+@property (nonatomic, retain) UIImage         *greyButtonBg;
 @property (nonatomic, retain) UIImage         *blueButtonBg;
 @property (nonatomic, retain) UIView          *editView;
 

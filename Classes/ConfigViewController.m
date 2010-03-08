@@ -12,15 +12,16 @@
 #import "IconFinder.h"
 #import "AddressModel.h"
 #import "MyColors.h"
+#import "AddressViewController.h"
 
-#define kButtonWidth   55.0
-#define kButtonHeight  40.0
+#define kButtonWidth   50.0
+#define kButtonHeight  44.0
 
 @implementation ConfigViewController
-@synthesize delegate, addresses, editButton, doneButton, addButton, nameField, whiteButtonBg, blueButtonBg, editView;
+@synthesize delegate, addresses, editButton, doneButton, addButton, nameField, greyButtonBg, blueButtonBg, editView;
 
 - (void)viewDidLoad {
-	self.title = NSLocalizedString(@"Who are you?", nil);
+	self.title = NSLocalizedString(@"Account", nil);
     self.view.backgroundColor = [UIColor tweetieBlue];
     self.addresses = [AddressModel selectAll];
 
@@ -38,15 +39,15 @@
                        ];
 //	if ([self.addresses count] > 1) self.navigationItem.rightBarButtonItem = editButton;
 
-    self.whiteButtonBg = [[UIImage imageNamed:@"whiteButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
-    self.blueButtonBg = [[UIImage imageNamed:@"blueButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+    self.greyButtonBg = [[UIImage imageNamed:@"grey_button.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+    self.blueButtonBg = [[UIImage imageNamed:@"blue_button.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 
     self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
     editButton.frame = CGRectMake(10, 5, kButtonWidth, kButtonHeight);
-    [editButton setBackgroundImage:self.whiteButtonBg forState:UIControlStateNormal];
+    [editButton setBackgroundImage:self.greyButtonBg forState:UIControlStateNormal];
     [editButton setBackgroundImage:self.blueButtonBg forState:UIControlStateHighlighted];
-
-    [editButton setImage:[UIImage imageNamed:@"shuffle.png"] forState:UIControlStateNormal];
+    [editButton setTitle: @"≡" forState:UIControlStateNormal];
+    editButton.titleLabel.font = [UIFont boldSystemFontOfSize:36];
     [editButton setAccessibilityLabel:NSLocalizedString(@"Edit", @"")];
     editButton.backgroundColor = [UIColor clearColor];
     [editButton addTarget:self action:@selector(toggleEdit) forControlEvents:UIControlEventTouchUpInside];
@@ -57,7 +58,7 @@
 
     CGRect frame = CGRectMake(0, 0, 210.0, 24.0);
     self.nameField = [[UITextField alloc] initWithFrame:frame];
-    nameField.placeholder = @"Barack Obama";
+    nameField.placeholder = @"Jane Doe";
     nameField.autocorrectionType = UITextAutocorrectionTypeNo;
     nameField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     nameField.returnKeyType = UIReturnKeyDone;
@@ -74,7 +75,7 @@
     self.addButton  = nil;
     self.editButton = nil;
     self.nameField = nil;
-    self.whiteButtonBg = nil;
+    self.greyButtonBg = nil;
     self.blueButtonBg = nil;
 }
 
@@ -84,7 +85,7 @@
     [addButton     release];
     [editButton    release];
     [nameField     release];
-    [whiteButtonBg release];
+    [greyButtonBg  release];
     [blueButtonBg  release];
     [super dealloc];
 }
@@ -101,13 +102,13 @@
 -(void) toggleEdit {
     if (self.tableView.editing) {
         [self.tableView setEditing:NO animated:YES];
-        [editButton setBackgroundImage:self.whiteButtonBg forState:UIControlStateNormal];
+        [editButton setBackgroundImage:self.greyButtonBg forState:UIControlStateNormal];
         [editButton setBackgroundImage:self.blueButtonBg forState:UIControlStateHighlighted];
     } else {
         [nameField resignFirstResponder];
         [self.tableView setEditing:YES animated:YES];
         [editButton setBackgroundImage:self.blueButtonBg forState:UIControlStateNormal];
-        [editButton setBackgroundImage:self.whiteButtonBg forState:UIControlStateHighlighted];
+        [editButton setBackgroundImage:self.greyButtonBg forState:UIControlStateHighlighted];
     }
 }
 
@@ -234,9 +235,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
-//    [buzzerViewController initWithBuzzer: (BuzzerModel *)[self.buzzers objectAtIndex:indexPath.row]];
-//	[self.navigationController pushViewController:buzzerViewController animated:YES];
+	AddressViewController *addrController = [[[AddressViewController alloc] init] initWithStyle:UITableViewStyleGrouped];
+    if (indexPath.row < [self.addresses count])
+        addrController.address = [self.addresses objectAtIndex:indexPath.row];
+	[self.navigationController pushViewController:addrController animated:YES];
 }
 
 @end

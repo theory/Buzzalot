@@ -37,9 +37,10 @@
 		639438CF111A3D4C00E39D09 /* icon_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 639438CE111A3D4C00E39D09 /* icon_frame.png */; };
 		63CB6BD71119238D00738680 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB6BD61119238D00738680 /* RootViewController.m */; };
 		63CB6BEE1119266F00738680 /* BuzzerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB6BED1119266F00738680 /* BuzzerCell.m */; };
-		63CFD5A111419CDD0098C0DF /* shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD5A011419CDD0098C0DF /* shuffle.png */; };
-		63CFD5A411419CEE0098C0DF /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD5A211419CEE0098C0DF /* whiteButton.png */; };
-		63CFD5A511419CEE0098C0DF /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD5A311419CEE0098C0DF /* blueButton.png */; };
+		63CFD6231141E4590098C0DF /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CFD6221141E4590098C0DF /* AddressViewController.m */; };
+		63CFD8D71144C78C0098C0DF /* blue_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD8D51144C78C0098C0DF /* blue_button.png */; };
+		63CFD8D81144C78C0098C0DF /* grey_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD8D61144C78C0098C0DF /* grey_button.png */; };
+		63CFD9221144CB070098C0DF /* green_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD9211144CB070098C0DF /* green_button.png */; };
 		63FE18E8111BCBC000B855D7 /* MyColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FE18E7111BCBC000B855D7 /* MyColors.m */; };
 		63FE1A39111BE20900B855D7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FE1A38111BE20900B855D7 /* ConfigViewController.m */; };
 		63FE1AC1111BEC9800B855D7 /* BuzzerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FE1AC0111BEC9800B855D7 /* BuzzerViewController.m */; };
@@ -96,9 +97,11 @@
 		63CB6BD61119238D00738680 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		63CB6BEC1119266F00738680 /* BuzzerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerCell.h; sourceTree = "<group>"; };
 		63CB6BED1119266F00738680 /* BuzzerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzerCell.m; sourceTree = "<group>"; };
-		63CFD5A011419CDD0098C0DF /* shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuffle.png; sourceTree = "<group>"; };
-		63CFD5A211419CEE0098C0DF /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
-		63CFD5A311419CEE0098C0DF /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
+		63CFD6211141E4590098C0DF /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		63CFD6221141E4590098C0DF /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		63CFD8D51144C78C0098C0DF /* blue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_button.png; sourceTree = "<group>"; };
+		63CFD8D61144C78C0098C0DF /* grey_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_button.png; sourceTree = "<group>"; };
+		63CFD9211144CB070098C0DF /* green_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_button.png; sourceTree = "<group>"; };
 		63FE18E7111BCBC000B855D7 /* MyColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyColors.m; sourceTree = "<group>"; };
 		63FE18E9111BCC4200B855D7 /* MyColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyColors.h; sourceTree = "<group>"; };
 		63FE1A37111BE20900B855D7 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				630A602611213810000AD362 /* MessageModel.m */,
 				635C8EBF113CDF5E008D6370 /* AddressModel.h */,
 				635C8EC0113CDF5E008D6370 /* AddressModel.m */,
+				63CFD6211141E4590098C0DF /* AddressViewController.h */,
+				63CFD6221141E4590098C0DF /* AddressViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -207,9 +212,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				63CFD5A211419CEE0098C0DF /* whiteButton.png */,
-				63CFD5A311419CEE0098C0DF /* blueButton.png */,
-				63CFD5A011419CDD0098C0DF /* shuffle.png */,
+				63CFD9211144CB070098C0DF /* green_button.png */,
+				63CFD8D51144C78C0098C0DF /* blue_button.png */,
+				63CFD8D61144C78C0098C0DF /* grey_button.png */,
 				635C8E92113CC3DF008D6370 /* sql */,
 				630C182611238A8F00465A4E /* silhouette.png */,
 				63647A41111F70F1009E1544 /* 001-tables.sql */,
@@ -326,9 +331,9 @@
 				636479F7111E8DAF009E1544 /* Legal.rtf in Resources */,
 				630C182711238A8F00465A4E /* silhouette.png in Resources */,
 				635C8E98113CC3DF008D6370 /* sql in Resources */,
-				63CFD5A111419CDD0098C0DF /* shuffle.png in Resources */,
-				63CFD5A411419CEE0098C0DF /* whiteButton.png in Resources */,
-				63CFD5A511419CEE0098C0DF /* blueButton.png in Resources */,
+				63CFD8D71144C78C0098C0DF /* blue_button.png in Resources */,
+				63CFD8D81144C78C0098C0DF /* grey_button.png in Resources */,
+				63CFD9221144CB070098C0DF /* green_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +386,7 @@
 				630C192111250EB000465A4E /* UIImage+RoundedCorner.m in Sources */,
 				63211BE4112E1B42004BA7D2 /* NSDate+HumanInterval.m in Sources */,
 				635C8EC1113CDF5E008D6370 /* AddressModel.m in Sources */,
+				63CFD6231141E4590098C0DF /* AddressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

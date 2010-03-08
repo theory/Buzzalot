@@ -19,7 +19,7 @@
 + (UIColor *)configTextColor {
     static UIColor *configTextColor = nil;
     if (! configTextColor)
-        configTextColor = [[UIColor colorWithRed:0.341 green:0.396 blue:0.620 alpha:1.0] retain];
+        configTextColor = [[UIColor colorWithRed:0.290 green:0.392 blue:0.573 alpha:1.0] retain];
     return configTextColor;
 }
 
