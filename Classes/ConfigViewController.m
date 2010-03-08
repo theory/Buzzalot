@@ -235,6 +235,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([[self.addresses objectAtIndex:indexPath.row] confirmed]) return;
 	AddressViewController *addrController = [[[AddressViewController alloc] init] initWithStyle:UITableViewStyleGrouped];
     if (indexPath.row < [self.addresses count])
         addrController.address = [self.addresses objectAtIndex:indexPath.row];
