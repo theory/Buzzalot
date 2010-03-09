@@ -73,12 +73,23 @@
 }
 
 - (void) startIndicatorWithMessage:(NSString *)message {
-    UIActivityIndicatorView *myIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-	myIndicator.center = CGPointMake(250, self.submitButton.center.y);
-    [self.submitView addSubview: myIndicator];
-    [myIndicator startAnimating];
-    [submitButton setTitle:message forState:UIControlStateDisabled];
-    self.submitButton.enabled = NO;
+    UIAlertView *alert = [[[UIAlertView alloc]
+            initWithTitle:message
+                  message:nil
+                 delegate:nil
+        cancelButtonTitle:nil
+        otherButtonTitles:nil] autorelease];
+    [alert show];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    alert.alpha = .20;
+    
+    // Adjust the indicator so it is up a few pixels from the bottom of the alert
+    indicator.center = CGPointMake(alert.bounds.size.width / 2, alert.bounds.size.height - 50);
+    [indicator startAnimating];
+    [alert addSubview:indicator];
+    [indicator release];
+    [alert release];
+//    [alert dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 - (void) requestButtonTapped:(id)sender {
@@ -91,9 +102,9 @@
     [self.codeField resignFirstResponder];
     self.codeField.enabled = NO;
     [self startIndicatorWithMessage: @"Confirming…"];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title" message:@"Confirmed" delegate:self cancelButtonTitle:@"Ah-ite" otherButtonTitles:nil];
-	[alertView show];
-	[alertView release];
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title" message:@"Confirmed" delegate:self cancelButtonTitle:@"Ah-ite" otherButtonTitles:nil];
+//	[alertView show];
+//	[alertView release];
 }
 
 #pragma mark -
