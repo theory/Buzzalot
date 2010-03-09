@@ -41,6 +41,7 @@
 		63CFD8D71144C78C0098C0DF /* blue_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD8D51144C78C0098C0DF /* blue_button.png */; };
 		63CFD8D81144C78C0098C0DF /* grey_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD8D61144C78C0098C0DF /* grey_button.png */; };
 		63CFD9221144CB070098C0DF /* green_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 63CFD9211144CB070098C0DF /* green_button.png */; };
+		63CFDA8C114610060098C0DF /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CFDA8B114610060098C0DF /* MBProgressHUD.m */; };
 		63FE18E8111BCBC000B855D7 /* MyColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FE18E7111BCBC000B855D7 /* MyColors.m */; };
 		63FE1A39111BE20900B855D7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FE1A38111BE20900B855D7 /* ConfigViewController.m */; };
 		63FE1AC1111BEC9800B855D7 /* BuzzerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FE1AC0111BEC9800B855D7 /* BuzzerViewController.m */; };
@@ -102,6 +103,8 @@
 		63CFD8D51144C78C0098C0DF /* blue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_button.png; sourceTree = "<group>"; };
 		63CFD8D61144C78C0098C0DF /* grey_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_button.png; sourceTree = "<group>"; };
 		63CFD9211144CB070098C0DF /* green_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_button.png; sourceTree = "<group>"; };
+		63CFDA8A114610060098C0DF /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = ../MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		63CFDA8B114610060098C0DF /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = ../MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		63FE18E7111BCBC000B855D7 /* MyColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyColors.m; sourceTree = "<group>"; };
 		63FE18E9111BCC4200B855D7 /* MyColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyColors.h; sourceTree = "<group>"; };
 		63FE1A37111BE20900B855D7 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				63CFDA8A114610060098C0DF /* MBProgressHUD.h */,
+				63CFDA8B114610060098C0DF /* MBProgressHUD.m */,
 				630C191811250EA200465A4E /* UIImage-categories */,
 				636479EE111E8CD8009E1544 /* SFHFKeychainUtils.h */,
 				636479EF111E8CD8009E1544 /* SFHFKeychainUtils.m */,
@@ -387,6 +392,7 @@
 				63211BE4112E1B42004BA7D2 /* NSDate+HumanInterval.m in Sources */,
 				635C8EC1113CDF5E008D6370 /* AddressModel.m in Sources */,
 				63CFD6231141E4590098C0DF /* AddressViewController.m in Sources */,
+				63CFDA8C114610060098C0DF /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

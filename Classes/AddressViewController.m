@@ -9,10 +9,11 @@
 #import "AddressViewController.h"
 #import "AddressModel.h"
 #import "MyColors.h"
+#import "MBProgressHUD.h"
 
 @implementation AddressViewController
 
-@synthesize address, emailField, codeField, submitButton, submitView;
+@synthesize address, emailField, codeField, submitButton, submitView, hud;
 
 - (void)viewDidLoad {
     CGRect frame = CGRectMake(0, 0, 210.0, 24.0);
@@ -29,23 +30,25 @@
     emailField.delegate = self;
     [emailField addTarget:self action:@selector(emailChanged:) forControlEvents:UIControlEventEditingDidEnd];
 
+    self.codeField = [[UITextField alloc] initWithFrame:frame];
+    codeField.autocorrectionType = UITextAutocorrectionTypeNo;
+    codeField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    codeField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    codeField.returnKeyType = UIReturnKeyDone;
+    codeField.enablesReturnKeyAutomatically = YES;
+    codeField.keyboardType = UIKeyboardTypeNumberPad;
+    codeField.textColor = [UIColor configTextColor];
+    codeField.delegate = self;
+
     if (self.address) {
         emailField.text = self.address.email;
         emailField.enabled = NO;
-        self.codeField = [[UITextField alloc] initWithFrame:frame];
-        codeField.autocorrectionType = UITextAutocorrectionTypeNo;
-        codeField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-        codeField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        codeField.returnKeyType = UIReturnKeyDone;
-        codeField.enablesReturnKeyAutomatically = YES;
-        codeField.keyboardType = UIKeyboardTypeNumberPad;
-        codeField.textColor = [UIColor configTextColor];
-        codeField.delegate = self;
         [codeField becomeFirstResponder];
     }
 
     self.submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     submitButton.frame = CGRectMake(5, 10, self.tableView.bounds.size.width-10, 44);
+//    submitButton.enabled = NO;
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     self.submitView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, screenRect.size.width, 44.0)];
     [submitView addSubview:submitButton];
@@ -57,6 +60,8 @@
     self.emailField   = nil;
     self.codeField    = nil;
     self.submitButton = nil;
+    self.submitView   = nil;
+    self.hud          = nil;
     [super viewDidUnload];
 }
 
@@ -64,48 +69,60 @@
     [emailField   release];
     [codeField    release];
     [submitButton release];
+    [submitView   release];
+    [hud          release];
     [super dealloc];
 }
 
 #pragma mark -
 
 - (void) emailChanged:(id)sender {
+    if (!self.address)
+        self.address = [[[AddressModel alloc] init] autorelease];
+    self.address.email = self.emailField.text;
 }
 
-- (void) startIndicatorWithMessage:(NSString *)message {
-    UIAlertView *alert = [[[UIAlertView alloc]
-            initWithTitle:message
-                  message:nil
-                 delegate:nil
-        cancelButtonTitle:nil
-        otherButtonTitles:nil] autorelease];
-    [alert show];
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    alert.alpha = .20;
-    
-    // Adjust the indicator so it is up a few pixels from the bottom of the alert
-    indicator.center = CGPointMake(alert.bounds.size.width / 2, alert.bounds.size.height - 50);
-    [indicator startAnimating];
-    [alert addSubview:indicator];
-    [indicator release];
-    [alert release];
-//    [alert dismissWithClickedButtonIndex:0 animated:YES];
+- (void) startHudWithMessage:(NSString *)message executing:(SEL)selector{
+    self.hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:hud];
+    hud.opacity = 0.9;
+    hud.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    hud.labelText = message;
+    [hud showWhileExecuting:selector onTarget:self withObject:nil animated:YES];
 }
 
 - (void) requestButtonTapped:(id)sender {
     [self.emailField resignFirstResponder];
-    self.emailField.enabled = NO;
-    [self startIndicatorWithMessage: @"Submitting…"];
+    [self startHudWithMessage:@"Sending…" executing:@selector(sendRequest)];
 }
 
 - (void) confirmButtonTapped:(id)sender {
     [self.codeField resignFirstResponder];
-    self.codeField.enabled = NO;
-    [self startIndicatorWithMessage: @"Confirming…"];
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Title" message:@"Confirmed" delegate:self cancelButtonTitle:@"Ah-ite" otherButtonTitles:nil];
-//	[alertView show];
-//	[alertView release];
+    [self startHudWithMessage:@"Confirming…" executing:@selector(sendConfirm)];
 }
+
+- (void) sendRequest {
+    sleep(2);
+    [self.submitButton removeTarget:self action:@selector(requestButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    emailField.enabled = NO;
+    hud.labelText = @"Done.";
+    hud.detailsLabelText = @"Check email for confirmation code.";
+    sleep(2);
+    [self setButtonToCofirm];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+}
+
+- (void) sendConfirm {
+    sleep(2);
+    [self.address confirm];
+    hud.labelText = @"Done.";
+    hud.detailsLabelText = @"You may now use this address.";
+    sleep(2);
+    [self.navigationController popViewControllerAnimated:YES];
+//    NSArray *controllers = self.navigationController.viewControllers;
+//    [((UITableViewController *)[controllers lastObject]).tableView reloadData];
+}
+
 
 #pragma mark -
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -165,9 +182,5 @@
     [submitButton setTitle:@"Submit Address" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(requestButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
-
-
-
-
 
 @end

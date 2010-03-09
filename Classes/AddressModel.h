@@ -14,8 +14,9 @@
 @property (nonatomic, retain) NSString *email;
 @property BOOL confirmed;
 
-+(NSMutableArray *) selectAll;
-+(void) reorderAddressesFrom:(NSArray *)a;
--(AddressModel *) initWithEmail:(char *)e confirmed:(int)c;
++ (NSMutableArray *) selectAll;
++ (void) reorderAddressesFrom:(NSArray *)a;
+- (AddressModel *) initWithEmail:(char *)e confirmed:(int)c;
+- (void) confirm;
 
 @end

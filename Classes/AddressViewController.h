@@ -15,25 +15,30 @@
 //
 
 @class AddressModel;
+@class MBProgressHUD;
 
 @interface AddressViewController : UITableViewController <UITextFieldDelegate> {
-    AddressModel *address;
-    UITextField  *emailField;
-    UITextField  *codeField;
-    UIButton     *submitButton;
-    UIView       *submitView;
+    AddressModel  *address;
+    UITextField   *emailField;
+    UITextField   *codeField;
+    UIButton      *submitButton;
+    UIView        *submitView;
+    MBProgressHUD *hud;
 }
 
-@property (nonatomic, retain) AddressModel *address;
-@property (nonatomic, retain) UITextField *emailField;
-@property (nonatomic, retain) UITextField *codeField;
-@property (nonatomic, retain) UIButton    *submitButton;
-@property (nonatomic, retain) UIView      *submitView;
+@property (nonatomic, retain) AddressModel  *address;
+@property (nonatomic, retain) UITextField   *emailField;
+@property (nonatomic, retain) UITextField   *codeField;
+@property (nonatomic, retain) UIButton      *submitButton;
+@property (nonatomic, retain) UIView        *submitView;
+@property (nonatomic, retain) MBProgressHUD *hud;
 
 - (void) emailChanged:(id)sender;
 - (void) requestButtonTapped:(id)sender;
 - (void) confirmButtonTapped:(id)sender;
 - (void) setButtonToCofirm;
 - (void) setButtonToRequest;
+- (void) sendRequest;
+- (void) sendConfirm;
 
 @end
