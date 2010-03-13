@@ -33,7 +33,9 @@
 @property (nonatomic, retain) UIView        *submitView;
 @property (nonatomic, retain) MBProgressHUD *hud;
 
-- (void) emailChanged:(id)sender;
+- (void) fieldChanged:(id)sender;
+- (void) emailEdited:(id)sender;
+- (void) emailExited:(id)sender;
 - (void) requestButtonTapped:(id)sender;
 - (void) confirmButtonTapped:(id)sender;
 - (void) setButtonToCofirm;

@@ -23,22 +23,26 @@
     emailField.autocorrectionType = UITextAutocorrectionTypeNo;
     emailField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     emailField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    emailField.returnKeyType = UIReturnKeyDone;
+    emailField.returnKeyType = UIReturnKeySend;
     emailField.enablesReturnKeyAutomatically = YES;
     emailField.keyboardType = UIKeyboardTypeEmailAddress;
     emailField.textColor = [UIColor configTextColor];
     emailField.delegate = self;
-    [emailField addTarget:self action:@selector(emailChanged:) forControlEvents:UIControlEventEditingDidEnd];
+    [emailField addTarget:self action:@selector(emailEdited:) forControlEvents:UIControlEventEditingDidEnd];
+    [emailField addTarget:self action:@selector(emailExited:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [emailField addTarget:self action:@selector(fieldChanged:) forControlEvents:UIControlEventEditingChanged];
 
     self.codeField = [[UITextField alloc] initWithFrame:frame];
     codeField.autocorrectionType = UITextAutocorrectionTypeNo;
     codeField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     codeField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    codeField.returnKeyType = UIReturnKeyDone;
+    codeField.returnKeyType = UIReturnKeySend;
     codeField.enablesReturnKeyAutomatically = YES;
     codeField.keyboardType = UIKeyboardTypeNumberPad;
     codeField.textColor = [UIColor configTextColor];
     codeField.delegate = self;
+    [codeField addTarget:self action:@selector(confirmButtonTapped:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [codeField addTarget:self action:@selector(fieldChanged:) forControlEvents:UIControlEventEditingChanged];
 
     if (self.address) {
         emailField.text = self.address.email;
@@ -48,7 +52,7 @@
 
     self.submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     submitButton.frame = CGRectMake(5, 10, self.tableView.bounds.size.width-10, 44);
-//    submitButton.enabled = NO;
+    submitButton.enabled = NO;
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     self.submitView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, screenRect.size.width, 44.0)];
     [submitView addSubview:submitButton];
@@ -76,10 +80,19 @@
 
 #pragma mark -
 
-- (void) emailChanged:(id)sender {
+- (void) emailEdited:(id)sender {
     if (!self.address)
         self.address = [[[AddressModel alloc] init] autorelease];
     self.address.email = self.emailField.text;
+}
+
+- (void) emailExited:(id)sender {
+    [self emailEdited:sender];
+    [self requestButtonTapped:sender];
+}
+
+- (void) fieldChanged:(id)sender {
+    submitButton.enabled = emailField.text.length > 0 ? YES : NO;
 }
 
 - (void) startHudWithMessage:(NSString *)message executing:(SEL)selector{
@@ -93,11 +106,14 @@
 
 - (void) requestButtonTapped:(id)sender {
     [self.emailField resignFirstResponder];
+    submitButton.enabled = NO;
+    [self.address add];
     [self startHudWithMessage:@"Sending…" executing:@selector(sendRequest)];
 }
 
 - (void) confirmButtonTapped:(id)sender {
     [self.codeField resignFirstResponder];
+    submitButton.enabled = NO;
     [self startHudWithMessage:@"Confirming…" executing:@selector(sendConfirm)];
 }
 

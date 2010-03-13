@@ -83,6 +83,16 @@
     }
 }
 
+- (void) add {
+    sqlite3 *db = [BuzzalotAppDelegate getDBConnection];
+    sqlite3_stmt *sth;
+    if (sqlite3_prepare_v2(db, "INSERT INTO addresses (email, position) VALUES (?, (SELECT MAX(position) + 1 FROM addresses));", -1, &sth, nil) == SQLITE_OK ) {
+        sqlite3_bind_text(sth, 1, [self.email UTF8String], -1, NULL);
+        sqlite3_step(sth);
+        sqlite3_finalize(sth);
+    }
+}
+
 - (void)dealloc {
     [email release];
     [super dealloc];

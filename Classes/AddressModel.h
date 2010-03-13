@@ -18,5 +18,6 @@
 + (void) reorderAddressesFrom:(NSArray *)a;
 - (AddressModel *) initWithEmail:(char *)e confirmed:(int)c;
 - (void) confirm;
+- (void) add;
 
 @end
