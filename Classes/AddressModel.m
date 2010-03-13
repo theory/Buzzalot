@@ -47,7 +47,6 @@
         for (AddressModel *addr in a) {
             sqlite3_bind_int(sth, 1, ++i);
             sqlite3_bind_text(sth, 2, [addr.email UTF8String], -1, NULL);
-            NSLog(@"Email: %@ (%u)", addr.email, i);
             sqlite3_step(sth);
             sqlite3_reset(sth);
         }

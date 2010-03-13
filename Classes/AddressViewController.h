@@ -17,7 +17,7 @@
 @class AddressModel;
 @class MBProgressHUD;
 
-@interface AddressViewController : UITableViewController <UITextFieldDelegate> {
+@interface AddressViewController : UITableViewController <UITextFieldDelegate, UIActionSheetDelegate> {
     AddressModel  *address;
     UITextField   *emailField;
     UITextField   *codeField;
@@ -37,11 +37,13 @@
 - (void) emailEdited:(id)sender;
 - (void) emailExited:(id)sender;
 - (void) requestButtonTapped:(id)sender;
+- (void) requestButtonGo;
 - (void) confirmButtonTapped:(id)sender;
 - (void) setButtonToCofirm;
 - (void) setButtonToRequest;
 - (void) sendRequest;
 - (void) sendConfirm;
 - (void) switchToCodeField;
+- (BOOL) validateEmail: (NSString *) email;
 
 @end

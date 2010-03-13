@@ -110,6 +110,16 @@
 }
 
 - (void) requestButtonTapped:(id)sender {
+    if (![self validateEmail:self.emailField.text]) {
+        UIActionSheet *alert = [[UIActionSheet alloc] initWithTitle:@"Sure about that?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+        [alert showInView:self.view];
+        [alert release];
+        return;
+    }
+    [self requestButtonGo];
+}
+
+- (void) requestButtonGo {
     [self.emailField resignFirstResponder];
     submitButton.enabled = NO;
     [self.address add];
@@ -123,6 +133,7 @@
 }
 
 - (void) sendRequest {
+    // TODO: Submit request.
     sleep(2);
     [self.submitButton removeTarget:self action:@selector(requestButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     emailField.enabled = NO;
@@ -135,6 +146,7 @@
 }
 
 - (void) sendConfirm {
+    // TODO: Submit confirmation.
     sleep(2);
     [self.address confirm];
     hud.labelText = @"Done.";
@@ -204,6 +216,20 @@
     [submitButton setBackgroundImage:bg forState:UIControlStateNormal];
     [submitButton setTitle:@"Submit Address" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(requestButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (BOOL) validateEmail: (NSString *) email {
+    NSString *re = @"\\A\\S+@\\S+?\\.[A-Za-z]{2,4}\\z";
+    NSPredicate *ep = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", re];
+    return [ep evaluateWithObject:email];
+}
+
+#pragma mark -
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [actionSheet cancelButtonIndex]) {
+        [self requestButtonGo];
+    }
 }
 
 @end
