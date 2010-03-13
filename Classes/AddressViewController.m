@@ -126,6 +126,7 @@
     sleep(2);
     [self setButtonToCofirm];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+    [self performSelectorOnMainThread:@selector(switchToCodeField) withObject:nil waitUntilDone:NO];
 }
 
 - (void) sendConfirm {
@@ -139,6 +140,9 @@
 //    [((UITableViewController *)[controllers lastObject]).tableView reloadData];
 }
 
+- (void) switchToCodeField {
+    [codeField becomeFirstResponder];
+}
 
 #pragma mark -
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

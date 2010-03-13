@@ -42,5 +42,6 @@
 - (void) setButtonToRequest;
 - (void) sendRequest;
 - (void) sendConfirm;
+- (void) switchToCodeField;
 
 @end
