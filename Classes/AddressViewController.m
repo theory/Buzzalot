@@ -15,6 +15,11 @@
 
 @synthesize address, emailField, codeField, submitButton, submitView, hud;
 
+- (void) viewWillDisappear:(BOOL)animated {
+    UITableViewController *config = (UITableViewController *) [self.navigationController.viewControllers objectAtIndex:0];
+    [config.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     CGRect frame = CGRectMake(0, 0, 210.0, 24.0);
     self.title = self.address ? @"Confirm Address" : @"Add Address";
@@ -136,8 +141,6 @@
     hud.detailsLabelText = @"You may now use this address.";
     sleep(2);
     [self.navigationController popViewControllerAnimated:YES];
-//    NSArray *controllers = self.navigationController.viewControllers;
-//    [((UITableViewController *)[controllers lastObject]).tableView reloadData];
 }
 
 - (void) switchToCodeField {
