@@ -10,13 +10,15 @@
 #import "AddressModel.h"
 #import "MyColors.h"
 #import "MBProgressHUD.h"
+#import "ConfigViewController.h"
 
 @implementation AddressViewController
 
 @synthesize address, emailField, codeField, submitButton, submitView, hud;
 
 - (void) viewWillDisappear:(BOOL)animated {
-    UITableViewController *config = (UITableViewController *) [self.navigationController.viewControllers objectAtIndex:0];
+    ConfigViewController *config = (ConfigViewController *) [self.navigationController.viewControllers objectAtIndex:0];
+    config.addresses = [AddressModel selectAll];
     [config.tableView reloadData];
 }
 
@@ -33,8 +35,7 @@
     emailField.keyboardType = UIKeyboardTypeEmailAddress;
     emailField.textColor = [UIColor configTextColor];
     emailField.delegate = self;
-    [emailField addTarget:self action:@selector(emailEdited:) forControlEvents:UIControlEventEditingDidEnd];
-    [emailField addTarget:self action:@selector(emailExited:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [emailField addTarget:self action:@selector(requestButtonTapped:) forControlEvents:UIControlEventEditingDidEndOnExit];
     [emailField addTarget:self action:@selector(fieldChanged:) forControlEvents:UIControlEventEditingChanged];
 
     self.codeField = [[UITextField alloc] initWithFrame:frame];
@@ -85,14 +86,7 @@
 
 #pragma mark -
 
-- (void) emailEdited:(id)sender {
-    if (!self.address)
-        self.address = [[[AddressModel alloc] init] autorelease];
-    self.address.email = self.emailField.text;
-}
-
 - (void) emailExited:(id)sender {
-    [self emailEdited:sender];
     [self requestButtonTapped:sender];
 }
 
@@ -120,8 +114,10 @@
 }
 
 - (void) requestButtonGo {
-    [self.emailField resignFirstResponder];
     submitButton.enabled = NO;
+    [self.emailField resignFirstResponder];
+    self.address = [[[AddressModel alloc] init] autorelease];
+    self.address.email = self.emailField.text;
     [self.address add];
     [self startHudWithMessage:@"Sending…" executing:@selector(sendRequest)];
 }

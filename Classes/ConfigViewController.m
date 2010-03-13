@@ -20,13 +20,9 @@
 @implementation ConfigViewController
 @synthesize delegate, addresses, editButton, doneButton, addButton, nameField, greyButtonBg, blueButtonBg, editView;
 
-- (void) viewWillAppear:(BOOL)animated {
-    self.addresses = [AddressModel selectAll];
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidLoad {
 	self.title = NSLocalizedString(@"Account", nil);
+    self.addresses = [AddressModel selectAll];
 
 	self.doneButton = [[ UIBarButtonItem alloc ]
                        initWithBarButtonSystemItem: UIBarButtonSystemItemDone
@@ -179,7 +175,6 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         } case 1: {
-            if (cellIdentifier == @"AddressCell") cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             if (indexPath.row == [self.addresses count]) {
                 cell.textLabel.text = @"Add Address…";
                 cell.textLabel.textColor = [UIColor blackColor];

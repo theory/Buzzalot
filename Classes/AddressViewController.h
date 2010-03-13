@@ -34,8 +34,6 @@
 @property (nonatomic, retain) MBProgressHUD *hud;
 
 - (void) fieldChanged:(id)sender;
-- (void) emailEdited:(id)sender;
-- (void) emailExited:(id)sender;
 - (void) requestButtonTapped:(id)sender;
 - (void) requestButtonGo;
 - (void) confirmButtonTapped:(id)sender;
