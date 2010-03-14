@@ -6,10 +6,9 @@
 //  Copyright Kineticode, Inc. 2010. All rights reserved.
 //
 
-#define kDBFilename               @"buzzalot.db"
-#define kPrimaryEmailKey          @"PrimaryEmail"
-#define kUserNameKey              @"Username"
-#define kCacheRefreshIntervalKey  @"CacheRefreshInterval"
+#define kDBFilename       @"buzzalot.db"
+#define kPrimaryEmailKey  @"PrimaryEmail"
+#define kUserNameKey      @"Username"
 
 #import <sqlite3.h>
 

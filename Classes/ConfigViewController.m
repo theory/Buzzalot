@@ -36,7 +36,6 @@
                        target: self
                        action:@selector(toggleEdit)
                        ];
-//	if ([self.addresses count] > 1) self.navigationItem.rightBarButtonItem = editButton;
 
     self.greyButtonBg = [[UIImage imageNamed:@"grey_button.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
     self.blueButtonBg = [[UIImage imageNamed:@"blue_button.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
@@ -55,6 +54,7 @@
     self.editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, 44.0)];
     [editView addSubview:self.editButton];
 
+    // TODO: Have name field resign first reponder when table background tapped.
     self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 210, 30)];
     nameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     nameField.placeholder = @"Jane Doe";

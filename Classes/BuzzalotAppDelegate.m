@@ -33,14 +33,15 @@
     // Set up the icon queue.
     self.iconQueue = [[NSOperationQueue alloc] init];
 
+    // TODO: Start background task to download latest messages. Update each
+    // recipient icon as it arrives, no more than once a day.
+
     // Configure and show the window.
     [window addSubview:[navController view]];
 
 	if ([[NSUserDefaults standardUserDefaults] stringForKey:kUserNameKey] == nil) {
 		// Create the default configuration values.
-		NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     [NSNumber numberWithInt:86400], kCacheRefreshIntervalKey,
-                                     nil];
+		NSDictionary *appDefaults = [NSDictionary dictionary];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 
