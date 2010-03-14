@@ -15,5 +15,6 @@
 +(void)clearCache;
 +(UIImage *)getForEmail:(NSString *)email;
 +(void)findForEmail:(NSString *)email;
++(void)findAmongEmails:(NSArray *)emails cacheFor:(NSString *)addr;
 
 @end

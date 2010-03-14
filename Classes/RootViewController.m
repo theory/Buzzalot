@@ -80,14 +80,15 @@
 
 - (void) updateMyIcons:(id)addresses {
     // Set icons and the primary email address.
-    NSMutableArray *emails = [[NSMutableArray alloc]init];
+    NSMutableArray *emails = [NSMutableArray arrayWithCapacity:[addresses count]];
+    NSString *primary = nil;
     for (AddressModel *addr in addresses) {
-        if (addr.confirmed) [emails addObject:addr.email];
+        [emails addObject:addr.email];
+        if (!primary && addr.confirmed) primary = addr.email;
     }
-    [[NSUserDefaults standardUserDefaults] setObject: [emails objectAtIndex:0] forKey: kPrimaryEmailKey];
+    [[NSUserDefaults standardUserDefaults] setObject: primary forKey: kPrimaryEmailKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [IconFinder updateThumbsForEmails:emails];
-    [emails release];
+    if (primary) [IconFinder findAmongEmails:emails cacheFor:primary];
 }
 
 - (void)compose {

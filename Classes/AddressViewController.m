@@ -114,6 +114,7 @@
         [alert release];
         return;
     }
+    // TODO: Check for prior existence of address.
     [self requestButtonGo];
 }
 

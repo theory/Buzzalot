@@ -112,6 +112,22 @@ static NSMutableDictionary *cache = nil;
     }
 }
 
++(void)findAmongEmails:(NSArray *)emails cacheFor:(NSString *)addr {
+    UIImage *def = [UIImage imageNamed:@"silhouette.png"];
+    NSArray *icons = [self findForEmails:emails];
+    for (UIImage *img in icons) {
+        if (img == def) continue;
+        [self saveImage:img to: [self pngPathFor:addr]];
+        [cache setObject:img forKey:addr];
+        return;
+    }
+    // If we get here, nothing was found. Just return if already have one.
+    if (![self getForEmail:addr]) return;
+    // Cache the default if nothing is already cached.
+    [self saveImage:def to: [self pngPathFor:addr]];
+    [cache setObject:def forKey:addr];
+}
+
 +(void)clearCache {
     [cache removeAllObjects];
 }
