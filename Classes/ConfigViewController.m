@@ -55,8 +55,8 @@
     self.editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, 44.0)];
     [editView addSubview:self.editButton];
 
-    CGRect frame = CGRectMake(0, 0, 210.0, 24.0);
-    self.nameField = [[UITextField alloc] initWithFrame:frame];
+    self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 210, 30)];
+    nameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     nameField.placeholder = @"Jane Doe";
     nameField.autocorrectionType = UITextAutocorrectionTypeNo;
     nameField.autocapitalizationType = UITextAutocapitalizationTypeWords;

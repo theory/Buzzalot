@@ -23,9 +23,10 @@
 }
 
 - (void)viewDidLoad {
-    CGRect frame = CGRectMake(0, 0, 210.0, 24.0);
+    CGRect frame = CGRectMake(0, 0, 210, 30);
     self.title = self.address ? @"Confirm Address" : @"Add Address";
     self.emailField = [[UITextField alloc] initWithFrame:frame];
+    emailField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     emailField.placeholder = @"iam@example.com";
     emailField.autocorrectionType = UITextAutocorrectionTypeNo;
     emailField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -39,6 +40,7 @@
     [emailField addTarget:self action:@selector(fieldChanged:) forControlEvents:UIControlEventEditingChanged];
 
     self.codeField = [[UITextField alloc] initWithFrame:frame];
+    codeField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     codeField.autocorrectionType = UITextAutocorrectionTypeNo;
     codeField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     codeField.clearButtonMode = UITextFieldViewModeWhileEditing;
