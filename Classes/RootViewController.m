@@ -127,6 +127,7 @@
      BuzzerViewController *buzzerViewController = [BuzzerViewController alloc];
     [buzzerViewController initWithBuzzer: (BuzzerModel *)[self.buzzers objectAtIndex:indexPath.row]];
 	[self.navigationController pushViewController:buzzerViewController animated:YES];
+    [buzzerViewController release];
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -135,7 +136,6 @@
 {
     BuzzerModel *buzzer = [self.buzzers objectAtIndex:indexPath.row];
     [buzzer deleteBuzzer];
-    [buzzer release];
     [self.buzzers removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
 }

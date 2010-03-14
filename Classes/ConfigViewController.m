@@ -31,12 +31,6 @@
                        ];
 	self.navigationItem.leftBarButtonItem = doneButton;
 
-    self.editButton = [[ UIBarButtonItem alloc ]
-                       initWithBarButtonSystemItem: UIBarButtonSystemItemEdit
-                       target: self
-                       action:@selector(toggleEdit)
-                       ];
-
     self.greyButtonBg = [[UIImage imageNamed:@"grey_button.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
     self.blueButtonBg = [[UIImage imageNamed:@"blue_button.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 

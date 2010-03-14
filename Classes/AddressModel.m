@@ -18,10 +18,12 @@
     NSMutableArray *addresses = [[NSMutableArray alloc] init];
     if (sqlite3_prepare_v2(db, "SELECT email, confirmed FROM addresses ORDER BY position", -1, &sth, nil) == SQLITE_OK ) {
         while (sqlite3_step(sth) == SQLITE_ROW) {
-            [addresses addObject: [[AddressModel alloc]
+            AddressModel *addr = [[AddressModel alloc]
                                   initWithEmail: (char *) sqlite3_column_text(sth, 0)
                                   confirmed: sqlite3_column_int(sth, 1)
-                                  ]];
+                                  ];
+            [addresses addObject: addr];
+            [addr release];
         }
         sqlite3_finalize(sth);
     }
