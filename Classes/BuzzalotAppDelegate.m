@@ -50,6 +50,7 @@
 
 	[window makeKeyAndVisible];
 }
+
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
     [IconFinder clearCache];
 }

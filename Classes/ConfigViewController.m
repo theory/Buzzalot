@@ -66,6 +66,7 @@
     nameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     nameField.delegate = self;
     [nameField addTarget:self action:@selector(nameChanged:) forControlEvents:UIControlEventEditingDidEnd];
+
     [super viewDidLoad];
 }
 

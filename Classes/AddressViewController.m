@@ -54,6 +54,8 @@
         emailField.text = self.address.email;
         emailField.enabled = NO;
         [codeField becomeFirstResponder];
+    } else {
+        [emailField becomeFirstResponder];
     }
 
     self.submitButton = [UIButton buttonWithType:UIButtonTypeCustom];

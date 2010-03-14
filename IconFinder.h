@@ -16,5 +16,4 @@
 +(UIImage *)getForEmail:(NSString *)email;
 +(void)findForEmail:(NSString *)email;
 
-
 @end

@@ -12,6 +12,8 @@
 #import "BuzzerViewController.h"
 #import "BuzzalotAppDelegate.h"
 #import "BuzzerModel.h"
+#import "IconFinder.h"
+#import "AddressModel.h"
 
 @implementation RootViewController
 @synthesize buzzers;
@@ -60,13 +62,32 @@
 	configViewController.delegate = self;
 	UINavigationController *configNavController = [[UINavigationController alloc] initWithRootViewController:configViewController];
 	configNavController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:configNavController animated:YES];
+    [self presentModalViewController:configNavController animated:YES];
     [configViewController release];
 	[configNavController release];
+
 }
 
 - (void)configViewControllerDidFinish:(ConfigViewController *)controller {
+    // Update the icons.
+    NSArray *addresses = [controller.addresses retain];
+    BuzzalotAppDelegate * app = (BuzzalotAppDelegate *)([UIApplication sharedApplication].delegate);
+    NSInvocationOperation * findOp = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(updateMyIcons:) object:addresses];
+    [app.iconQueue addOperation:findOp];
+    [findOp release];
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void) updateMyIcons:(id)addresses {
+    // Set icons and the primary email address.
+    NSMutableArray *emails = [[NSMutableArray alloc]init];
+    for (AddressModel *addr in addresses) {
+        if (addr.confirmed) [emails addObject:addr.email];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject: [emails objectAtIndex:0] forKey: kPrimaryEmailKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [IconFinder updateThumbsForEmails:emails];
+    [emails release];
 }
 
 - (void)compose {

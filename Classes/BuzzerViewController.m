@@ -20,7 +20,7 @@
 - (void) initWithBuzzer:(BuzzerModel *)buzzer {
     self.title = buzzer.name;
     self.yourIcon = [IconFinder getForEmail:buzzer.email];
-    self.myIcon = [IconFinder getForEmail:[[NSUserDefaults standardUserDefaults] stringForKey:kUserNameKey]]; // TODO: Reference primary address.
+    self.myIcon = [IconFinder getForEmail:[[NSUserDefaults standardUserDefaults] stringForKey:kPrimaryEmailKey]];
     [self.messages release];
     self.messages = [MessageModel selectForBuzzer:buzzer];
 }

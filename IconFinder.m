@@ -110,7 +110,6 @@ static NSMutableDictionary *cache = nil;
         [self saveImage:[images objectAtIndex:i] to: [self pngPathFor:[emails objectAtIndex: i]]];
         [cache setObject:[images objectAtIndex:i] forKey:[emails objectAtIndex: i]];
     }
-    [images release];
 }
 
 +(void)clearCache {

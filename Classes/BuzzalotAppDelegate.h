@@ -7,7 +7,8 @@
 //
 
 #define kDBFilename               @"buzzalot.db"
-#define kUserNameKey              @"PrimaryEmail"
+#define kPrimaryEmailKey          @"PrimaryEmail"
+#define kUserNameKey              @"Username"
 #define kCacheRefreshIntervalKey  @"CacheRefreshInterval"
 
 #import <sqlite3.h>
