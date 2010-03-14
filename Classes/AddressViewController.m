@@ -225,6 +225,8 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex != [actionSheet cancelButtonIndex]) {
         [self requestButtonGo];
+    } else {
+        [self.emailField becomeFirstResponder];
     }
 }
 
