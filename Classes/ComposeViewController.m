@@ -51,7 +51,8 @@
     
     [navBar release];
 
-    self.bodyField = [[UITextView alloc] initWithFrame:CGRectMake(5, 49, size.width - 10, 100)];
+    self.bodyField = [[UITextView alloc] initWithFrame:CGRectMake(5, 49, size.width - 10, 220)];
+
     bodyField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     bodyField.font = [UIFont systemFontOfSize:17]; // XXX Should be default, why isn't it?
     [self.view addSubview:bodyField];
