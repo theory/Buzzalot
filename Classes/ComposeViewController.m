@@ -9,7 +9,7 @@
 #import "ComposeViewController.h"
 
 @implementation ComposeViewController
-@synthesize bodyField, closeButton, sendButton;
+@synthesize delegate, bodyField, closeButton, sendButton, recipient;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -55,8 +55,9 @@
 
     bodyField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     bodyField.font = [UIFont systemFontOfSize:17]; // XXX Should be default, why isn't it?
-    [self.view addSubview:bodyField];
     [bodyField becomeFirstResponder];
+    [self.view addSubview:bodyField];
+
 }
 
 /*
@@ -82,11 +83,11 @@
 }
 
 - (void)closeButtonTapped {
-    [self dismissModalViewControllerAnimated:YES];
+	[self.delegate composeViewControllerDidFinish:self];
 }
 
 - (void)sendButtonTapped {
-    [self dismissModalViewControllerAnimated:YES];
+	[self.delegate composeViewControllerDidFinish:self];
 }
 
 @end

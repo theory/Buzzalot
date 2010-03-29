@@ -92,9 +92,14 @@
 }
 
 - (void)compose {
-    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
-    [self presentModalViewController:composeViewController animated:YES];
-    [composeViewController release];
+	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+	// Display only a person's email
+	NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonEmailProperty], nil];
+	picker.displayedProperties = displayedItems;
+	// Show the picker
+	[self presentModalViewController:picker animated:YES];
+    [picker release];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -140,6 +145,40 @@
     [buzzer deleteBuzzer];
     [self.buzzers removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
+}
+
+#pragma mark -
+#pragma mark ABPeoplePickerNavigationControllerDelegate methods
+
+// Displays the information of a selected person
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+	return YES;
+}
+
+// Does not allow users to perform default actions such as dialing a phone number, when they select a person property.
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person 
+								property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
+    composeViewController.delegate = self;
+    composeViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self.modalViewController presentModalViewController:composeViewController animated:YES];
+    composeViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [composeViewController release];
+	return NO;
+}
+
+// Dismisses the people picker and shows the application when users tap Cancel.
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker;
+{
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
+#pragma mark ComposeViewControllerDelegate methods
+
+- (void)composeViewControllerDidFinish:(ComposeViewController *)controller {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

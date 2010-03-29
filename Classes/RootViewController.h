@@ -6,10 +6,16 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
+#import <AddressBookUI/AddressBookUI.h>
 #import "ConfigViewController.h"
+#import "ComposeViewController.h"
 #import "BuzzerViewController.h"
 
-@interface RootViewController : UITableViewController <ConfigViewControllerDelegate> {
+@interface RootViewController : UITableViewController <
+    ConfigViewControllerDelegate,
+    ABPeoplePickerNavigationControllerDelegate,
+    ComposeViewControllerDelegate
+> {
     NSMutableArray *buzzers;
 }
 
