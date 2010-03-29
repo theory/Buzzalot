@@ -35,7 +35,8 @@
     self.blueButtonBg = [[UIImage imageNamed:@"blue_button.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 
     self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    editButton.frame = CGRectMake(10, 5, kButtonWidth, kButtonHeight);
+    CGSize size = [[UIScreen mainScreen] bounds].size;
+    editButton.frame = CGRectMake(size.width - 55, 5, kButtonWidth, kButtonHeight);
     [editButton setBackgroundImage:self.greyButtonBg forState:UIControlStateNormal];
     [editButton setBackgroundImage:self.blueButtonBg forState:UIControlStateHighlighted];
     [editButton setTitle: @"≡" forState:UIControlStateNormal];
