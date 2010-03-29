@@ -14,6 +14,7 @@
 #import "BuzzerModel.h"
 #import "IconFinder.h"
 #import "AddressModel.h"
+#import "ComposeViewController.h"
 
 @implementation RootViewController
 @synthesize buzzers;
@@ -65,7 +66,6 @@
     [self presentModalViewController:configNavController animated:YES];
     [configViewController release];
 	[configNavController release];
-
 }
 
 - (void)configViewControllerDidFinish:(ConfigViewController *)controller {
@@ -92,7 +92,9 @@
 }
 
 - (void)compose {
-    // TODO: Add code to bring up compose window.
+    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
+    [self presentModalViewController:composeViewController animated:YES];
+    [composeViewController release];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

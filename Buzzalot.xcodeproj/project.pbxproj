@@ -35,6 +35,7 @@
 		63834ABA112BCF13009A9CA6 /* HumanIntervalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63834AB9112BCF13009A9CA6 /* HumanIntervalTest.m */; };
 		6394376B1119356500E39D09 /* ABTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6394376A1119356500E39D09 /* ABTableViewCell.m */; };
 		639438CF111A3D4C00E39D09 /* icon_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 639438CE111A3D4C00E39D09 /* icon_frame.png */; };
+		63CA77D4114DA75700AF62C9 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CA77D2114DA75700AF62C9 /* ComposeViewController.m */; };
 		63CB6BD71119238D00738680 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB6BD61119238D00738680 /* RootViewController.m */; };
 		63CB6BEE1119266F00738680 /* BuzzerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB6BED1119266F00738680 /* BuzzerCell.m */; };
 		63CFD6231141E4590098C0DF /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CFD6221141E4590098C0DF /* AddressViewController.m */; };
@@ -94,6 +95,8 @@
 		639437691119356500E39D09 /* ABTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTableViewCell.h; sourceTree = "<group>"; };
 		6394376A1119356500E39D09 /* ABTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTableViewCell.m; sourceTree = "<group>"; };
 		639438CE111A3D4C00E39D09 /* icon_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_frame.png; sourceTree = "<group>"; };
+		63CA77D1114DA75700AF62C9 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		63CA77D2114DA75700AF62C9 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		63CB6BD51119238D00738680 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		63CB6BD61119238D00738680 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		63CB6BEC1119266F00738680 /* BuzzerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerCell.h; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				635C8EC0113CDF5E008D6370 /* AddressModel.m */,
 				63CFD6211141E4590098C0DF /* AddressViewController.h */,
 				63CFD6221141E4590098C0DF /* AddressViewController.m */,
+				63CA77D1114DA75700AF62C9 /* ComposeViewController.h */,
+				63CA77D2114DA75700AF62C9 /* ComposeViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				635C8EC1113CDF5E008D6370 /* AddressModel.m in Sources */,
 				63CFD6231141E4590098C0DF /* AddressViewController.m in Sources */,
 				63CFDA8C114610060098C0DF /* MBProgressHUD.m in Sources */,
+				63CA77D4114DA75700AF62C9 /* ComposeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
