@@ -159,8 +159,8 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person 
 								property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
-    ABMultiValueRef emailProperty = ABRecordCopyValue(person,property);
     recipient recip;
+    ABMultiValueRef emailProperty = ABRecordCopyValue(person,property);
     recip.email = (NSString *)ABMultiValueCopyValueAtIndex(emailProperty,identifier);
     recip.name  = (NSString *)ABRecordCopyCompositeName(person);
 

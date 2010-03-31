@@ -6,17 +6,22 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
+#import "ComposeViewController.h"
+
 @class BuzzerModel;
-@interface BuzzerViewController : UITableViewController {
+@interface BuzzerViewController : UITableViewController <ComposeViewControllerDelegate> {
     NSMutableArray *messages;
     UIImage *myIcon;
     UIImage *yourIcon;
+    BuzzerModel *buzzer;
 }
 
 @property (nonatomic, retain) NSMutableArray *messages;
-@property (nonatomic, retain) UIImage *myIcon;
-@property (nonatomic, retain) UIImage *yourIcon;
+@property (nonatomic, retain) UIImage     *myIcon;
+@property (nonatomic, retain) UIImage     *yourIcon;
+@property (nonatomic, retain) BuzzerModel *buzzer;
 
--(void)initWithBuzzer:(BuzzerModel *)buzzer;
+- (void) initWithBuzzer:(BuzzerModel *)b;
+- (void) reply;
 
 @end

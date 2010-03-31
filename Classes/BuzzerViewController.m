@@ -15,9 +15,10 @@
 #import "MyColors.h"
 
 @implementation BuzzerViewController
-@synthesize messages, myIcon, yourIcon;
+@synthesize messages, myIcon, yourIcon, buzzer;
 
-- (void) initWithBuzzer:(BuzzerModel *)buzzer {
+- (void) initWithBuzzer:(BuzzerModel *)b {
+    self.buzzer = b;
     self.title = buzzer.name;
     self.yourIcon = [IconFinder getForEmail:buzzer.email];
     self.myIcon = [IconFinder getForEmail:[[NSUserDefaults standardUserDefaults] stringForKey:kPrimaryEmailKey]];
@@ -58,7 +59,14 @@
 }
 
 - (void) reply {
-    // TODO: Bring up screen to edit and send message.
+    recipient recip;
+    recip.name = self.buzzer.name;
+    recip.email = self.buzzer.email;
+    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
+    composeViewController.delegate = self;
+    composeViewController.recipient = recip;
+    [self presentModalViewController:composeViewController animated:YES];
+    [composeViewController release];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -93,6 +101,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [self.messages removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     //    }
+}
+
+#pragma mark -
+#pragma mark ComposeViewControllerDelegate methods
+
+- (void)composeViewControllerDidFinish:(ComposeViewController *)controller {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
