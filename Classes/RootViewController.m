@@ -159,7 +159,7 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person 
 								property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
-    recipient recip;
+    BuzzerModel *recip = [[BuzzerModel alloc] init];
     ABMultiValueRef emailProperty = ABRecordCopyValue(person,property);
     recip.email = (NSString *)ABMultiValueCopyValueAtIndex(emailProperty,identifier);
     recip.name  = (NSString *)ABRecordCopyCompositeName(person);
@@ -171,6 +171,7 @@
     [self.modalViewController presentModalViewController:composeViewController animated:YES];
     composeViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [composeViewController release];
+    [recip release];
 	return NO;
 }
 

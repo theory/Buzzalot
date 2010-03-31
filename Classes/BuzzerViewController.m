@@ -42,15 +42,17 @@
 
 - (void)viewDidUnload {
 	self.messages = nil;
-    self.myIcon = nil;
+    self.myIcon   = nil;
     self.yourIcon = nil;
+    self.buzzer   = nil;
     [super viewDidUnload];
 }
 
 - (void)dealloc {
 	[messages release];
-    [myIcon release];
+    [myIcon   release];
     [yourIcon release];
+    [buzzer   release];
     [super dealloc];
 }
 
@@ -59,12 +61,9 @@
 }
 
 - (void) reply {
-    recipient recip;
-    recip.name = self.buzzer.name;
-    recip.email = self.buzzer.email;
     ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
     composeViewController.delegate = self;
-    composeViewController.recipient = recip;
+    composeViewController.recipient = buzzer;
     [self presentModalViewController:composeViewController animated:YES];
     [composeViewController release];
 }

@@ -6,10 +6,7 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-typedef struct recipient {
-    NSString *name;
-    NSString *email;
-} recipient;
+#include "BuzzerModel.h"
 
 @protocol ComposeViewControllerDelegate;
 
@@ -18,14 +15,14 @@ typedef struct recipient {
     UIBarButtonItem *closeButton;
     UIBarButtonItem *sendButton;
     UITextView      *bodyField;
-    recipient       recipient;
+    BuzzerModel     *recipient;
 }
 
 @property (nonatomic, assign) id <ComposeViewControllerDelegate> delegate;
 @property (nonatomic, retain) UIBarButtonItem *closeButton;
 @property (nonatomic, retain) UIBarButtonItem *sendButton;
 @property (nonatomic, retain) UITextView      *bodyField;
-@property                     recipient       recipient;
+@property (nonatomic, retain) BuzzerModel     *recipient;
 
 - (void)closeButtonTapped;
 - (void)sendButtonTapped;

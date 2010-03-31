@@ -71,13 +71,15 @@
     self.closeButton = nil;
     self.sendButton  = nil;
     self.bodyField   = nil;
+    self.recipient   = nil;
 }
 
 
 - (void)dealloc {
-    [closeButton dealloc];
-    [sendButton  dealloc];
-    [bodyField   dealloc];
+    [closeButton release];
+    [sendButton  release];
+    [bodyField   release];
+    [recipient   release];
     [super dealloc];
 }
 
