@@ -27,11 +27,9 @@
  }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
     CGSize size = [[UIScreen mainScreen] bounds].size;
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, size.width, 44)];
-    [navBar pushNavigationItem:[[UINavigationItem alloc]initWithTitle:@"Send"]animated:NO];
+    [navBar pushNavigationItem:[[UINavigationItem alloc]initWithTitle:[NSString stringWithFormat:@"To %@", self.recipient.name]]animated:NO];
     [self.view addSubview:navBar];
 
 	self.closeButton = [[ UIBarButtonItem alloc ]
@@ -52,12 +50,13 @@
     [navBar release];
 
     self.bodyField = [[UITextView alloc] initWithFrame:CGRectMake(5, 49, size.width - 10, 220)];
-
     bodyField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     bodyField.font = [UIFont systemFontOfSize:17]; // XXX Should be default, why isn't it?
-    [bodyField becomeFirstResponder];
+    bodyField.delegate = self;
     [self.view addSubview:bodyField];
+    [bodyField becomeFirstResponder];
 
+    [super viewDidLoad];
 }
 
 /*

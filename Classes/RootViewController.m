@@ -159,9 +159,15 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person 
 								property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
+    ABMultiValueRef emailProperty = ABRecordCopyValue(person,property);
+    recipient recip;
+    recip.email = (NSString *)ABMultiValueCopyValueAtIndex(emailProperty,identifier);
+    recip.name  = (NSString *)ABRecordCopyCompositeName(person);
+
     ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
     composeViewController.delegate = self;
     composeViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    composeViewController.recipient = recip;
     [self.modalViewController presentModalViewController:composeViewController animated:YES];
     composeViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [composeViewController release];

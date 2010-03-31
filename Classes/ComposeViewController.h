@@ -13,19 +13,19 @@ typedef struct recipient {
 
 @protocol ComposeViewControllerDelegate;
 
-@interface ComposeViewController : UIViewController {
+@interface ComposeViewController : UIViewController <UITextViewDelegate> {
 	id <ComposeViewControllerDelegate> delegate;
     UIBarButtonItem *closeButton;
     UIBarButtonItem *sendButton;
     UITextView      *bodyField;
-    recipient       *recipient;
+    recipient       recipient;
 }
 
 @property (nonatomic, assign) id <ComposeViewControllerDelegate> delegate;
 @property (nonatomic, retain) UIBarButtonItem *closeButton;
 @property (nonatomic, retain) UIBarButtonItem *sendButton;
 @property (nonatomic, retain) UITextView      *bodyField;
-@property                     recipient       *recipient;
+@property                     recipient       recipient;
 
 - (void)closeButtonTapped;
 - (void)sendButtonTapped;
