@@ -14,6 +14,7 @@
 	id <ComposeViewControllerDelegate> delegate;
     UIBarButtonItem *closeButton;
     UIBarButtonItem *sendButton;
+    UITextField     *toField;
     UITextView      *bodyField;
     BuzzerModel     *recipient;
 }
@@ -21,6 +22,7 @@
 @property (nonatomic, assign) id <ComposeViewControllerDelegate> delegate;
 @property (nonatomic, retain) UIBarButtonItem *closeButton;
 @property (nonatomic, retain) UIBarButtonItem *sendButton;
+@property (nonatomic, retain) UITextField     *toField;
 @property (nonatomic, retain) UITextView      *bodyField;
 @property (nonatomic, retain) BuzzerModel     *recipient;
 
