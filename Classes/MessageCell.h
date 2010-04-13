@@ -10,7 +10,7 @@
 #import "MessageModel.h"
 
 #define kBubbleBodyWidth 230
-#define kBubbleBodyY 25
+#define kBubbleBodyY 27
 
 @interface MessageCell : ABTableViewCell {
     MessageModel *message;
