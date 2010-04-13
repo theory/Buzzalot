@@ -75,8 +75,7 @@ static float            textWidth;
 
     if (message.fromMe) {
         // Draw date.
-        CGFloat dateWidth = [sentAt sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(textWidth, 2000)].width;
-        [sentAt drawAtPoint:CGPointMake(myTextRMargin - dateWidth + 6, 4) withFont:whenTextFont];
+        [sentAt drawAtPoint:CGPointMake(myTBubRMargin - size.width + 2, 4) withFont:whenTextFont];
 
         // Draw bubble.
         [myBubble drawInRect:CGRectMake(myTBubRMargin - size.width, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
