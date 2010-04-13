@@ -24,6 +24,7 @@
 		63211BE5112E1B42004BA7D2 /* NSDate+HumanInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = 63211BE3112E1B42004BA7D2 /* NSDate+HumanInterval.m */; };
 		63505B7B1173E91A000BB488 /* my_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 63505B791173E91A000BB488 /* my_bubble.png */; };
 		63505B7C1173E91A000BB488 /* your_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 63505B7A1173E91A000BB488 /* your_bubble.png */; };
+		63505CBA11742329000BB488 /* icon_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 63505CB911742329000BB488 /* icon_shadow.png */; };
 		635C8E98113CC3DF008D6370 /* sql in Resources */ = {isa = PBXBuildFile; fileRef = 635C8E92113CC3DF008D6370 /* sql */; };
 		635C8EC1113CDF5E008D6370 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 635C8EC0113CDF5E008D6370 /* AddressModel.m */; };
 		636479BA111E79AD009E1544 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 636479B9111E79AD009E1544 /* icon.png */; };
@@ -78,6 +79,7 @@
 		63211BE3112E1B42004BA7D2 /* NSDate+HumanInterval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HumanInterval.m"; sourceTree = "<group>"; };
 		63505B791173E91A000BB488 /* my_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = my_bubble.png; sourceTree = "<group>"; };
 		63505B7A1173E91A000BB488 /* your_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = your_bubble.png; sourceTree = "<group>"; };
+		63505CB911742329000BB488 /* icon_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_shadow.png; sourceTree = "<group>"; };
 		635C8E92113CC3DF008D6370 /* sql */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sql; sourceTree = "<group>"; };
 		635C8EBF113CDF5E008D6370 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
 		635C8EC0113CDF5E008D6370 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63505CB911742329000BB488 /* icon_shadow.png */,
 				63CFD9211144CB070098C0DF /* green_button.png */,
 				63CFD8D51144C78C0098C0DF /* blue_button.png */,
 				63CFD8D61144C78C0098C0DF /* grey_button.png */,
@@ -348,6 +351,7 @@
 				63CFD9221144CB070098C0DF /* green_button.png in Resources */,
 				63505B7B1173E91A000BB488 /* my_bubble.png in Resources */,
 				63505B7C1173E91A000BB488 /* your_bubble.png in Resources */,
+				63505CBA11742329000BB488 /* icon_shadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -82,6 +82,7 @@ static UIFont *whenTextFont   = nil;
 
 //    CGContextStrokeRect(context, CGRectMake(p.x, kBuzzerBodyY, kBuzzerBodyWidth, size.height));
 
+    [[UIImage imageNamed:@"icon_shadow.png"] drawInRect:CGRectMake(2, 3, 52, 52)];
     UIImage *img = [IconFinder getForEmail: self.buzzer.email];
     if (img) {
         [img drawInRect:CGRectMake(4, 4, 48, 48)];

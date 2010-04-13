@@ -18,7 +18,6 @@ static UIImage         *myBubble     = nil;
 static UIImage         *yourBubble   = nil;
 static NSDateFormatter *df           = nil;
 static float            textVPadding;
-static float            screenWidth;
 static float            myTextRMargin;
 static float            myTBubRMargin;
 static float            textWidth;
@@ -29,11 +28,11 @@ static float            textWidth;
         whenTextFont  = [[UIFont systemFontOfSize:12] retain];
         myBubble      = [[[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:22] retain];
         yourBubble    = [[[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:19 topCapHeight:22] retain];
-        textVPadding  = 32 - [@"foo" sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 120)].height;
+        textVPadding  = 31 - [@"foo" sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 120)].height;
         df            = [[[NSDateFormatter alloc] init] retain];
         df.dateStyle  = NSDateFormatterShortStyle;
         df.timeStyle  = NSDateFormatterShortStyle;
-        screenWidth   = [[UIScreen mainScreen] bounds].size.width;
+        float screenWidth = [[UIScreen mainScreen] bounds].size.width;
         textWidth     = screenWidth - kBubbleTextWidthBuffer;
         myTextRMargin = textWidth + 13;
         myTBubRMargin = textWidth + 3;
@@ -86,7 +85,8 @@ static float            textWidth;
         [message.body drawInRect:CGRectMake(myTextRMargin - size.width, kBubbleBodyY, textWidth, size.height) withFont:bodyTextFont];
         
         // Draw icon.
-        [self.icon drawInRect:CGRectMake(265, 7, 48, 48)];
+        [[UIImage imageNamed:@"icon_shadow.png"] drawInRect:CGRectMake(263, 7, 52, 52)];
+        [self.icon drawInRect:CGRectMake(265, 8, 48, 48)];
     } else {
         // Draw bubble.
         [yourBubble drawInRect:CGRectMake(54, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
@@ -97,7 +97,8 @@ static float            textWidth;
         [message.body drawInRect:CGRectMake(75, kBubbleBodyY, textWidth, size.height) withFont:bodyTextFont];
 
         // Draw icon.
-        [self.icon drawInRect:CGRectMake(7, 7, 48, 48)];
+        [[UIImage imageNamed:@"icon_shadow.png"] drawInRect:CGRectMake(5, 7, 52, 52)];
+        [self.icon drawInRect:CGRectMake(7, 8, 48, 48)];
     }
 }
 
