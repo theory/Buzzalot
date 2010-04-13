@@ -12,21 +12,29 @@
 @implementation MessageCell
 @synthesize message, icon;
 
-static UIFont *bodyTextFont   = nil;
-static UIFont *whenTextFont   = nil;
-static UIImage *myBubble      = nil;
-static UIImage *yourBubble    = nil;
-static NSDateFormatter *df    = nil;
+static UIFont          *bodyTextFont = nil;
+static UIFont          *whenTextFont = nil;
+static UIImage         *myBubble     = nil;
+static UIImage         *yourBubble   = nil;
+static NSDateFormatter *df           = nil;
+static float            textVPadding;
+static float            screenWidth;
+static float            myTextRMargin;
+static float            textWidth;
 
 + (void)initialize {
     if (self == [MessageCell class]) {
-        bodyTextFont = [[UIFont systemFontOfSize:14] retain];
-        whenTextFont = [[UIFont systemFontOfSize:12] retain];
-        myBubble     = [[[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:22] retain];
-        yourBubble   = [[[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:19 topCapHeight:22] retain];
-        df           = [[[NSDateFormatter alloc] init] retain];
-        df.dateStyle = NSDateFormatterShortStyle;
-        df.timeStyle = NSDateFormatterShortStyle;
+        bodyTextFont  = [[UIFont systemFontOfSize:14] retain];
+        whenTextFont  = [[UIFont systemFontOfSize:12] retain];
+        myBubble      = [[[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:22] retain];
+        yourBubble    = [[[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:19 topCapHeight:22] retain];
+        textVPadding  = 32 - [@"foo" sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 120)].height;
+        df            = [[[NSDateFormatter alloc] init] retain];
+        df.dateStyle  = NSDateFormatterShortStyle;
+        df.timeStyle  = NSDateFormatterShortStyle;
+        screenWidth   = [[UIScreen mainScreen] bounds].size.width;
+        textWidth     = screenWidth - kBubbleTextWidthBuffer;
+        myTextRMargin = textWidth + 11;
 	}
 }
 
@@ -60,31 +68,31 @@ static NSDateFormatter *df    = nil;
     
     // Draw date/time.
     NSString *sentAt = [df stringFromDate:message.sent];
-    CGSize size = [sentAt sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(235, 2000)];
+    CGSize size = [sentAt sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(textWidth, 2000)];
     [sentAt drawAtPoint:CGPointMake((self.contentView.bounds.size.width - size.width) / 2, 4) withFont:whenTextFont];
 
     // Get body size.
-    size = [message.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 2000)];
+    size = [message.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(textWidth, 2000)];
 
     if (message.fromMe) {
         // Draw bubble.
-        [myBubble drawInRect:CGRectMake(238 - size.width, 22, size.width + 27, size.height > 24 ? size.height + 12 : 32)];
+        [myBubble drawInRect:CGRectMake(textWidth - size.width, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
         
         // Draw body.
         [textColor = [UIColor darkTextColor] set];
-        // CGContextStrokeRect(context, CGRectMake(248 - size.width, kBubbleBodyY, size.width, size.height));
-        [message.body drawInRect:CGRectMake(246 - size.width, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
+        // CGContextStrokeRect(context, CGRectMake(myTextRMargin - size.width, kBubbleBodyY, bubbleTextWidth, size.height));
+        [message.body drawInRect:CGRectMake(myTextRMargin - size.width, kBubbleBodyY, textWidth, size.height) withFont:bodyTextFont];
         
         // Draw icon.
         [self.icon drawInRect:CGRectMake(265, 7, 48, 48)];
     } else {
         // Draw bubble.
-        [yourBubble drawInRect:CGRectMake(54, 22, size.width + 30, size.height > 24 ? size.height + 12 : 32)];
+        [yourBubble drawInRect:CGRectMake(54, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
         
         // Draw body.
         [textColor = [UIColor darkTextColor] set];
-        // CGContextStrokeRect(context, CGRectMake(72, kBubbleBodyY, size.width, size.height));
-        [message.body drawInRect:CGRectMake(75, kBubbleBodyY, kBubbleBodyWidth, size.height) withFont:bodyTextFont];
+        // CGContextStrokeRect(context, CGRectMake(72, kBubbleBodyY, bubbleTextWidth, size.height));
+        [message.body drawInRect:CGRectMake(75, kBubbleBodyY, textWidth, size.height) withFont:bodyTextFont];
 
         // Draw icon.
         [self.icon drawInRect:CGRectMake(7, 7, 48, 48)];

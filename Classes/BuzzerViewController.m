@@ -17,6 +17,15 @@
 @implementation BuzzerViewController
 @synthesize messages, myIcon, yourIcon, buzzer;
 
+static float textWidth;
+
++ (void)initialize {
+    if (self == [BuzzerViewController class]) {
+        textWidth = [[UIScreen mainScreen] bounds].size.width - kBubbleTextWidthBuffer;
+	}
+}
+
+
 - (void) initWithBuzzer:(BuzzerModel *)b {
     self.buzzer = b;
     self.title = buzzer.name;
@@ -73,7 +82,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize size = [((MessageModel *) [self.messages objectAtIndex:indexPath.row]).body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(kBubbleBodyWidth, 2000)];
+    CGSize size = [((MessageModel *) [self.messages objectAtIndex:indexPath.row]).body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(textWidth, 2000)];
     return MAX(size.height + kBubbleBodyY + 6, 60);
 }
 
