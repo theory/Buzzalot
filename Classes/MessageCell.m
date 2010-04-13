@@ -25,7 +25,7 @@ static float            textWidth;
 + (void)initialize {
     if (self == [MessageCell class]) {
         bodyTextFont  = [[UIFont systemFontOfSize:14] retain];
-        whenTextFont  = [[UIFont systemFontOfSize:12] retain];
+        whenTextFont  = [[UIFont boldSystemFontOfSize:12] retain];
         myBubble      = [[[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:22] retain];
         yourBubble    = [[[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:19 topCapHeight:22] retain];
         textVPadding  = 31 - [@"foo" sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 120)].height;
@@ -56,7 +56,7 @@ static float            textWidth;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
 	UIColor *backgroundColor = [UIColor tweetieBlue];
-	UIColor *textColor = [UIColor darkGrayColor];
+	UIColor *textColor = [UIColor blueGrayColor];
 
 	if (self.selected) {
 		backgroundColor = [UIColor clearColor];
@@ -69,13 +69,15 @@ static float            textWidth;
     
     // Draw date/time.
     NSString *sentAt = [df stringFromDate:message.sent];
-    CGSize size = [sentAt sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(textWidth, 2000)];
-    [sentAt drawAtPoint:CGPointMake((self.contentView.bounds.size.width - size.width) / 2, 4) withFont:whenTextFont];
 
     // Get body size.
-    size = [message.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(textWidth, 2000)];
+    CGSize size = [message.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(textWidth, 2000)];
 
     if (message.fromMe) {
+        // Draw date.
+        CGFloat dateWidth = [sentAt sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(textWidth, 2000)].width;
+        [sentAt drawAtPoint:CGPointMake(myTextRMargin - dateWidth + 6, 4) withFont:whenTextFont];
+
         // Draw bubble.
         [myBubble drawInRect:CGRectMake(myTBubRMargin - size.width, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
         
@@ -88,6 +90,9 @@ static float            textWidth;
         [[UIImage imageNamed:@"icon_shadow.png"] drawInRect:CGRectMake(263, 7, 52, 52)];
         [self.icon drawInRect:CGRectMake(265, 8, 48, 48)];
     } else {
+        // Draw date.
+        [sentAt drawAtPoint:CGPointMake(68, 4) withFont:whenTextFont];
+
         // Draw bubble.
         [yourBubble drawInRect:CGRectMake(54, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
         
