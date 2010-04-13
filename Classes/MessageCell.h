@@ -12,7 +12,7 @@
 #define kBubbleBodyY 28
 #define kBubbleY 22
 #define kTextHPadding 30
-#define kBubbleTextWidthBuffer 95
+#define kBubbleTextWidthBuffer 88
 
 @interface MessageCell : ABTableViewCell {
     MessageModel *message;

@@ -20,6 +20,7 @@ static NSDateFormatter *df           = nil;
 static float            textVPadding;
 static float            screenWidth;
 static float            myTextRMargin;
+static float            myTBubRMargin;
 static float            textWidth;
 
 + (void)initialize {
@@ -34,7 +35,8 @@ static float            textWidth;
         df.timeStyle  = NSDateFormatterShortStyle;
         screenWidth   = [[UIScreen mainScreen] bounds].size.width;
         textWidth     = screenWidth - kBubbleTextWidthBuffer;
-        myTextRMargin = textWidth + 11;
+        myTextRMargin = textWidth + 13;
+        myTBubRMargin = textWidth + 3;
 	}
 }
 
@@ -76,7 +78,7 @@ static float            textWidth;
 
     if (message.fromMe) {
         // Draw bubble.
-        [myBubble drawInRect:CGRectMake(textWidth - size.width, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
+        [myBubble drawInRect:CGRectMake(myTBubRMargin - size.width, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
         
         // Draw body.
         [textColor = [UIColor darkTextColor] set];
