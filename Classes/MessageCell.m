@@ -25,7 +25,7 @@ static float            textWidth;
 + (void)initialize {
     if (self == [MessageCell class]) {
         bodyTextFont  = [[UIFont systemFontOfSize:14] retain];
-        whenTextFont  = [[UIFont boldSystemFontOfSize:12] retain];
+        whenTextFont  = [[UIFont systemFontOfSize:12] retain];
         myBubble      = [[[UIImage imageNamed:@"my_bubble.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:22] retain];
         yourBubble    = [[[UIImage imageNamed:@"your_bubble.png"] stretchableImageWithLeftCapWidth:19 topCapHeight:22] retain];
         textVPadding  = 31 - [@"foo" sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(235, 120)].height;
