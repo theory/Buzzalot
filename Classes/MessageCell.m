@@ -75,7 +75,8 @@ static float            textWidth;
 
     if (message.fromMe) {
         // Draw date.
-        [sentAt drawAtPoint:CGPointMake(myTBubRMargin - size.width + 2, 4) withFont:whenTextFont];
+        CGFloat dateWidth = [sentAt sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(textWidth, 2000)].width;
+        [sentAt drawAtPoint:CGPointMake(myTextRMargin - dateWidth - 2, 4) withFont:whenTextFont];
 
         // Draw bubble.
         [myBubble drawInRect:CGRectMake(myTBubRMargin - size.width, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
@@ -90,7 +91,7 @@ static float            textWidth;
         [self.icon drawInRect:CGRectMake(265, 8, 48, 48)];
     } else {
         // Draw date.
-        [sentAt drawAtPoint:CGPointMake(68, 4) withFont:whenTextFont];
+        [sentAt drawAtPoint:CGPointMake(74, 4) withFont:whenTextFont];
 
         // Draw bubble.
         [yourBubble drawInRect:CGRectMake(54, kBubbleY, size.width + kTextHPadding, size.height + textVPadding)];
