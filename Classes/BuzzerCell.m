@@ -16,20 +16,17 @@
 
 @synthesize buzzer;
 
-static UIFont *buzzerNameFont = nil;
-static UIFont *bodyTextFont   = nil;
-static UIFont *whenTextFont   = nil;
+static UIFont  *buzzerNameFont = nil;
+static UIFont  *bodyTextFont   = nil;
+static UIFont  *whenTextFont   = nil;
+static UIImage *gradientImage  = nil;
 
 + (void)initialize {
     if (self == [BuzzerCell class]) {
         buzzerNameFont = [[UIFont boldSystemFontOfSize:14] retain];
-        bodyTextFont = [[UIFont systemFontOfSize:14] retain];
-        whenTextFont = [[UIFont systemFontOfSize:14] retain];
-        // this is a good spot to load any graphics you might be drawing in
-        // -drawContentView: just load them and retain them here (ONLY if
-        // they're small enough that you don't care about them wasting memory)
-		// the idea is to do as LITTLE work (e.g. allocations) in
-        // -drawContentView: as possible
+        bodyTextFont   = [[UIFont systemFontOfSize:14] retain];
+        whenTextFont   = [[UIFont systemFontOfSize:14] retain];
+        gradientImage  = [[[UIImage imageNamed:@"cell_gradient.png"] stretchableImageWithLeftCapWidth:0 topCapHeight:65] retain];
 	}
 }
 
@@ -60,27 +57,33 @@ static UIFont *whenTextFont   = nil;
 	CGContextFillRect(context, r);
 	[textColor set];
 
+    // Determine the cell height.
+    CGFloat height = [self.buzzer.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)].height;
+
+    // Draw gradient.
+    [gradientImage drawInRect:CGRectMake(0, MAX(height + kBuzzerBodyY + 6, 60) - 65, [[UIScreen mainScreen] bounds].size.width, 65)];
+//    return MAX(size.height + kBuzzerBodyY + 6, 60);
+
     // Draw date/time.
     if (!self.selected) [textColor = [UIColor blueGrayColor] set];
     NSString *reltime = [self.buzzer.when humanIntervalSinceNow];
-    CGSize size = [reltime sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(120, 2000)];
-	CGPoint p = {296 - size.width, 4};
+    CGFloat width = [reltime sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(120, 2000)].width;
+	CGPoint p = {296 - width, 4};
     [reltime drawAtPoint:p withFont:whenTextFont];
     
 	// Draw buzzer name.
     if (!self.selected) [textColor = [UIColor darkTextColor] set];
     p.x = 60;
     p.y = 4;
-    [self.buzzer.name drawAtPoint:p forWidth: 232 - size.width withFont:buzzerNameFont lineBreakMode:UILineBreakModeWordWrap ];
+    [self.buzzer.name drawAtPoint:p forWidth: 232 - width withFont:buzzerNameFont lineBreakMode:UILineBreakModeWordWrap ];
 
-//    CGContextStrokeRect(context, CGRectMake(60, 4, 232-size.width, 20));
+//    CGContextStrokeRect(context, CGRectMake(60, 4, 232-width, 20));
 
     // Draw body.
     if (!self.selected) [textColor = [UIColor darkGrayColor] set];
-    size = [self.buzzer.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)];
-    [self.buzzer.body drawInRect:CGRectMake(p.x, 22, 235, size.height) withFont:bodyTextFont];
+    [self.buzzer.body drawInRect:CGRectMake(p.x, 22, 235, height) withFont:bodyTextFont];
 
-//    CGContextStrokeRect(context, CGRectMake(p.x, kBuzzerBodyY, kBuzzerBodyWidth, size.height));
+//    CGContextStrokeRect(context, CGRectMake(p.x, kBuzzerBodyY, kBuzzerBodyWidth, height));
 
     [[UIImage imageNamed:@"icon_shadow.png"] drawInRect:CGRectMake(2, 3, 52, 52)];
     UIImage *img = [IconFinder getForEmail: self.buzzer.email];
