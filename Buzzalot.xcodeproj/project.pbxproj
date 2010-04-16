@@ -38,7 +38,7 @@
 		639438CF111A3D4C00E39D09 /* icon_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 639438CE111A3D4C00E39D09 /* icon_frame.png */; };
 		639573A2117577BA0008B791 /* cell_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 639573A1117577BA0008B791 /* cell_gradient.png */; };
 		6395759D1177DD110008B791 /* ABSearchSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6395759A1177DD110008B791 /* ABSearchSource.m */; };
-		6395759E1177DD110008B791 /* ComposerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6395759C1177DD110008B791 /* ComposerProxy.m */; };
+		6395759E1177DD110008B791 /* UIViewController+Composer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6395759C1177DD110008B791 /* UIViewController+Composer.m */; };
 		639575B51177DE380008B791 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 639575B01177DE100008B791 /* libThree20.a */; };
 		639575C71177DEA60008B791 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 639575C61177DEA60008B791 /* Three20.bundle */; };
 		639575FE1177DFB10008B791 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 639575FD1177DFB10008B791 /* QuartzCore.framework */; };
@@ -61,21 +61,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 639575AA1177DE100008B791 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20;
 		};
 		639575B11177DE100008B791 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 639575AA1177DE100008B791 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		639575C31177DE6B0008B791 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 639575AA1177DE100008B791 /* Three20.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20 */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20;
 		};
 /* End PBXContainerItemProxy section */
@@ -130,8 +130,8 @@
 		639573A1117577BA0008B791 /* cell_gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell_gradient.png; sourceTree = "<group>"; };
 		639575991177DD110008B791 /* ABSearchSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSearchSource.h; sourceTree = "<group>"; };
 		6395759A1177DD110008B791 /* ABSearchSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSearchSource.m; sourceTree = "<group>"; };
-		6395759B1177DD110008B791 /* ComposerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposerProxy.h; sourceTree = "<group>"; };
-		6395759C1177DD110008B791 /* ComposerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposerProxy.m; sourceTree = "<group>"; };
+		6395759B1177DD110008B791 /* UIViewController+Composer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Composer.h"; sourceTree = "<group>"; };
+		6395759C1177DD110008B791 /* UIViewController+Composer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Composer.m"; sourceTree = "<group>"; };
 		639575AA1177DE100008B791 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../three20/src/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		639575C61177DEA60008B791 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		639575FD1177DFB10008B791 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -210,8 +210,8 @@
 				63CFD6221141E4590098C0DF /* AddressViewController.m */,
 				639575991177DD110008B791 /* ABSearchSource.h */,
 				6395759A1177DD110008B791 /* ABSearchSource.m */,
-				6395759B1177DD110008B791 /* ComposerProxy.h */,
-				6395759C1177DD110008B791 /* ComposerProxy.m */,
+				6395759B1177DD110008B791 /* UIViewController+Composer.h */,
+				6395759C1177DD110008B791 /* UIViewController+Composer.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 				63CFD6231141E4590098C0DF /* AddressViewController.m in Sources */,
 				63CFDA8C114610060098C0DF /* MBProgressHUD.m in Sources */,
 				6395759D1177DD110008B791 /* ABSearchSource.m in Sources */,
-				6395759E1177DD110008B791 /* ComposerProxy.m in Sources */,
+				6395759E1177DD110008B791 /* UIViewController+Composer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

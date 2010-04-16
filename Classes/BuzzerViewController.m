@@ -13,7 +13,7 @@
 #import "IconFinder.h"
 #import "BuzzalotAppDelegate.h"
 #import "MyColors.h"
-#import "ComposerProxy.h"
+#import "UIViewController+Composer.h"
 
 @implementation BuzzerViewController
 @synthesize messages, myIcon, yourIcon, buzzer;
@@ -71,8 +71,7 @@ static float textWidth;
 }
 
 - (void) reply {
-    ComposerProxy *proxy = [[ComposerProxy alloc] initWithController:self];
-    [proxy go];
+    [self presentComposer];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

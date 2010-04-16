@@ -6,19 +6,13 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import "ComposerProxy.h"
+#import "UIViewController+Composer.h"
 #import "Three20/TTMessageController.h"
 #import "ABSearchSource.h"
 
-@implementation ComposerProxy
-@synthesize controller;
+@implementation UIViewController (Composer)
 
-- (id) initWithController:(UIViewController *)c {
-    if (self = [self init]) self.controller = c;
-    return self;
-}
-
-- (void) go {
+- (void) presentComposer {
     TTMessageController* msgController = [[[TTMessageController alloc] init] autorelease];
     msgController.fields = [[NSArray alloc] initWithObjects:[msgController.fields objectAtIndex:0], nil];
     msgController.showsRecipientPicker = YES;
@@ -26,22 +20,19 @@
     msgController.delegate = self;
     UINavigationController* navController = [[[UINavigationController alloc] init] autorelease];
     [navController pushViewController: msgController animated: NO];
-    [self.controller presentModalViewController: navController animated: YES];
+    [self presentModalViewController: navController animated: YES];
 }
 
-- (void)dealloc {
-    [controller release];
-    [super dealloc];
-}
+//- (void) presentComposerWithRecipient {
 
 #pragma mark TTMessageControllerDelegate
 
 - (void)composeController:(TTMessageController*)controller didSendFields:(NSArray*)fields {
-    [self.controller dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)composeControllerDidCancel:(TTMessageController*)controller {
-    [self.controller dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)composeControllerShowRecipientPicker:(TTMessageController*)controller {
@@ -51,7 +42,7 @@
 	NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonEmailProperty], nil];	
 	picker.displayedProperties = displayedItems;
 	// Show the picker 
-	[self.controller.modalViewController presentModalViewController:picker animated:YES];
+	[self.modalViewController presentModalViewController:picker animated:YES];
     [picker release];	
 }
 
@@ -64,12 +55,12 @@
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
     // TODO: Get the name and email address and return in a format suitable for the recipient field.
-    [self.controller.modalViewController dismissModalViewControllerAnimated:YES];
+    [self.modalViewController dismissModalViewControllerAnimated:YES];
     return NO;
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    [self.controller.modalViewController dismissModalViewControllerAnimated:YES];
+    [self.modalViewController dismissModalViewControllerAnimated:YES];
 }
 
 @end

@@ -14,7 +14,7 @@
 #import "BuzzerModel.h"
 #import "IconFinder.h"
 #import "AddressModel.h"
-#import "ComposerProxy.h"
+#import "UIViewController+Composer.h"
 
 @implementation RootViewController
 @synthesize buzzers;
@@ -30,7 +30,7 @@
 	UIBarButtonItem *composeItem = [ [ UIBarButtonItem alloc ] 
 									initWithBarButtonSystemItem: UIBarButtonSystemItemCompose 
 									target: self 
-									action: @selector(compose)
+									action: @selector(presentComposer)
 									];
     self.navigationItem.rightBarButtonItem = composeItem;
     [composeItem release];
@@ -89,12 +89,6 @@
     [[NSUserDefaults standardUserDefaults] setObject: primary forKey: kPrimaryEmailKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     if (primary) [IconFinder findAmongEmails:emails cacheFor:primary];
-}
-
-- (void)compose {
-    ComposerProxy *proxy = [[ComposerProxy alloc] initWithController:self];
-    [proxy go];
-//    [proxy release];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
