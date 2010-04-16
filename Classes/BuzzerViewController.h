@@ -6,10 +6,8 @@
 //  Copyright 2010 Kineticode, Inc.. All rights reserved.
 //
 
-#import "ComposeViewController.h"
-
 @class BuzzerModel;
-@interface BuzzerViewController : UITableViewController <ComposeViewControllerDelegate> {
+@interface BuzzerViewController : UITableViewController {
     NSMutableArray *messages;
     UIImage *myIcon;
     UIImage *yourIcon;

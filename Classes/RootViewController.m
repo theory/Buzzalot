@@ -14,7 +14,7 @@
 #import "BuzzerModel.h"
 #import "IconFinder.h"
 #import "AddressModel.h"
-#import "ComposeViewController.h"
+#import "ComposerProxy.h"
 
 @implementation RootViewController
 @synthesize buzzers;
@@ -92,19 +92,10 @@
 }
 
 - (void)compose {
-    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
-    composeViewController.delegate = self;
-    [self presentModalViewController:composeViewController animated:YES];
-    [composeViewController release];
+    ComposerProxy *proxy = [[ComposerProxy alloc] initWithController:self];
+    [proxy go];
+//    [proxy release];
 }
-//	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-//    picker.peoplePickerDelegate = self;
-//	// Display only a person's email
-//	NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonEmailProperty], nil];
-//	picker.displayedProperties = displayedItems;
-//	// Show the picker
-//	[self presentModalViewController:picker animated:YES];
-//    [picker release];
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.buzzers count];
@@ -149,47 +140,6 @@
     [buzzer deleteBuzzer];
     [self.buzzers removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
-}
-
-//#pragma mark -
-//#pragma mark ABPeoplePickerNavigationControllerDelegate methods
-//
-//// Displays the information of a selected person
-//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-//	return YES;
-//}
-//
-//// Does not allow users to perform default actions such as dialing a phone number, when they select a person property.
-//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person 
-//								property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
-//{
-//    BuzzerModel *recip = [[BuzzerModel alloc] init];
-//    ABMultiValueRef emailProperty = ABRecordCopyValue(person,property);
-//    recip.email = (NSString *)ABMultiValueCopyValueAtIndex(emailProperty,identifier);
-//    recip.name  = (NSString *)ABRecordCopyCompositeName(person);
-//
-//    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
-//    composeViewController.delegate = self;
-//    composeViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//    composeViewController.recipient = recip;
-//    [self.modalViewController presentModalViewController:composeViewController animated:YES];
-//    composeViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    [composeViewController release];
-//    [recip release];
-//	return NO;
-//}
-//
-//// Dismisses the people picker and shows the application when users tap Cancel.
-//- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker;
-//{
-//	[self dismissModalViewControllerAnimated:YES];
-//}
-
-#pragma mark -
-#pragma mark ComposeViewControllerDelegate methods
-
-- (void)composeViewControllerDidFinish:(ComposeViewController *)controller {
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

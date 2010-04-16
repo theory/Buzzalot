@@ -7,10 +7,9 @@
 //
 
 #import "ConfigViewController.h"
-#import "ComposeViewController.h"
 #import "BuzzerViewController.h"
 
-@interface RootViewController : UITableViewController <ConfigViewControllerDelegate, ComposeViewControllerDelegate> {
+@interface RootViewController : UITableViewController <ConfigViewControllerDelegate> {
     NSMutableArray *buzzers;
 }
 

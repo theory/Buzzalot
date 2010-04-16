@@ -13,6 +13,7 @@
 #import "IconFinder.h"
 #import "BuzzalotAppDelegate.h"
 #import "MyColors.h"
+#import "ComposerProxy.h"
 
 @implementation BuzzerViewController
 @synthesize messages, myIcon, yourIcon, buzzer;
@@ -70,11 +71,8 @@ static float textWidth;
 }
 
 - (void) reply {
-    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
-    composeViewController.delegate = self;
-    composeViewController.recipient = buzzer;
-    [self presentModalViewController:composeViewController animated:YES];
-    [composeViewController release];
+    ComposerProxy *proxy = [[ComposerProxy alloc] initWithController:self];
+    [proxy go];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -109,13 +107,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [self.messages removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation: UITableViewRowAnimationFade];
     //    }
-}
-
-#pragma mark -
-#pragma mark ComposeViewControllerDelegate methods
-
-- (void)composeViewControllerDidFinish:(ComposeViewController *)controller {
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
