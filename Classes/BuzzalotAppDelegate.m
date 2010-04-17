@@ -20,7 +20,7 @@
     return [[paths objectAtIndex:0] stringByAppendingPathComponent:kDBFilename];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	RootViewController *viewController = [[RootViewController alloc] init];
@@ -50,6 +50,7 @@
     }
 
 	[window makeKeyAndVisible];
+    return YES;
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

@@ -14,7 +14,7 @@
 
 @interface BuzzalotAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-	UINavigationController *navController;
+    UINavigationController *navController;
     NSOperationQueue * iconQueue;
 }
 
