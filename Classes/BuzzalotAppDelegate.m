@@ -21,11 +21,11 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
-	RootViewController *viewController = [[RootViewController alloc] init];
-	navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-	[viewController release];
+    RootViewController *viewController = [[RootViewController alloc] init];
+    navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [viewController release];
 
     // Make sure we have a database.
     [SQLMigrator migrateDb:[BuzzalotAppDelegate getDBConnection] directory: @"sql"];
@@ -40,16 +40,16 @@
     [window addSubview:[navController view]];
 
 	if ([[NSUserDefaults standardUserDefaults] stringForKey:kUserNameKey] == nil) {
-		// Create the default configuration values.
-		NSDictionary *appDefaults = [NSDictionary dictionary];
-		[[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-		[[NSUserDefaults standardUserDefaults] synchronize];
+        // Create the default configuration values.
+        NSDictionary *appDefaults = [NSDictionary dictionary];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+        [[NSUserDefaults standardUserDefaults] synchronize];
 
         // Load the ConfigViewController
         [viewController showConfig];
     }
 
-	[window makeKeyAndVisible];
+    [window makeKeyAndVisible];
     return YES;
 }
 

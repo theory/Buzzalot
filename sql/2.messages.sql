@@ -35,7 +35,7 @@ END;
 CREATE TRIGGER correspondents_email_upkey
 AFTER UPDATE ON correspondents
 FOR EACH ROW BEGIN
-  UPDATE messages SET email = NEW.email;
+  UPDATE messages SET email = NEW.email WHERE email = OLD.email;
 END;
 
 -- Cascade deletes from correspondents.

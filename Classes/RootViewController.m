@@ -20,14 +20,14 @@
 @synthesize buzzers;
 
 - (void)viewDidLoad {
-	self.title = NSLocalizedString(@"Buzzalot", nil);
-	UIButton *modalViewButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-	[modalViewButton addTarget:self action:@selector(showConfig) forControlEvents:UIControlEventTouchUpInside];
-	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:modalViewButton];
+    self.title = NSLocalizedString(@"Buzzalot", nil);
+    UIButton *modalViewButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [modalViewButton addTarget:self action:@selector(showConfig) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithCustomView:modalViewButton];
     self.navigationItem.leftBarButtonItem = addButton;
     [addButton release];
 
-	UIBarButtonItem *composeItem = [ [ UIBarButtonItem alloc ] 
+    UIBarButtonItem *composeItem = [ [ UIBarButtonItem alloc ] 
 									initWithBarButtonSystemItem: UIBarButtonSystemItemCompose 
 									target: self 
 									action: @selector(presentComposer)
@@ -35,10 +35,10 @@
     self.navigationItem.rightBarButtonItem = composeItem;
     [composeItem release];
 
-	// Set up the back button.
-	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Buzzers" style:UIBarButtonItemStyleDone target:nil action:nil];
-	self.navigationItem.backBarButtonItem = backButton;
-	[backButton release];
+    // Set up the back button.
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Buzzers" style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButton;
+    [backButton release];
 
     // Load the data and go!
     self.buzzers = [BuzzerModel selectBuzzers];

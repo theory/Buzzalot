@@ -45,17 +45,17 @@ static UIImage *gradientImage  = nil;
 
 - (void)drawContentView:(CGRect)r {
     CGContextRef context = UIGraphicsGetCurrentContext();
-	UIColor *backgroundColor = [UIColor whiteColor];
-	UIColor *textColor = [UIColor blackColor];
+    UIColor *backgroundColor = [UIColor whiteColor];
+    UIColor *textColor = [UIColor blackColor];
 	
-	if (self.selected) {
-		backgroundColor = [UIColor clearColor];
-		textColor = [UIColor whiteColor];
-	}
+    if (self.selected) {
+        backgroundColor = [UIColor clearColor];
+        textColor = [UIColor whiteColor];
+    }
 	
-	[backgroundColor set];
-	CGContextFillRect(context, r);
-	[textColor set];
+    [backgroundColor set];
+    CGContextFillRect(context, r);
+    [textColor set];
 
     // Determine the cell height.
     CGFloat height = [self.buzzer.body sizeWithFont:bodyTextFont constrainedToSize:CGSizeMake(kBuzzerBodyWidth, 2000)].height;
@@ -68,10 +68,10 @@ static UIImage *gradientImage  = nil;
     if (!self.selected) [textColor = [UIColor blueGrayColor] set];
     NSString *reltime = [self.buzzer.when humanIntervalSinceNow];
     CGFloat width = [reltime sizeWithFont:whenTextFont constrainedToSize:CGSizeMake(120, 2000)].width;
-	CGPoint p = {296 - width, 4};
+    CGPoint p = {296 - width, 4};
     [reltime drawAtPoint:p withFont:whenTextFont];
     
-	// Draw buzzer name.
+    // Draw buzzer name.
     if (!self.selected) [textColor = [UIColor darkTextColor] set];
     p.x = 60;
     p.y = 4;
