@@ -8,7 +8,8 @@
 
 
 #import <AddressBookUI/AddressBookUI.h>
-#import "Three20/TTMessageController.h"
+#import "Three20UI/TTMessageController.h"
+#import "Three20UI/TTMessageControllerDelegate.h"
 
 @interface UIViewController (Composer) <TTMessageControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
 

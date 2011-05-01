@@ -135,12 +135,12 @@
 
 - (void) sendRequest {
     // TODO: Submit request.
-    sleep(2);
+    [NSThread sleepForTimeInterval:2.0];
     [self.submitButton removeTarget:self action:@selector(requestButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     emailField.enabled = NO;
     hud.labelText = @"Done.";
     hud.detailsLabelText = @"Check email for confirmation code.";
-    sleep(2);
+    [NSThread sleepForTimeInterval:2.0];
     [self setButtonToCofirm];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
     [self performSelectorOnMainThread:@selector(switchToCodeField) withObject:nil waitUntilDone:NO];
@@ -148,11 +148,11 @@
 
 - (void) sendConfirm {
     // TODO: Submit confirmation.
-    sleep(2);
+    [NSThread sleepForTimeInterval:2.0];
     [self.address confirm];
     hud.labelText = @"Done.";
     hud.detailsLabelText = @"You may now use this address.";
-    sleep(2);
+    [NSThread sleepForTimeInterval:2.0];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

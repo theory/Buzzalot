@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+Composer.h"
-#import "Three20/TTMessageController.h"
+#import "Three20UI/TTMessageController.h"
 #import "ABSearchSource.h"
 
 @implementation UIViewController (Composer)
